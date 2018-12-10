@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build: site
-    container_name: apache-3IW
+    container_name: apache-3IW_ProjetAnnuel
     ports :
      - "80:80"
     volumes:
