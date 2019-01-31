@@ -2,9 +2,9 @@ version: '3'
 services:
   web:
     build: site
-    container_name: apache-3IW_ProjetAnnuel
+    container_name: apache-3IW-ProjetAnnuel
     ports :
-     - "8081:80"
+     - "80:80"
     volumes:
      - ./www:/var/www/html/
      - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
@@ -15,11 +15,11 @@ services:
 
   database:
     image: mysql:5.7
-    container_name: PAcontainer
+    container_name: ProjetAnnuel
     ports :
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: projetAnnuel
+      MYSQL_DATABASE: mvcdocker2
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
@@ -29,7 +29,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: PAphpmyadmin
+    container_name: phpmyadmin-mvc
     depends_on:
       - database
     ports:
