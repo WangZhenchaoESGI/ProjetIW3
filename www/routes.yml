@@ -2,6 +2,22 @@
   controller: Pages
   action: default
 
+"/contact":
+  controller: Pages
+  action: contact
+
+"/template":
+  controller: Pages
+  action: template
+
+"/template-carte":
+  controller: Pages
+  action: templateCarte
+
+"/reservation":
+  controller: Pages
+  action: reservation
+
 "/liste_des_utilisateurs":
   controller: Users
   action: default
@@ -9,7 +25,6 @@
 "/ajouter_un_utilisateur":
   controller: Users
   action: add
-
 
 "/enregistrer_un_utilisateur":
   controller: Users
@@ -19,6 +34,22 @@
   controller: Users
   action: login
 
+"/deconnexion":
+  controller: Users
+  action: logout
+
 "/mot_de_passe_oublie":
   controller: Users
   action: forgetPassword
+
+"/dashboard":
+  controller: Admin
+  action: dashboard
+
+"/commandes":
+  controller: Admin
+  action: commandes
+
+"/produits":
+  controller: Admin
+  action: produits

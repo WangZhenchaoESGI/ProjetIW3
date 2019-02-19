@@ -1,0 +1,7 @@
+.navbar {
+	position: relative;
+	@include mq(medium) {
+		margin-top: em(24px);
+		margin-bottom: 0;
+	}
+}

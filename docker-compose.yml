@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build: site
-    container_name: apache-3IW-ProjetAnnuel
+    container_name: apache-3IW
     ports :
      - "80:80"
     volumes:
@@ -15,7 +15,7 @@ services:
 
   database:
     image: mysql:5.7
-    container_name: ProjetAnnuel
+    container_name: mysql-mvc
     ports :
       - "3306:3306"
     environment:
@@ -33,6 +33,9 @@ services:
     depends_on:
       - database
     ports:
-      - 8082:80
+      - 8080:80
     environment:
         - PMA_ARBITRARY=1
+
+      
+      

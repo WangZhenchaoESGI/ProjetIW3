@@ -17,7 +17,7 @@ class Routing{
 			$cPath = "controllers/".$c.".class.php";
 
 		}else{
-			return null;
+			return ["c"=>null, "a"=>null,"cPath"=>null ];
 		}
 
 		return ["c"=>$c, "a"=>$a,"cPath"=>$cPath ];

@@ -15,7 +15,6 @@ function myAutoloader($class){
 //Cela veut dire que si j'essaye d'instancier une class qui n'existe pas
 //La fonction myAutoloader va être lancée
 spl_autoload_register("myAutoloader");
-session_start();
 
 //Récuperer l'url apres le nom de domaine
 //Utilisation d'une variable SUPER GLOBALE

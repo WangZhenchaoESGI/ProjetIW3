@@ -1,10 +1,15 @@
 
-<?php
+<?php $data = ($config["config"]["method"]=="POST")?$_POST:$_GET; ?>
 
-	$data = ($config["config"]["method"]=="POST")?$_POST:$_GET;
-	
-
-?>
+	<?php if( !empty($config["errors"])):?>
+		<div class="alert alert-danger">
+			<ul>
+			<?php foreach ($config["errors"] as $errors):?>
+				<li><?php echo $errors;?>
+			<?php endforeach ?>
+			</ul>
+		</div>
+	<?php endif ?>
 
    
   <form 

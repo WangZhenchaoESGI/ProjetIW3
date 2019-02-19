@@ -1,0 +1,156 @@
+#header{
+    height: 65px;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo_header{
+    width: 100%;
+    padding-left: 0.5em;
+}
+
+#shop{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0.5em;
+}
+
+#shop a{
+    text-decoration: none;
+    color: white;
+}
+
+#profile{
+    background-color: aliceblue;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+#profile img{
+    height: 2.5rem;
+}
+
+#content{
+    top: 65px;
+    width: 100%;
+    height: calc(100% - 65px) ;
+    display: flex;
+    flex-basis: auto;
+}
+
+#nav{
+    width: 250px;
+    background-color: #4A4A4A;
+    opacity: 0.7;
+    font-size: 1.25em;
+}
+
+#nav ul li{
+    list-style-type: none;
+    color: white;
+    padding-bottom: 2em;
+    overflow: hidden;
+}
+
+#nav a{
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    color: white;
+}
+
+.icone_nav{
+    height: 1.5em;
+    position: relative;
+    left: -32px;
+    filter:drop-shadow(32px 0 #ffffff);
+}
+
+#app{
+    left: 250px;
+    width: calc(100% - (250px));
+}
+
+/*
+    Dashboard
+ */
+
+#dashboard{
+    padding-right: 2em;
+    padding-left: 2em;
+    display: flex;
+    align-items: flex-end;
+}
+
+#dashboard h2{
+    color: #D0021B;
+    font-family: Chalkduster,serif;
+}
+
+#dashboard h3{
+    color: #D0021B;
+    opacity: 0.7;
+    font-family: Chalkduster,serif;
+}
+
+/*
+    Commandes
+ */
+
+.commandes{
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+#commandes-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+#commandes-header figure{
+    text-align: center;
+}
+
+#commandes-content{
+    padding-top: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    width: 100%;
+    border: 2px solid gainsboro;
+}
+
+@media screen and (min-width: 799px) {
+    #nav-mobile{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 798px) {
+    h1 h2{
+        font-size: 1.17em;
+    }
+    #header{
+        display: none;
+    }
+
+    #nav{
+        display: none;
+    }
+
+    #app{
+        left: 0px;
+        width: 100%;
+    }
+
+    #logo-mobile{
+        margin-bottom: -20px;
+    }
+
+    #nav-mobile{
+        background-color: black;
+    }
+}
