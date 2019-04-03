@@ -2,9 +2,15 @@ version: '3'
 services:
   web:
     build: site
+<<<<<<< HEAD
     container_name: apache-3IW
     ports :
      - "80:80"
+=======
+    container_name: apache-3IW_ProjetAnnuel
+    ports :
+     - "8081:80"
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
     volumes:
      - ./www:/var/www/html/
      - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
@@ -15,11 +21,19 @@ services:
 
   database:
     image: mysql:5.7
+<<<<<<< HEAD
     container_name: mysql-mvc
     ports :
       - "3306:3306"
     environment:
       MYSQL_DATABASE: mvcdocker2
+=======
+    container_name: PAcontainer
+    ports :
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: projetAnnuel
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
@@ -29,6 +43,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
+<<<<<<< HEAD
     container_name: phpmyadmin-mvc
     depends_on:
       - database
@@ -39,3 +54,12 @@ services:
 
       
       
+=======
+    container_name: PAphpmyadmin
+    depends_on:
+      - database
+    ports:
+      - 8082:80
+    environment:
+        - PMA_ARBITRARY=1
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 //on lance l'installeur quand on connecte le première fois
 if (!file_exists('conf.inc.php')){
@@ -66,3 +67,6 @@ if( file_exists($cPath) ){
 }
 
 
+=======
+echo "nsnsnsjjjjjjjjjj";
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7

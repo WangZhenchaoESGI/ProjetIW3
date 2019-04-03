@@ -7,7 +7,11 @@ definer_user=mysql.sys
 definer_host=localhost
 suid=0
 with_check_option=0
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
+=======
+timestamp=2018-12-10 18:11:20
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
 create-version=1
 source=SELECT variable_name, variable_value FROM performance_schema.global_status WHERE variable_name LIKE \'perf%lost\' AND variable_value > 0
 client_cs_name=utf8

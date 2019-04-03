@@ -7,7 +7,11 @@ definer_user=mysql.sys
 definer_host=localhost
 suid=0
 with_check_option=0
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
+=======
+timestamp=2018-12-10 18:11:20
+>>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
 create-version=1
 source=SELECT ROUTINE_SCHEMA AS db, ROUTINE_TYPE AS object_type, COUNT(*) AS count FROM information_schema.routines GROUP BY ROUTINE_SCHEMA, ROUTINE_TYPE UNION  SELECT TABLE_SCHEMA, TABLE_TYPE, COUNT(*) FROM information_schema.tables GROUP BY TABLE_SCHEMA, TABLE_TYPE UNION SELECT TABLE_SCHEMA, CONCAT(\'INDEX (\', INDEX_TYPE, \')\'), COUNT(*) FROM information_schema.statistics GROUP BY TABLE_SCHEMA, INDEX_TYPE UNION SELECT TRIGGER_SCHEMA, \'TRIGGER\', COUNT(*) FROM information_schema.triggers GROUP BY TRIGGER_SCHEMA UNION SELECT EVENT_SCHEMA, \'EVENT\', COUNT(*) FROM information_schema.events GROUP BY EVENT_SCHEMA ORDER BY DB, OBJECT_TYPE
 client_cs_name=utf8
