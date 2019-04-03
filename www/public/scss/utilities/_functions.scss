@@ -1,0 +1,28 @@
+// ==========================================================================
+// Functions
+// ==========================================================================
+
+// Import if Google Fonts URL is defined
+
+@if variable-exists(font-url--google) {
+  @import url($font-url--google);
+  @import url($fontspec-url--google);
+}
+
+// Calculate em values
+
+@function em($target, $context: $base__font-size) {
+	@return ($target / $context) * 1em;
+}
+
+// Call the color palette modifiers in color values
+
+@function palette($palette, $grey: 'base') {
+	@return map-get(map-get($color-palettes, $palette), $grey);
+}
+
+// Set the "context" width for the grid
+@function g-context($g-col-width, $g-col-count ,$g-gutter-width) {
+  $g-context: ($g-col-width * $g-col-count) + ($g-gutter-width * ($g-col-count - 1));
+  @return $g-context;
+}

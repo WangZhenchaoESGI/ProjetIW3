@@ -1,0 +1,28 @@
+// ==========================================================================
+// Nav
+// ==========================================================================
+
+.nav {
+	margin-top: 0;
+  margin-bottom: em(30px);
+  float: right;
+}
+
+.nav__item {
+	@extend %nav-item-horz;
+	a {
+		@extend %nav-item-link;
+		color: palette(white);
+		&:hover {
+			@extend %nav-item-on;
+		}
+	}
+}
+
+.nav__item--current {
+	@extend %nav-item-horz;
+	a {
+		@extend %nav-item-link;
+		@extend %nav-item-on;
+	}
+}

@@ -1,0 +1,32 @@
+// ==========================================================================
+// Grid Columns
+// ==========================================================================
+
+
+
+// Calculate grid columns in percentage
+.grid__col {
+  @include mq(medium) {
+    @include g-columns
+  }
+}
+
+// Column styles
+
+[class^="grid--col__"] {
+  @include mq(small) {
+    margin-top: em(12px);
+    margin-bottom: em(12px);
+  }
+
+  @include mq(medium) {
+    @include doubly(percentage($g-gutter-width / $context));
+    float: left;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    &:last-of-type { // la derniere col de la row floatera a droite
+      float: right;
+    }
+  }
+}

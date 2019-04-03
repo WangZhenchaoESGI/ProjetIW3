@@ -1,0 +1,126 @@
+// FONT STACK
+$font-url--google        : 'https://fonts.googleapis.com/css?family=Montserrat:400,400i,800,800i';
+$fontspec-url--google: "https://fonts.googleapis.com/css?family=Spectral";
+$fontrob--url--google: "https://fonts.googleapis.com/css?family=Miss+Fajardose";
+
+//HOME
+$font-family--primary: 'Montserrat', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+$font-family--secondary: 'Spectral', serif;
+
+//TEMPLATE
+$font-family--fajar: 'Miss Fajardose', cursive;
+
+$font-family--third: 'Roboto', sans-serif;
+
+// FONT WEIGHT
+$font-weight--thin: 100;
+$font-weight--light: 300;
+$font-weight--medium: 400;
+$font-weight--bold: 700;
+$font-weight--ultra-bold: 900;
+
+// DESCRIPTIVE BASE COLORS
+$white: #fff;
+$black: #0b0b0b;
+$grey: #797e83;
+
+$sunglo:rgba(92, 0, 41, 1);
+$coral:rgba(43, 65, 98, 1);
+$blue: rgba(138, 210, 255, 1);
+
+
+
+// COLOR USAGE
+
+$color-shadow: rgba(black, .2);/* RGB */
+$color1: rgba(34, 12, 16, 1);
+$green1: hsla(349%, 48%, 9%, 1);
+$brown: rgba(190, 170, 169, 1);
+$brown-xlight: rgba(228, 222, 218, 1);
+$brown-xxlight: rgba(254, 254, 254, 1);
+$brown-dark: rgba(107, 93, 87, 1);
+$brown1: rgba(221, 204, 199, 1);
+$brown2: rgba(181, 144, 133, 1);
+
+
+$color1: rgba(249, 249, 249, 1);
+$green4: rgba(164, 180, 148, 1);
+
+
+
+
+
+
+// COLOR PALETTE MODIFIERS
+$color-palettes: (
+  grey: (
+    xx-light: lighten($grey, 43%),
+		x-light: lighten($grey, 35%),
+	  light: lighten($grey, 12%),
+	  base: $grey,
+	 	dark: darken($grey, 8%),
+	 	x-dark: darken($grey, 16%)
+  ),
+  black: (
+    light: lighten($black, 10%),
+		base : $black,
+		dark : darken($black, 10%)
+  ),
+  white: (
+    base: $white
+  ),
+  brown: (
+    base: $brown,
+    x-light: lighten($brown, 35%)
+  ),
+  pourpre: (
+    base: $sunglo
+  ),
+  blue: (
+    base: $coral
+  )
+
+);
+
+
+//UI COLORS
+$ui-colors: (
+  default: $brown,
+  success: $black,
+  error: $sunglo,
+  warning: $coral,
+  info: $grey
+);
+
+// TEXT
+$base__font-size: 16px;
+$base--line: 24px;
+$letter-space    : 1px;
+
+// BORDER RADIUS
+$br--default    : .4em;
+$br--round      : 50%;
+
+// TRANSITIONS
+$trns-duration  : .3s;
+
+
+// PATH TO ASSETS
+$path--rel: "../img";
+
+//GRID
+$g-col-width: 65px;
+$g-col-count: 12;
+$g-gutter-width: 20px;
+$g-cont-max-w: 1100px;
+
+// BREAKPOINTS
+$brkpoint-sm: 1px;
+$brkpoint-md: 768px;
+$brkpoint-lg: 1100px;
+
+
+
+
+
+

@@ -1,0 +1,354 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-size: $base__font-size;
+  line-height: $base__line/$base__font-size;
+  font-family: $font-family--primary;
+}
+
+// TEXT
+
+h1{
+  @extend %hdln-prim;
+}
+
+h2{
+  @extend %hdln-sec;
+}
+
+p {
+	margin: 0 0 em(30px, 18px);
+	font-weight: $font-weight--light;
+	font-size: em(16px);
+	line-height: (27px/18px);
+}
+
+a {
+	color: palette(white);
+	text-decoration: none;
+	font-weight: $font-weight--medium;
+}
+
+// BUTTON
+
+button {
+	outline: 0;
+}
+
+// LIST
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+// IMAGE
+
+img {
+  margin-bottom: em(24px);
+  max-width: 100%;
+  // height: auto;
+}
+
+// **************************************HOMEPAGE****************************
+//HEADER
+
+.header{
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  #logo-image{
+    float: left;
+    width: 140px;
+    height: 45px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  @include mq(small){
+    height: 25vh;
+    background-color: palette(brown);
+  }
+}
+
+#section1 .cta-button{
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn{
+	from {opacity: 0; transform: translateY(100%);}
+	to {opacity: 1; transform: translateY(0%);}
+}
+
+
+// SECTION1
+
+.content-wrapper{
+  @include img-background('lucas-alexander-15978-unsplash.jpg', 540px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+//SECTION3
+.feature-img{
+  @include mq(medium){
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.hero-image{
+  box-shadow: 0 0 0.5rem 0 rgba(190, 170, 169, 1);
+	transition: $trns-duration;
+}
+
+.hero-image:hover{
+  transform: translateY(-1rem);
+	box-shadow: 0 0 2rem 0 rgba(190, 170, 169, 1);
+}
+
+.hero-image:nth-child(1){
+  @include img-background('temp1.png', 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image:nth-child(2){
+  @include img-background('randy-fath-1290402-unsplash.jpg', 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.hero-image:nth-child(3){
+  @include img-background('pablo-merchan-montes-772142-unsplash.jpg', 250px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// SECTION5
+.content-feature{
+  @include mq(medium){
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.img-feature{
+  box-shadow: 0 0 0.5rem 0 rgba(190, 170, 169, 1);
+	transition: $trns-duration;
+}
+.img-feature:hover{
+  transform: translateY(-1rem);
+	box-shadow: 0 0 2rem 0 rgba(190, 170, 169, 1);
+}
+
+// FOOTER HOME
+.footer-home{
+  background-color: palette(brown);
+
+  @include mq(small){
+    height: 20vh;
+  }
+}
+
+
+
+// *******************************************TEMPLATE*******************************
+
+// HEADER-TEMPLATE
+.template{
+  font-family: $font-family--fajar;
+}
+.header-temp{
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+  background-color: #F8F8F8;
+  #logo-image-temp{
+    float: left;
+    width: 140px;
+    height: 45px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-weight: $font-weight--bold;
+  }
+  .nav__item{
+    a {
+      @extend %nav-item-link;
+      color: $sunglo;
+      &:hover {
+        @extend %nav-item-on;
+        color: black;
+      }
+    }
+  }
+}
+
+// SECTION SECTION-TEMPLATE
+.img-temp{
+  @include img-background('rawpixel-256640-unsplash.jpg', 610px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.wrapper-text{
+  color: palette(white);
+}
+
+//SECTION2 DESCRIPTION
+.feature-temp{
+  @include mq(medium){
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+  }
+}
+
+// SECTION3 IMG-MENU
+.template h1{
+  color: $sunglo;
+}
+
+.img-menu{
+  box-shadow: 0 0 0.5rem 0 rgba(190, 170, 169, 1);
+	transition: $trns-duration;
+}
+.img-menu:hover{
+  transform: translateY(-1rem);
+	box-shadow: 0 0 2rem 0 rgba(190, 170, 169, 1);
+}
+
+.img-resto{
+  box-shadow: 0 0 0.5rem 0 rgba(190, 170, 169, 1);
+	transition: $trns-duration;
+}
+.img-resto:hover{
+  transform: translateY(-1rem);
+	box-shadow: 0 0 2rem 0 rgba(190, 170, 169, 1);
+}
+
+
+
+//FOOTER
+.footer-template{
+  background-color: palette(black);
+  .powered{
+    color: palette(white);
+    margin-left: 10px;
+  }
+  .logo-image-footer{
+    width: 140px;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    transform: translateY(53%);
+    font-weight: $font-weight--bold;
+  }
+}
+.horaires{
+  color: palette(white);
+  margin-left: 10px;
+}
+
+
+
+// ***************************TEMPLATE-CARTE*******************************
+
+.template-carte{
+  font-family: $font-family--fajar;
+}
+.menu .headline-secondary{
+  color: $coral;
+  font-family: $font-family--fajar;
+}
+.block-menu{
+  .headline-third{
+    color: $sunglo;
+    font-weight: $font-weight--bold;
+  }
+}
+.content-menu{
+  @include mq(medium){
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8F8;
+    .menu-items{
+      padding: 1rem 2rem;
+      color: palette(pourpre);
+      .headline-third{
+        color: palette(blue)
+      }
+    }
+  }
+}
+
+
+// *******************CONTACT-TEMPLATE**********************
+
+.contact-template{
+  .headline-primary{
+    // font-family: $font-family--fajar;
+    font-weight: $font-weight--light;
+    color: palette(pourpre);
+  }
+}
+.background-contact{
+  @include img-background('jason-leung-537357-unsplash.jpg', 560px)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
