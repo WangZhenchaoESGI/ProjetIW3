@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6729fd2-2389-4722-bd96-0501b5dd84a7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/Admin.sketch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/Home.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Design/PA.sketch" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +27,8 @@
       <file leaf-file-name="calendar" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Design/calendar">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+            <state relative-caret-position="80">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -227,12 +229,12 @@
       <workItem from="1554109522103" duration="5088000" />
       <workItem from="1554119840735" duration="4679000" />
       <workItem from="1554295456253" duration="15660000" />
-      <workItem from="1554419346622" duration="108000" />
+      <workItem from="1554419346622" duration="236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78872000" />
+    <option name="totallyTimeSpent" value="79000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -621,8 +623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Design/calendar">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        <state relative-caret-position="80">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
