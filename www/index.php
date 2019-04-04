@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 //on lance l'installeur quand on connecte le première fois
 if (!file_exists('conf.inc.php')){
@@ -53,12 +52,12 @@ if( file_exists($cPath) ){
 		$cObject = new $c();
 		//vérifier que la méthode (l'action) existe
 		if( method_exists($cObject, $a) ){
-			//appel dynamique de la méthode	
+			//appel dynamique de la méthode
 			$cObject->$a();
 		}else{
 			die("La methode ".$a." n'existe pas");
 		}
-		
+
 	}else{
 		die("La class controller ".$c." n'existe pas");
 	}
@@ -67,6 +66,3 @@ if( file_exists($cPath) ){
 }
 
 
-=======
-echo "nsnsnsjjjjjjjjjj";
->>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7

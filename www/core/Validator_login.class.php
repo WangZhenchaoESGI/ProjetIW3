@@ -63,7 +63,7 @@ class Validator_login extends BaseSQL {
 
         //Utiliser la fonction native de php
         // password_verify ( string $password , string $hash )
-        if ( password_verify( $password ,  $result["pwd"] ) )
+        if ( !empty($result) && password_verify( $password ,  $result["pwd"] ) )
         {
             //$_SESSION["accesstoken"] = generateAccessToken($_POST['email']);
 
