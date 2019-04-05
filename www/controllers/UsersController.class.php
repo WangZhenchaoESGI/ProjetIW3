@@ -12,6 +12,28 @@ class UsersController{
 		$user = new Users();
 		$form = $user->getRegisterForm();
 
+		/*
+		$config = [
+                "config"=>[
+                    "title"=>"tilte",
+                    "js"=>"",
+                    "css"=>""],
+
+
+                "data"=>[
+
+                    "email"=>["type"=>"email","placeholder"=>"Votre email", "required"=>true, "class"=>"form-control", "id"=>"email",
+                        "error"=>"L'email n'est pas valide"],
+
+                    "pwd"=>["type"=>"password","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
+                        "error"=>"Veuillez préciser un mot de passe"]
+
+
+                ]
+
+            ];
+		*/
+
 		$v = new View("addUser", "front");
 		$v->assign("form", $form);
 	}
