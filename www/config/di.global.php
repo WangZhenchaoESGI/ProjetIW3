@@ -2,7 +2,7 @@
 
 return [
     \Models\Users::class => function($container) {
-        return new \Models\Users();
+        return new \Models\Users($container['config']['db']);
     },
     \Controller\UsersController::class => function($container) {
         $usersModel = $container[\Models\Users::class]($container);

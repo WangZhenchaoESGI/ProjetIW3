@@ -11,7 +11,7 @@ if (!file_exists('conf.inc.php')){
     }
 }
 
-require "conf.inc.php";
+//require "conf.inc.php";
 
 function myAutoloader($class)
 {
@@ -47,6 +47,7 @@ $routes = \Core\Routing::getRoute($slug);
 extract($routes);
 
 $container = [];
+$container['config'] = require 'config/global.php';
 $container += require 'config/di.global.php';
 
 //vérifier l'existence du fichier et de la class controller

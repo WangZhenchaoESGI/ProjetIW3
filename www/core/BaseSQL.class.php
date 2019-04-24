@@ -9,10 +9,13 @@ class BaseSQL
 	public $pdo;
 	protected $table;
 
-	public function __construct(){
+	public function __construct(array $config){
 		try{
-			$this->pdo = new \PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
-			//$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			//$this->pdo = new \PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
+            $this->pdo = new \PDO($config['driver'].":host=".$config['dbhost'].";dbname=".$config['dbname'],$config['dbuser'],$config['dbpwd']);
+            //$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 		}catch(Exception $e){
 			die("Erreur SQL : ".$e->getMessage());
 		}
