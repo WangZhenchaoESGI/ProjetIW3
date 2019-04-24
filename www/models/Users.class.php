@@ -2,21 +2,31 @@
 
 declare(strict_types=1);
 
-class Users extends BaseSQL{
+namespace Models;
 
+use Core\BaseSQL;
+
+// ImplementuserInterface
+class Users extends BaseSQL
+{
+
+    // State private
 	public $id = null;
+	// VO(ValueObjet) Identity
 	public $firstname;
 	public $lastname;
 	public $email;
+	// Change to password
 	public $pwd;
 	public $role=1;
 	public $status=0;
 	public $accesstoken;
 
+	// Initialiser les propriété dans le constructeur
+    // DI
 	public function __construct(){
 		parent::__construct();
 	}
-
 
 	public function setFirstname($firstname){
 		$this->firstname = ucwords(strtolower(trim($firstname)));

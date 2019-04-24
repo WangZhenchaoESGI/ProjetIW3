@@ -13,9 +13,12 @@ if (!file_exists('conf.inc.php')){
 
 require "conf.inc.php";
 
-function myAutoloader($class){
-	$classPath = "core/".$class.".class.php";
-	$classModel = "models/".$class.".class.php";
+function myAutoloader($class)
+{
+
+	$classPath = "core/".substr($class, strpos($class, '\\') + 1).".class.php";
+	$classModel = "models/".substr($class, strpos($class, '\\') + 1).".class.php";
+	
 	if(file_exists($classPath)){
 		include $classPath;
 	}else if(file_exists($classModel)){
@@ -40,16 +43,18 @@ $slug = $_SERVER["REQUEST_URI"];
 $slugExploded = explode("?", $slug);
 $slug = $slugExploded[0];
 
-$routes = Routing::getRoute($slug);
+$routes = \Core\Routing::getRoute($slug);
 extract($routes);
 
+$container = [];
+$container += require 'config/di.global.php';
 
 //vérifier l'existence du fichier et de la class controller
 if( file_exists($cPath) ){
 	include $cPath;
-	if( class_exists($c)){
+	if( class_exists('\\Controller\\'.$c)){
 		//instancier dynamiquement le controller
-		$cObject = new $c();
+        $cObject = $container['Controller\\'.$c]($container);
 		//vérifier que la méthode (l'action) existe
 		if( method_exists($cObject, $a) ){
 			//appel dynamique de la méthode

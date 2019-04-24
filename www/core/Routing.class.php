@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Core;
+
 class Routing{
 
 	public static $routeFile = "routes.yml";

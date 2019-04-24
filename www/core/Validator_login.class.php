@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+namespace Core;
+
 class Validator_login extends BaseSQL {
 
     public $errors = [];
 
+    //6LcZeZwUAAAAAPvv5wWfGBUP_5pbuXDxEHBDppbY
+    //6LcZeZwUAAAAALNsF31A4rro-8cis4CBdQkn524z
     public function __construct( $config, $data ){
 
         parent::__construct();
