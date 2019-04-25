@@ -1,18 +1,61 @@
 <?php
 
+use \Models\Users;
+use \Controller\UsersController;
+use \Controller\PagesController;
+use \Controller\AdminController;
+use \VO\DbDriver;
+use \VO\DbHost;
+use \VO\DbName;
+use \VO\DbUser;
+use \VO\DbPwd;
+
+/*
 return [
-    \Models\Users::class => function($container) {
-        return new \Models\Users($container['config']['db']);
+    Users::class => function($container) {
+        return new Users($container['config']['db']);
     },
-    \Controller\UsersController::class => function($container) {
-        $usersModel = $container[\Models\Users::class]($container);
-        return new \Controller\UsersController($usersModel);
+    UsersController::class => function($container) {
+        $usersModel = $container[Users::class]($container);
+        return new UsersController($usersModel);
     },
-    \Controller\PagesController::class => function($container) {
-        return new \Controller\PagesController();
+    PagesController::class => function($container) {
+        return new PagesController();
     },
-    \Controller\AdminController::class => function($container) {
-        $usersModel = $container[\Models\Users::class]($container);
-        return new \Controller\AdminController($usersModel);
+    AdminController::class => function($container) {
+        $usersModel = $container[Users::class]($container);
+        return new AdminController($usersModel);
+    },
+];*/
+
+return [
+    DbDriver::class =>function($container) {
+    return new DbDriver($container['config']['db']['driver']);
+    },
+    DbHost::class =>function($container) {
+        return new DbHost($container['config']['db']['dbhost']);
+    },
+    DbName::class =>function($container) {
+        return new DbName($container['config']['db']['dbname']);
+    },
+    DbUser::class =>function($container) {
+        return new DbUser($container['config']['db']['dbuser']);
+    },
+    DbPwd::class =>function($container) {
+        return new DbPwd($container['config']['db']['dbpwd']);
+    },
+    Users::class => function($container) {
+        return new Users(DbDriver(),DbHost(),DbName(),DbUser(),DbPwd());
+    },
+    UsersController::class => function($container) {
+        $usersModel = $container[Users::class]($container);
+        return new UsersController($usersModel);
+    },
+    PagesController::class => function($container) {
+        return new PagesController();
+    },
+    AdminController::class => function($container) {
+        $usersModel = $container[Users::class]($container);
+        return new AdminController($usersModel);
     },
 ];

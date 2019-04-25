@@ -18,19 +18,23 @@ function myAutoloader($class)
 
 	$classPath = "core/".substr($class, strpos($class, '\\') + 1).".class.php";
 	$classModel = "models/".substr($class, strpos($class, '\\') + 1).".class.php";
-	
-	if(file_exists($classPath)){
+    $classVO = "VO/".substr($class, strpos($class, '\\') + 1).".VO.php";
+
+    if(file_exists($classPath)){
 		include $classPath;
-	}else if(file_exists($classModel)){
+	}elseif(file_exists($classModel)){
 		include $classModel;
-	}
+	}elseif(file_exists($classVO)){
+        include $classVO;
+    }
+
 }
 
 //Cela veut dire que si j'essaye d'instancier une class qui n'existe pas
 //La fonction myAutoloader va être lancée
 spl_autoload_register("myAutoloader");
 
-//Récuperer l'url apres le nom de domaine
+//Récuperer l'url après le nom de domaine
 //Utilisation d'une variable SUPER GLOBALE
 //Accessible partout, commenence par $_ et en majuscule
 //c'est toujours un tableau
