@@ -28,7 +28,6 @@ class Routing{
 		return ["c"=>$c, "a"=>$a,"cPath"=>$cPath ];
 	}
 
-
 	public static function getSlug($c, $a){
 		$routes = yaml_parse_file(self::$routeFile);
 
@@ -44,7 +43,6 @@ class Routing{
 		}
 
 		return null;
-
 	}
 
 }

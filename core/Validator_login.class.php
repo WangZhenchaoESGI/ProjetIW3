@@ -14,8 +14,12 @@ class Validator_login extends BaseSQL {
 
         parent::__construct();
         //1er vérification : le nb de champs
-        if(count($data) != count($config["data"])){
+        if(count($data) != (count($config["data"])+1)){
             die("Tentative : faille XSS");
+        }
+
+        if( !self::checkCaptchat($data['g-recaptcha-response'])){
+            $this->errors[]='Veuillez bien cocher le captcha !';
         }
 
         foreach ($config["data"] as $name => $info) {
@@ -28,6 +32,8 @@ class Validator_login extends BaseSQL {
                 //email - method
                 if($info["type"]=="email" && !self::checkEmail($data[$name])){
                     $this->errors[]=$info["error"];
+                }elseif($info["type"]=="email" && !self::checkStatus($data[$name])){
+                    $this->errors[] = "Veuillez activer votre compte !";
                 }
 
                 if($info["type"]=="password" && !self::checkPassword($data[$name],$data['email'])){
@@ -45,23 +51,31 @@ class Validator_login extends BaseSQL {
         return filter_var(trim($string), FILTER_VALIDATE_EMAIL);
     }
 
-    public function emailExist( $email ){
+    public function checkCaptchat($data){
+        // Ma clé privée
+        $secret = "6LcZeZwUAAAAALNsF31A4rro-8cis4CBdQkn524z";
+        // Paramètre renvoyé par le recaptcha
+        $response = $data;
+        // On récupère l'IP de l'utilisateur
+        $remoteip = $_SERVER['REMOTE_ADDR'];
 
-        //Préparation de la requête
-        $query = $this->pdo->prepare(" SELECT * FROM Users WHERE email = :titi");
-        $query->execute( [ "titi" => $email] );
-        $result = $query->fetch();
+        $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+            . $secret
+            . "&response=" . $response
+            . "&remoteip=" . $remoteip ;
 
-        if( empty($result) ){
-            return false;
-        }else{
+        $decode = json_decode(file_get_contents($api_url), true);
+
+        if ($decode['success'] == true) {
             return true;
         }
+
+        return false;
     }
 
     public function checkPassword($password,$email){
 
-        $query = $this->pdo->prepare("SELECT pwd FROM Users WHERE status=0 AND email=:titi");
+        $query = $this->pdo->prepare("SELECT pwd FROM Users WHERE email=:titi");
         $query->execute( ["titi" => $email] );
         $result = $query->fetch();
 
@@ -91,7 +105,22 @@ class Validator_login extends BaseSQL {
 
     }
 
+    public function checkStatus($email)
+    {
 
+        $query = $this->pdo->prepare("SELECT status FROM Users WHERE email=:titi");
+        $query->execute(["titi" => $email]);
+        $result = $query->fetch();
+
+        //Utiliser la fonction native de php
+        // password_verify ( string $password , string $hash )
+        if (!empty($result) && $result['status']==1) {
+            return true;
+        }
+
+        return false;
+
+    }
 
 }
 

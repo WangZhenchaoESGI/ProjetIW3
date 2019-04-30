@@ -12,9 +12,13 @@ class Validator extends BaseSQL {
 
 	    parent::__construct();
 	    //1er vérification : le nb de champs
-		if(count($data) != count($config["data"])){
+		if(count($data) != (count($config["data"])+1)){
 			die("Tentative : faille XSS");
 		}
+
+        if( !self::checkCaptchat($data['g-recaptcha-response'])){
+            $this->errors[]='Veuillez bien cocher le captcha !';
+        }
 
 		foreach ($config["data"] as $name => $info) {
 
@@ -102,7 +106,27 @@ class Validator extends BaseSQL {
 					preg_match("#[0-9]#", $string));
 	}
 
+    public function checkCaptchat($data){
+        // Ma clé privée
+        $secret = "6LcZeZwUAAAAALNsF31A4rro-8cis4CBdQkn524z";
+        // Paramètre renvoyé par le recaptcha
+        $response = $data;
+        // On récupère l'IP de l'utilisateur
+        $remoteip = $_SERVER['REMOTE_ADDR'];
 
+        $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
+            . $secret
+            . "&response=" . $response
+            . "&remoteip=" . $remoteip ;
+
+        $decode = json_decode(file_get_contents($api_url), true);
+
+        if ($decode['success'] == true) {
+            return true;
+        }
+
+        return false;
+    }
 
 }
 

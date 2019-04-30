@@ -6,6 +6,8 @@ namespace Controller;
 use Core\View;
 use Models\Users;
 use Core\Routing;
+use Core\Validator;
+use Core\Validator_login;
 
 class UsersController{
 
@@ -67,10 +69,12 @@ class UsersController{
                 $token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
                 $user->setAccesstoken($token);
 
-				$user->save();
+				//$user->save();
 
-				header("Location: /connexion");
-				exit();
+                echo "<pre>";
+                var_dump($data);
+				//header("Location: /connexion");
+				//exit();
 			}
 
 		}

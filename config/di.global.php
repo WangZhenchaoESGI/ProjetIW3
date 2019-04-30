@@ -4,6 +4,7 @@ use \Models\Users;
 use \Controller\UsersController;
 use \Controller\PagesController;
 use \Controller\AdminController;
+use \Controller\CaptchaController;
 use \VO\DbDriver;
 use \VO\DbHost;
 use \VO\DbName;
@@ -57,5 +58,8 @@ return [
     AdminController::class => function($container) {
         $usersModel = $container[Users::class]($container);
         return new AdminController($usersModel);
+    },
+    CaptchaController::class => function($container) {
+        return new CaptchaController();
     },
 ];

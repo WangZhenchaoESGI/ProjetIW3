@@ -53,3 +53,7 @@
 "/produits":
   controller: Admin
   action: produits
+
+"/captcha":
+  controller: Captcha
+  action: default
