@@ -45,7 +45,7 @@ return [
         return new DbPwd($container['config']['db']['dbpwd']);
     },
     Users::class => function($container) {
-        return new Users(DbDriver(),DbHost(),DbName(),DbUser(),DbPwd());
+        return new Users($container['config']['db']);
     },
     UsersController::class => function($container) {
         $usersModel = $container[Users::class]($container);
