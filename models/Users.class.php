@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Models;
 
 use Core\BaseSQL;
+use Core\Routing;
 
 // ImplementuserInterface
 class Users extends BaseSQL
@@ -24,8 +25,8 @@ class Users extends BaseSQL
 
 	// Initialiser les propriété dans le constructeur
     // DI
-	public function __construct(array $config){
-		parent::__construct($config);
+	public function __construct(){
+		parent::__construct();
 	}
 
 	public function setFirstname($firstname){

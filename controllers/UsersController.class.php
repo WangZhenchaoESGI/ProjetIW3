@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Controller;
 use Core\View;
+use Models\Users;
+use Core\Routing;
 
 class UsersController{
 

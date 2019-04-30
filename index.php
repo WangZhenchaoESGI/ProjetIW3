@@ -15,7 +15,7 @@ if (!file_exists('conf.inc.php')){
     }
 }
 
-//require "conf.inc.php";
+require "conf.inc.php";
 
 function myAutoloader($class)
 {
