@@ -18,6 +18,10 @@
   controller: Pages
   action: reservation
 
+"/active_compte":
+  controller: Pages
+  action: activeCompte
+
 "/liste_des_utilisateurs":
   controller: Users
   action: default
