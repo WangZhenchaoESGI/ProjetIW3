@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Controller;
+use Core\View;
+
 class UsersController{
 
 	public function defaultAction(){
@@ -12,7 +15,27 @@ class UsersController{
 		$user = new Users();
 		$form = $user->getRegisterForm();
 
-		$form['id'] = $_GET['id'];
+		/*
+		$config = [
+                "config"=>[
+                    "title"=>"tilte",
+                    "js"=>"",
+                    "css"=>""],
+
+
+                "data"=>[
+
+                    "email"=>["type"=>"email","placeholder"=>"Votre email", "required"=>true, "class"=>"form-control", "id"=>"email",
+                        "error"=>"L'email n'est pas valide"],
+
+                    "pwd"=>["type"=>"password","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
+                        "error"=>"Veuillez préciser un mot de passe"]
+
+
+                ]
+
+            ];
+		*/
 
 		$v = new View("addUser", "front");
 		$v->assign("form", $form);
@@ -74,7 +97,7 @@ class UsersController{
 				//$token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
 
                 /*
-                 *  Après la vérification de connexion, Redirection
+                 *  Après la vérification de connexion, redirect
                  */
 
                 header("Location: /");
