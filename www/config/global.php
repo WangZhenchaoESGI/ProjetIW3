@@ -2,9 +2,10 @@
 return [
     "db"=>[
         'driver' => 'mysql',
-        'dbhost' => 'database',
+        'dbhost' => 'localhost',
         'dbname' => 'mvcdocker2',
         'dbuser' => 'root',
-        'dbpwd' => 'password'
+        'dbpwd'  => 'Chao5995139'
     ]
 ];
+

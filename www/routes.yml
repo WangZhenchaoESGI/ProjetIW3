@@ -18,6 +18,10 @@
   controller: Pages
   action: reservation
 
+"/active_compte":
+  controller: Pages
+  action: activeCompte
+
 "/liste_des_utilisateurs":
   controller: Users
   action: default
@@ -53,3 +57,7 @@
 "/produits":
   controller: Admin
   action: produits
+
+"/captcha":
+  controller: Captcha
+  action: default

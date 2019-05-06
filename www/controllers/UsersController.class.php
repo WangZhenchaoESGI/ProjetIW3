@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Controller;
 use Core\View;
+use Models\Users;
+use Core\Routing;
+use Core\Validator;
+use Core\Validator_login;
+use Core\Mail;
+use Controller\PagesController;
 
 class UsersController{
 
@@ -52,7 +58,7 @@ class UsersController{
 
 
 		if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
-			
+
 			$validator = new Validator($form,$data);
 			$form["errors"] = $validator->errors;
 
@@ -67,8 +73,15 @@ class UsersController{
 
 				$user->save();
 
-				header("Location: /connexion");
-				exit();
+                $url = "http://".$_SERVER['HTTP_HOST']."/verification?accesstoken=".$token;
+
+                $content = "Veuillez cliquer le lien ci-dessous pour activer votre compte ".TITLE." <br> ".$url;
+
+                $mail = new Mail($data["lastname"],$data["email"],'Activation du compte de '.TITLE,$content);
+                $mail->sendMail();
+
+                header("Location: /active_compte");
+                exit();
 			}
 
 		}

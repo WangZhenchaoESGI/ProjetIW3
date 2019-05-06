@@ -6,14 +6,14 @@ namespace Core;
 class BaseSQL
 {
 
-	public $pdo;
+    public $pdo;
 	protected $table;
 
-	public function __construct(array $config){
+	public function __construct(){
 		try{
 
 			//$this->pdo = new \PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
-            $this->pdo = new \PDO($config['driver'].":host=".$config['dbhost'].";dbname=".$config['dbname'],$config['dbuser'],$config['dbpwd']);
+            $this->pdo = new \PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
             //$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		}catch(Exception $e){
@@ -30,7 +30,6 @@ class BaseSQL
 		$this->getOneBy(["id"=>$id], true);
 		
 	}
-
 
 	// $where -> tableau pour créer notre requête sql
 	// $object -> si vrai aliment l'objet $this sinon retourn un tableau
@@ -57,8 +56,6 @@ class BaseSQL
 
 	}
 
-
-
 	public function save(){
 
 		//Array ( [id] => [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => $2y$10$tdmxlGf.zP.3dd7K/kRtw.jzYh2CnSbFuXaUkDNl3JtDJ05zCI7AG [role] => 1 [status] => 0 [pdo] => PDO Object ( ) [table] => Users )
@@ -69,9 +66,11 @@ class BaseSQL
 		if( is_null($dataChild["id"])){
 			//INSERT
 			//array_keys($dataChild) -> [id, firstname, lastname, email]
-			$sql ="INSERT INTO ".$this->table." ( ". 
+			$sql ="INSERT INTO ". substr($this->table, strpos($this->table, '\\') + 1) ." ( ".
 			implode(",", array_keys($dataChild) ) .") VALUES ( :". 
 			implode(",:", array_keys($dataChild) ) .")";
+
+			echo $sql;
 
 			$query = $this->pdo->prepare($sql);
 			$query->execute( $dataChild );
@@ -90,7 +89,6 @@ class BaseSQL
 			$query->execute( $dataChild );
 
 		}
-
 	}
 
 }

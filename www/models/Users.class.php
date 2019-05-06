@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Models;
 
 use Core\BaseSQL;
+use Core\Routing;
 
 // ImplementuserInterface
 class Users extends BaseSQL
@@ -18,14 +19,24 @@ class Users extends BaseSQL
 	public $email;
 	// Change to password
 	public $pwd;
+
+	/*
+	 * Role 1 => Client
+	 * ROle 2 => Profession
+	 * Role 3 => Administration
+	 */
 	public $role=1;
+
+	/*
+	 *  Par défault, $status = 0 , il faut passer une vérification de Email pour activer le compte
+	 */
 	public $status=0;
 	public $accesstoken;
 
 	// Initialiser les propriété dans le constructeur
     // DI
-	public function __construct(array $config){
-		parent::__construct($config);
+	public function __construct(){
+		parent::__construct();
 	}
 
 	public function setFirstname($firstname){
@@ -59,7 +70,9 @@ class Users extends BaseSQL
 						"class"=>"", 
 						"id"=>"",
 						"submit"=>"S'inscrire",
-						"reset"=>"Annuler" ],
+						"reset"=>"Annuler",
+                        "captcha" => 1
+                    ],
 
 
 					"data"=>[
@@ -99,7 +112,8 @@ class Users extends BaseSQL
 						"class"=>"", 
 						"id"=>"",
 						"submit"=>"Se connecter",
-						"reset"=>"Annuler" ],
+						"reset"=>"Annuler",
+                        "captcha" => 1 ],
 
 
 					"data"=>[
@@ -115,41 +129,6 @@ class Users extends BaseSQL
 
 				];
 	}
-
-
-    public function save_user(){
-
-        //Array ( [id] => [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => $2y$10$tdmxlGf.zP.3dd7K/kRtw.jzYh2CnSbFuXaUkDNl3JtDJ05zCI7AG [role] => 1 [status] => 0 [pdo] => PDO Object ( ) [table] => Users )
-        $dataObject = get_object_vars($this);
-        //Array ( [id] => [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => $2y$10$tdmxlGf.zP.3dd7K/kRtw.jzYh2CnSbFuXaUkDNl3JtDJ05zCI7AG [role] => 1 [status] => 0)
-        $dataChild = array_diff_key($dataObject, get_class_vars(get_class()));
-
-        if( is_null($dataChild["id"])){
-            //INSERT
-            //array_keys($dataChild) -> [id, firstname, lastname, email]
-            $sql ="INSERT INTO ".$this->table." ( ".
-                implode(",", array_keys($dataChild) ) .") VALUES ( :".
-                implode(",:", array_keys($dataChild) ) .")";
-
-            $query = $this->pdo->prepare($sql);
-            $query->execute( $dataChild );
-
-        }else{
-            //UPDATE
-            $sqlUpdate = [];
-            foreach ($dataChild as $key => $value) {
-                if( $key != "id")
-                    $sqlUpdate[]=$key."=:".$key;
-            }
-
-            $sql ="UPDATE ".$this->table." SET ".implode(",", $sqlUpdate)." WHERE id=:id";
-
-            $query = $this->pdo->prepare($sql);
-            $query->execute( $dataChild );
-
-        }
-
-    }
 
 }
 

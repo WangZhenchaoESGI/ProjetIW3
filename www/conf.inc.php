@@ -1,8 +1,8 @@
 <?php
         define("DBDRIVER", "mysql");
-        define("DBHOST", "database");
+        define("DBHOST", "localhost");
         define("DBNAME", "mvcdocker2");
         define("DBUSER", "root");
-        define("DBPWD", "password");
+        define("DBPWD", "Chao5995139");
         define("TITLE", "EatFood");             
         define("DESCRIPTION", "this is description");

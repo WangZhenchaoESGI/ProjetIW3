@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Controller;
 use Core\View;
+use Models\Users;
+use Core\Routing;
+use Core\Validator;
+use Core\Validator_login;
+use Core\Mail;
+use Controller\UsersController;
 
 class PagesController{
 	
@@ -15,6 +21,11 @@ class PagesController{
     public function contactAction(){
         $v = new View("contact", "front");
         $v->assign("pseudo","prof");
+    }
+
+    public function activeCompteAction(){
+        $v = new View("mail", "front");
+        $v->assign("mode",1);
     }
 
     public function templateAction(){

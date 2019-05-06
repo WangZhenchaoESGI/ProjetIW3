@@ -1,5 +1,9 @@
 <?php
 
+//En mode Dev
+ini_set('display_errors','On');
+error_reporting(E_ALL | E_STRICT);
+
 //on lance l'installeur quand on connecte le première fois
 if (!file_exists('conf.inc.php')){
     header("Location: install/setup_1.php");
@@ -11,7 +15,12 @@ if (!file_exists('conf.inc.php')){
     }
 }
 
-//require "conf.inc.php";
+// Le fichier de la configuration Global
+// On le créer par l'installeur quand on lance le site le première fois
+require "conf.inc.php";
+
+// Le fichier de la configuration de PHPMailer
+require "config/mail.php";
 
 function myAutoloader($class)
 {

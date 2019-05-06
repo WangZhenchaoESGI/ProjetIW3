@@ -48,7 +48,14 @@
 
       <?php endforeach;?>
 
+      <?php if ( isset($config["config"]["captcha"]) && $config["config"]["captcha"]==1): ?>
 
+          <script src='https://www.google.com/recaptcha/api.js'></script>
+          <div class="lg-check clearfix form__input form-control" style="display: inline;">
+              <div class="g-recaptcha" data-sitekey="6LcZeZwUAAAAAPvv5wWfGBUP_5pbuXDxEHBDppbY"></div>
+          </div>
+
+      <?php endif; ?>
 
       <input type="submit" class="btn btn-primary" value="<?php echo $config["config"]["submit"];?>">
 
