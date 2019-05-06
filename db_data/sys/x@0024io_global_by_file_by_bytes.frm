@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
 =======
 timestamp=2018-12-10 18:11:20
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:15
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT file_name AS file,  count_read,  sum_number_of_bytes_read AS total_read, IFNULL(sum_number_of_bytes_read / NULLIF(count_read, 0), 0) AS avg_read, count_write,  sum_number_of_bytes_write AS total_written, IFNULL(sum_number_of_bytes_write / NULLIF(count_write, 0), 0.00) AS avg_write, sum_number_of_bytes_read + sum_number_of_bytes_write AS total,  IFNULL(ROUND(100-((sum_number_of_bytes_read/ NULLIF((sum_number_of_bytes_read+sum_number_of_bytes_write), 0))*100), 2), 0.00) AS write_pct  FROM performance_schema.file_summary_by_instance ORDER BY sum_number_of_bytes_read + sum_number_of_bytes_write DESC
 client_cs_name=utf8

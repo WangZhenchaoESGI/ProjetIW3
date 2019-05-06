@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:16
 =======
 timestamp=2018-12-10 18:11:21
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:16
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT IF(host IS NULL, \'background\', host) AS host, event_name, count_star AS total, sum_timer_wait AS total_latency,  avg_timer_wait AS avg_latency  FROM performance_schema.events_stages_summary_by_host_by_event_name WHERE sum_timer_wait != 0 ORDER BY IF(host IS NULL, \'background\', host), sum_timer_wait DESC
 client_cs_name=utf8

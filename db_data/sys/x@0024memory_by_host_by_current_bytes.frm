@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
 =======
 timestamp=2018-12-10 18:11:20
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:15
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT IF(host IS NULL, \'background\', host) AS host, SUM(current_count_used) AS current_count_used, SUM(current_number_of_bytes_used) AS current_allocated, IFNULL(SUM(current_number_of_bytes_used) / NULLIF(SUM(current_count_used), 0), 0) AS current_avg_alloc, MAX(current_number_of_bytes_used) AS current_max_alloc, SUM(sum_number_of_bytes_alloc) AS total_allocated FROM performance_schema.memory_summary_by_host_by_event_name GROUP BY IF(host IS NULL, \'background\', host) ORDER BY SUM(current_number_of_bytes_used) DESC
 client_cs_name=utf8

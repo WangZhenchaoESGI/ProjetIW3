@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:16
 =======
 timestamp=2018-12-10 18:11:21
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:16
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT event_name AS event, count_star AS total, sys.format_time(sum_timer_wait) AS total_latency, sys.format_time(avg_timer_wait) AS avg_latency, sys.format_time(max_timer_wait) AS max_latency FROM performance_schema.events_waits_summary_global_by_event_name WHERE event_name != \'idle\' AND sum_timer_wait > 0 ORDER BY sum_timer_wait DESC
 client_cs_name=utf8

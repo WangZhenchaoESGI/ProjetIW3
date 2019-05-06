@@ -3,4 +3,7 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [L,QSA]
+<<<<<<< HEAD
 Options +FollowSymlinks
+=======
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7

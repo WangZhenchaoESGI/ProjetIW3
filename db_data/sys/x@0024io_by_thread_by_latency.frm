@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
 =======
 timestamp=2018-12-10 18:11:20
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:15
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT IF(processlist_id IS NULL,  SUBSTRING_INDEX(name, \'/\', -1),  CONCAT(processlist_user, \'@\', processlist_host) ) user,  SUM(count_star) total, SUM(sum_timer_wait) total_latency, MIN(min_timer_wait) min_latency, AVG(avg_timer_wait) avg_latency, MAX(max_timer_wait) max_latency, thread_id, processlist_id FROM performance_schema.events_waits_summary_by_thread_by_event_name  LEFT JOIN performance_schema.threads USING (thread_id) WHERE event_name LIKE \'wait/io/file/%\' AND sum_timer_wait > 0 GROUP BY thread_id, processlist_id, user ORDER BY SUM(sum_timer_wait) DESC
 client_cs_name=utf8

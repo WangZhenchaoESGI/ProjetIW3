@@ -8,10 +8,14 @@ definer_host=localhost
 suid=0
 with_check_option=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 timestamp=2019-01-31 10:31:15
 =======
 timestamp=2018-12-10 18:11:20
 >>>>>>> d570eace88a0088af082cbf4496e4d5aba4063b7
+=======
+timestamp=2019-01-31 10:31:15
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
 create-version=1
 source=SELECT SUBSTRING_INDEX(event_name, \'/\', -2) AS event_name, count_star AS total, sum_timer_wait AS total_latency, avg_timer_wait AS avg_latency, max_timer_wait AS max_latency, sum_timer_read AS read_latency, sum_timer_write AS write_latency, sum_timer_misc AS misc_latency, count_read, sum_number_of_bytes_read AS total_read, IFNULL(sum_number_of_bytes_read / NULLIF(count_read, 0), 0) AS avg_read, count_write, sum_number_of_bytes_write AS total_written, IFNULL(sum_number_of_bytes_write / NULLIF(count_write, 0), 0) AS avg_written FROM performance_schema.file_summary_by_event_name  WHERE event_name LIKE \'wait/io/file/%\' AND count_star > 0 ORDER BY sum_timer_wait DESC
 client_cs_name=utf8

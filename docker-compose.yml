@@ -14,8 +14,15 @@ services:
      - database
 
   database:
+<<<<<<< HEAD
     image: mariadb:10.2
     container_name: mysql-mvc
+=======
+    image: mysql:5.7
+    container_name: mysql-mvc
+    ports :
+      - "3306:3306"
+>>>>>>> e094dc70c1877b964c63025a1b60c9b50e80d4e7
     environment:
       MYSQL_DATABASE: mvcdocker2
       MYSQL_ROOT_PASSWORD: password
