@@ -45,7 +45,6 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 main,
@@ -249,7 +248,7 @@ img {
   position: fixed;
   width: 100%;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5); }
+  background-color: #beaaa9; }
   .header #logo-image {
     float: left;
     width: 140px;
@@ -260,7 +259,7 @@ img {
     transform: translateY(-50%); }
   @media (min-width: 1px) and (max-width: 768px) {
     .header {
-      height: 25vh;
+      height: 55px;
       background-color: #beaaa9; } }
 
 #section1 .cta-button {
@@ -274,7 +273,7 @@ img {
     opacity: 1;
     transform: translateY(0%); } }
 .content-wrapper {
-  background-image: url("../img/lucas-alexander-15978-unsplash.jpg");
+  background-image: url("../img/docker-compose.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -345,9 +344,6 @@ img {
 
 .footer-home {
   background-color: #beaaa9; }
-  @media (min-width: 1px) and (max-width: 768px) {
-    .footer-home {
-      height: 20vh; } }
 
 .template {
   font-family: "Miss Fajardose", cursive; }
@@ -370,6 +366,9 @@ img {
     color: #5c0029; }
     .header-temp .nav__item a:hover {
       color: black; }
+    .nav-item a:focus{
+      color: black;
+    }
 
 .img-temp {
   background-image: url("../img/rawpixel-256640-unsplash.jpg");
@@ -526,21 +525,25 @@ img {
       float: right; } }
 
 @media (min-width: 769px) {
-  .nav__item, .nav__item--current {
+  .navbar-nav{
+    padding-right: 5rem;
+    font-size: 1rem;
+  }
+  .nav-item, .nav__item--current {
     display: inline-block;
     margin: 0 0.75em; } }
 
-.header-temp .nav__item a, .nav__item a, .nav__item--current a {
+.header-temp .nav-item a, .nav-item a, .nav__item--current a {
   font-size: 1em;
   font-weight: 400;
   display: block;
   border-bottom: 1px solid transparent; }
   @media (min-width: 1px) and (max-width: 768px) {
-    .header-temp .nav__item a, .nav__item a, .nav__item--current a {
+    .header-temp .nav-item a, .nav__item a, .nav__item--current a {
       border-bottom-color: #fff;
       padding-top: 0.875em; } }
 
-.header-temp .nav__item a:hover, .nav__item a:hover, .nav__item--current a {
+.header-temp .nav-item a:hover, .nav__item a:hover, .nav__item--current a {
   color: #beaaa9;
   border-color: #fff; }
 
@@ -656,7 +659,6 @@ h2, .headline-secondary, .headline-secondary--grouped {
   position: relative; }
   @media (min-width: 769px) {
     .navbar {
-      margin-top: 1.5em;
       margin-bottom: 0; } }
 
 .nav {
@@ -694,6 +696,14 @@ h2, .headline-secondary, .headline-secondary--grouped {
     padding: 0;
     height: 0;
     margin: 0;
-    line-height: 0; } }
+    line-height: 0; }
+  #navbarColor03{
+    background-color: #beaaa9;
+  }
 
-/*# sourceMappingURL=style.css.map */
+  #navbarColor03 span{
+    color: white;
+  }
+
+}
+

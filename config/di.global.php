@@ -4,7 +4,7 @@ use \Models\Users;
 use \Controller\UsersController;
 use \Controller\PagesController;
 use \Controller\AdminController;
-use \Controller\CaptchaController;
+use \Controller\FacebookController;
 use \VO\DbDriver;
 use \VO\DbHost;
 use \VO\DbName;
@@ -59,7 +59,7 @@ return [
         $usersModel = $container[Users::class]($container);
         return new AdminController($usersModel);
     },
-    CaptchaController::class => function($container) {
-        return new CaptchaController();
+    FacebookController::class => function($container) {
+        return new FacebookController();
     },
 ];

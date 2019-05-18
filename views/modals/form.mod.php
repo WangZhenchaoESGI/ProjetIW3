@@ -2,7 +2,7 @@
 <?php $data = ($config["config"]["method"]=="POST")?$_POST:$_GET; ?>
 
 	<?php if( !empty($config["errors"])):?>
-		<div class="alert alert-danger">
+		<div class="btn btn-danger" style="width: 100%">
 			<ul>
 			<?php foreach ($config["errors"] as $errors):?>
 				<li><?php echo $errors;?>
@@ -51,13 +51,11 @@
       <?php if ( isset($config["config"]["captcha"]) && $config["config"]["captcha"]==1): ?>
 
           <script src='https://www.google.com/recaptcha/api.js'></script>
-          <div class="lg-check clearfix form__input form-control" style="display: inline;">
-              <div class="g-recaptcha" data-sitekey="6LcZeZwUAAAAAPvv5wWfGBUP_5pbuXDxEHBDppbY"></div>
-          </div>
-
+          <div class="g-recaptcha" style="display: inline" data-sitekey="6LcZeZwUAAAAAPvv5wWfGBUP_5pbuXDxEHBDppbY"></div>
+          <br>
       <?php endif; ?>
 
-      <input type="submit" class="btn btn-primary" value="<?php echo $config["config"]["submit"];?>">
+      <input type="submit" class="btn btn-outline-warning btn-block" value="<?php echo $config["config"]["submit"];?>">
 
       
       <?php if( !empty($config["config"]["reset"])):?>

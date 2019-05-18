@@ -61,3 +61,7 @@
 "/captcha":
   controller: Captcha
   action: default
+
+"/facebook_verify_connexion":
+  controller: Facebook
+  action: default

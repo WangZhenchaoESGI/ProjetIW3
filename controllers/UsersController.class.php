@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Controller;
+use Core\FB;
 use Core\View;
 use Models\Users;
 use Core\Routing;
@@ -96,6 +97,10 @@ class UsersController{
 
 		$user = new Users();
 		$form = $user->getLoginForm();
+
+		$facebook = new FB();
+
+		$form['facebook'] = $facebook->Login();
 
 		$method = strtoupper($form["config"]["method"]);
 		$data = $GLOBALS["_".$method];
