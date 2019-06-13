@@ -1,3 +1,4 @@
+var a;
 var googleUser = {};
 var Google = function() {
     gapi.load('auth2', function(){
@@ -13,14 +14,14 @@ var Google = function() {
 };
 
 function attachSignin(element) {
-    console.log(element.id);
+    //console.log(element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
-            document.getElementById('name').innerText = "Signed in: " +
-                googleUser.getBasicProfile().getName()+" " +
-                googleUser.getBasicProfile().getEmail();
+            googleSignOut();
+            //console.log("/facebook_verify_connexion?name="+googleUser.getBasicProfile().getName()+"&email="+googleUser.getBasicProfile().getEmail());
+            window.location.href="/google_verify_connexion?lastname="+googleUser.getBasicProfile().getGivenName()+"&firstname="+googleUser.getBasicProfile().getFamilyName()+"&email="+googleUser.getBasicProfile().getEmail();
         }, function(error) {
-            alert(JSON.stringify(error, undefined, 2));
+            //alert(JSON.stringify(error, undefined, 2));
         });
 }
 
@@ -41,12 +42,13 @@ function onSignIn(googleUser) {
 function logout() {
     FB.logout(function(response) {
         // Person is now logged out
+        console.log("logout ");
     });
 }
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+    //console.log('statusChangeCallback');
+    //console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -54,10 +56,6 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-    } else {
-        // The person is not logged into your app or we are unable to tell.
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
     }
 }
 
@@ -71,6 +69,7 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
+
     FB.init({
         appId      : '539129156491498',
         cookie     : true,
@@ -107,11 +106,20 @@ window.fbAsyncInit = function() {
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
+
 function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', { locale: 'en_US', fields: 'name, email' }, function(response) {
+    //console.log('Welcome!  Fetching your information.... ');
+    FB.api('me?fields=id,name,first_name,last_name,email', function (response) {
+        /*
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!'+ response.email + '!';
+            'Thanks for logging in, ' + response.name + '!';
+        alert(response.first_name);
+        $('#fName').text(response.first_name);
+        $('#lName').text(response.last_name);
+        */
+        a="/facebook_verify_connexion?lastname="+response.last_name+"&firstname="+response.first_name+"&email="+response.email;
+        window.location.href="/facebook_verify_connexion?lastname="+response.last_name+"&firstname="+response.first_name+"&email="+response.email;
+
     });
 }

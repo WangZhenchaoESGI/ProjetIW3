@@ -19,7 +19,6 @@
       id="<?php echo $config["config"]["id"];?>">
 
 
-
       <?php foreach ($config["data"] as $key => $value):?>
 
 

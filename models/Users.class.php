@@ -39,6 +39,10 @@ class Users extends BaseSQL
 		parent::__construct();
 	}
 
+    public function setId($id){
+        $this->id = $id;
+    }
+
 	public function setFirstname($firstname){
 		$this->firstname = ucwords(strtolower(trim($firstname)));
 	}
@@ -122,10 +126,36 @@ class Users extends BaseSQL
 							"pwd"=>["type"=>"password","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
 								"error"=>"Veuillez préciser un mot de passe"]
 
-
 					]
 
 				];
+        /*
+        return [
+            "config"=>[
+                "method"=>"POST",
+                "action"=>"",
+                "class"=>"",
+                "id"=>"",
+                "submit"=>"Se connecter",
+                "captcha" => 1 ],
+
+
+            "data"=>[
+
+                "email"=>["type"=>"email","placeholder"=>"Votre email", "required"=>true, "class"=>"form-control", "id"=>"email",
+                    "error"=>"L'email n'est pas valide"],
+
+                "pwd"=>["type"=>"password","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
+                    "error"=>"Veuillez préciser un mot de passe"],
+
+                "country"=>["type"=>"select","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
+                    "error"=>"Veuillez préciser un mot de passe", "options"=>["fr", "en", "pl"]]
+
+
+            ]
+
+        ];
+        */
 	}
 
 }

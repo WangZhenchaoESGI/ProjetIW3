@@ -5,6 +5,8 @@ use \Controller\UsersController;
 use \Controller\PagesController;
 use \Controller\AdminController;
 use \Controller\FacebookController;
+use \Controller\GoogleController;
+use \Controller\ConfigurationTemplateController;
 use \VO\DbDriver;
 use \VO\DbHost;
 use \VO\DbName;
@@ -53,7 +55,8 @@ return [
         return new UsersController($usersModel);
     },
     PagesController::class => function($container) {
-        return new PagesController();
+        $usersModel = $container[Users::class]($container);
+        return new PagesController($usersModel);
     },
     AdminController::class => function($container) {
         $usersModel = $container[Users::class]($container);
@@ -61,5 +64,11 @@ return [
     },
     FacebookController::class => function($container) {
         return new FacebookController();
+    },
+    GoogleController::class => function($container) {
+        return new GoogleController();
+    },
+    ConfigurationTemplateController::class => function($container) {
+        return new ConfigurationTemplateController();
     },
 ];

@@ -17,7 +17,7 @@ class Validator extends BaseSQL {
 		}
 
         if( !self::checkCaptchat($data['g-recaptcha-response'])){
-            //$this->errors[]='Veuillez bien cocher le captcha !';
+            $this->errors[]='Veuillez bien cocher le captcha !';
         }
 
 		foreach ($config["data"] as $name => $info) {

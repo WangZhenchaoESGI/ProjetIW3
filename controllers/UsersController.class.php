@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Controller;
+use Core\BaseSQL;
 use Core\FB;
 use Core\View;
 use Models\Users;
@@ -11,16 +12,26 @@ use Core\Validator;
 use Core\Validator_login;
 use Core\Mail;
 use Controller\PagesController;
+use Controller\FacebookController;
 
-class UsersController{
+
+class UsersController extends BaseSQL{
 
 	public function defaultAction(){
 		echo "users default";
 	}
 	
 	public function addAction(){
+
+        if ($this->isConnected()){
+            $this->redirect();
+        }
+
 		$user = new Users();
 		$form = $user->getRegisterForm();
+
+        $facebook = new FB();
+        $form['url_facebook'] = $facebook->Login();
 
 		/*
 		$config = [
@@ -95,21 +106,32 @@ class UsersController{
 
 	public function loginAction(){
 
+	    if ($this->isConnected()){
+	        $this->redirect();
+        }
+
 		$user = new Users();
 		$form = $user->getLoginForm();
 
-		$facebook = new FB();
-
-		$form['facebook'] = $facebook->Login();
+        $facebook = new FB();
+        $form['url_facebook'] = $facebook->Login();
 
 		$method = strtoupper($form["config"]["method"]);
 		$data = $GLOBALS["_".$method];
 		if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
-			
+
 			$validator = new Validator_login($form,$data);
 			$form["errors"] = $validator->errors;
 
 			if(empty($form["errors"])){
+
+                //var_dump($data);
+                //$data['email'];
+
+                $where = [ "email"=>$data['email'] ];
+                $infoUser = $user->getOneBy($where,false);
+
+                //var_dump($infoUser);
 
 				//Connexion avec token
 				//$token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
@@ -118,23 +140,101 @@ class UsersController{
                  *  Après la vérification de connexion, redirect
                  */
 
-                header("Location: /");
-                exit();
+                $_SESSION["accesstoken"] = $infoUser['accesstoken'];
+                $_SESSION["email"] = $data['email'];
+
+                if ($this->isConnected()){
+                    $this->redirect();
+                }
 
             }
 
 		}
-	
+
 		$v = new View("loginUser", "front");
 		$v->assign("form", $form);
-		
+
 	}
 
     public function logoutAction(){
 
         unset($_SESSION['accesstoken']);
+        unset($_SESSION['role']);
         header("Location: /");
 
+    }
+
+    public function isConnected(){
+
+        //Vérifier que les variables de sessions existent
+        if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
+
+            //Si oui se connecter a la base et vérifier qu'un utilisateur correspond
+            $query = $this->pdo->prepare(" SELECT id FROM Users WHERE email=:titi AND accesstoken=:tutu AND status=1");
+            $query->execute(["titi"=>$_SESSION["email"], "tutu"=>$_SESSION["accesstoken"]]);
+            $result = $query->fetch();
+            //Si oui regenerer un accesstoken et retourner vrai
+            if( !empty($result)){
+                $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
+                return true;
+            }
+            return false;
+        }
+        //Sinon retourner faux
+        return false;
+    }
+
+    public function generateAccessToken($email){
+        //Générer un accesstoken
+        $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
+
+        //Se connecter a la bdd
+        //Mettre a jour l'utilisateur avec la nouvelle donnée
+        $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
+        $query->execute(["titi"=>$accesstoken, "tutu"=>$email ]);
+
+        return $accesstoken;
+    }
+
+    public function redirect(){
+        $query = $this->pdo->prepare("SELECT role FROM Users WHERE email=:tutu ");
+        $query->execute([ "tutu"=>$_SESSION['email'] ]);
+
+        $role = $query->fetch();
+
+        switch ($role['role']){
+            case 1:
+                $config = [
+                    "isConnected"=>true,
+                    'client'=>true,
+                    "admin"=> false,
+                    "pro"=> false,
+                ];
+
+                break;
+
+            case 2:
+                $config = [
+                    "isConnected"=>true,
+                    'client'=>false,
+                    "admin"=> false,
+                    "pro"=> true,
+                ];
+                break;
+
+            case 3:
+                $config = [
+                    "isConnected"=>true,
+                    'client'=>false,
+                    "admin"=> true,
+                    "pro"=> false,
+                ];
+                break;
+        }
+        $_SESSION['role'] = $config;
+        $v = new View("homepage", "front");
+        $v->assign("config", $config);
+        exit();
     }
 
 

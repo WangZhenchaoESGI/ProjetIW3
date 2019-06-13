@@ -58,10 +58,38 @@
   controller: Admin
   action: produits
 
+"/design":
+  controller: ConfigurationTemplate
+  action: default
+
+"/add_design":
+  controller: ConfigurationTemplate
+  action: add
+
+"/save_design":
+  controller: ConfigurationTemplate
+  action: save
+
+"/info_design":
+  controller: ConfigurationTemplate
+  action: info
+
+"/update_design":
+  controller: ConfigurationTemplate
+  action: update
+
 "/captcha":
   controller: Captcha
   action: default
 
 "/facebook_verify_connexion":
   controller: Facebook
+  action: default
+
+"/facebook_callback":
+  controller: Facebook
+  action: callback
+
+"/google_verify_connexion":
+  controller: Google
   action: default

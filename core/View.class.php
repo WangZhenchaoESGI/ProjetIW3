@@ -62,6 +62,3 @@ class View{
 		include $this->t;
 	}
 }
-
-
-

@@ -19,7 +19,7 @@ class Validator_login extends BaseSQL {
         }
 
         if( !self::checkCaptchat($data['g-recaptcha-response'])){
-            //$this->errors[]='Veuillez bien cocher le captcha !';
+            $this->errors[]='Veuillez bien cocher le captcha !';
         }
 
         foreach ($config["data"] as $name => $info) {
@@ -90,8 +90,6 @@ class Validator_login extends BaseSQL {
             //Mettre a jour l'utilisateur avec la nouvelle donnée
             $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
             $query->execute(["titi"=>$token, "tutu"=>$email ]);
-
-            $_SESSION["email"] = $email;
 
             return true;
         }else{

@@ -6,12 +6,15 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="description" content="">
             <title>Admin</title>
+          <script src="../../public/js/nav-mobile.js"></script>
+          <link rel="stylesheet" href="../../public/css/test.css">
+          <script src="../../public/js/jquery.js"></script>
+          <script src="../../public/js/script.js"></script>
+          <script src="../../public/js/nav.js"></script>
             <link href="../../public/scss/admin.css" rel="stylesheet">
             <link href="../../public/css/admin.css" rel="stylesheet">
             <link href="../../public/css/tables.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-          <script src="../../public/js/jquery-3.3.1.min.js"></script>
-          <script src="../../public/js/nav-mobile.js"></script>
       </head>
   <body>
 
@@ -20,7 +23,7 @@
                   col-sm-2
                   col-md-2
                   col-lg-2">
-          <img src="../../public/img/logo.png" id="logo_header">
+          <a href="/"><img src="../../public/img/logo.png" id="logo_header"></a>
       </div>
       <div class="col-xs-2
                   col-sm-2
@@ -45,10 +48,11 @@
                   <li><a href="/commandes"><img class="icone_nav" src="../../public/img/icones/icons8-todo-list-60.png">&nbsp;&nbsp;Commandes</a></li>
                   <li><a href="/produits"><img class="icone_nav" src="../../public/img/icones/icons8-soup-plate-60.png">&nbsp;&nbsp;Produits</a></li>
                   <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-close-sign-60.png">&nbsp;&nbsp;Fermetures</a></li>
-                  <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-html-5-60.png">&nbsp;&nbsp;Design</a></li>
+                  <li><a href="/design"><img class="icone_nav" src="../../public/img/icones/icons8-html-5-60.png">&nbsp;&nbsp;Design</a></li>
                   <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-estimate-60.png">&nbsp;&nbsp;Facturations</a></li>
                   <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-contact-60.png">&nbsp;&nbsp;Contacts</a></li>
                   <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-info-60.png">&nbsp;&nbsp;FAQs</a></li>
+                  <li><a href="/deconnexion"><img class="icone_nav" src="../../public/img/icones/icons8-info-60.png">&nbsp;&nbsp;Déconnexion</a></li>
               </ul>
           </nav>
       </div>
@@ -61,10 +65,11 @@
               <li><a href="/commandes"><img class="icone_nav" src="../../public/img/icones/icons8-todo-list-60.png">&nbsp;&nbsp;Commandes</a></li>
               <li><a href="/produits"><img class="icone_nav" src="../../public/img/icones/icons8-soup-plate-60.png">&nbsp;&nbsp;Produits</a></li>
               <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-close-sign-60.png">&nbsp;&nbsp;Fermetures</a></li>
-              <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-html-5-60.png">&nbsp;&nbsp;Design</a></li>
+              <li><a href="/design"><img class="icone_nav" src="../../public/img/icones/icons8-html-5-60.png">&nbsp;&nbsp;Design</a></li>
               <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-estimate-60.png">&nbsp;&nbsp;Facturations</a></li>
               <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-contact-60.png">&nbsp;&nbsp;Contacts</a></li>
               <li><a href=""><img class="icone_nav" src="../../public/img/icones/icons8-info-60.png">&nbsp;&nbsp;FAQs</a></li>
+              <li><a href="/deconnexion"><img class="icone_nav" src="../../public/img/icones/icons8-info-60.png">&nbsp;&nbsp;Déconnexion</a></li>
           </ul>
       </div>
       <div  id="app">

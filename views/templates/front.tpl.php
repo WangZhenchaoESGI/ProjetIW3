@@ -9,10 +9,35 @@
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/footer.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="../../public/js/jquery.js"></script>
     <script src="../../public/js/script.js"></script>
     <script src="../../public/js/nav.js"></script>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml            : true,
+                version          : 'v3.3'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat"
+         attribution=setup_tool
+         page_id="815514825475689"
+         theme_color="#d4a88c"
+         logged_in_greeting="Bonjour xD"
+         logged_out_greeting="Bonjour xD">
+    </div>
 </head>
 <body>
 
@@ -34,12 +59,35 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">CONTACT</a>
                 </li>
+                <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['pro']==true): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">MyEatFood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deconnexion">DECONNEXION</a>
+                    </li>
+                <?php elseif (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['client']==true): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/client">MyEatFood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deconnexion">DECONNEXION</a>
+                    </li>
+                <?php elseif (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deconnexion">DECONNEXION</a>
+                    </li>
+                <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/connexion">CONNEXION</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/ajouter_un_utilisateur">INSCRIPTION</a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>

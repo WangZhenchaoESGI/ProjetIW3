@@ -16,7 +16,7 @@ class BaseSQL
             $this->pdo = new \PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
             //$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		}catch(Exception $e){
+		}catch(\Exception $e){
 			die("Erreur SQL : ".$e->getMessage());
 		}
 
@@ -40,21 +40,30 @@ class BaseSQL
 		foreach ($where as $key => $value) {
 			$sqlWhere[]=$key."=:".$key;
 		}
-		$sql = " SELECT * FROM ".$this->table." WHERE  ".implode(" AND ", $sqlWhere).";";
+        $sql = " SELECT * FROM ". substr($this->table, strpos($this->table, '\\') + 1) ." WHERE  ".implode(" AND ", $sqlWhere).";";
 		$query = $this->pdo->prepare($sql);
 		
 		if($object){
 			//modifier l'objet $this avec le contenu de la bdd
-			$query->setFetchMode( PDO::FETCH_INTO, $this);
+			$query->setFetchMode( \PDO::FETCH_INTO, $this);
 		}else{
 			//on retourne un simple table php
-			$query->setFetchMode( PDO::FETCH_ASSOC);
+			$query->setFetchMode( \PDO::FETCH_ASSOC);
 		}
 
 		$query->execute( $where );
 		return $query->fetch();
 
 	}
+
+    public function getAll(){
+
+        $sql = " SELECT * FROM ". substr($this->table, strpos($this->table, '\\') + 1) ." ;";
+        $query = $this->pdo->query($sql);
+
+        return $query->fetchAll();
+
+    }
 
 	public function save(){
 

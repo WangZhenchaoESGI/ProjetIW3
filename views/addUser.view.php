@@ -6,7 +6,7 @@
         <div class="form-signin">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;color: #1d2124"> INSCRIPTION</h1>
             <div class="social-login">
-                <button class="btn facebook-btn social-btn" onclick="FB.login()" scope="public_profile,email" onlogin="checkLoginState();" type="button"><span><i class="fab fa-facebook-f"></i> &nbsp; Facebook </span> </button>
+                <button class="btn facebook-btn social-btn" onclick="window.location.href='<?php echo $form['url_facebook'] ?>'" scope="public_profile,email" onlogin="checkLoginState();" type="button"><span><i class="fab fa-facebook-f"></i> &nbsp; Facebook </span> </button>
                 <button class="btn google-btn social-btn" id="customBtn" onclick="Google()" type="button" data-onsuccess="onSignIn"><span><i class="fab fa-google-plus-g"></i> &nbsp; Google+ </span> </button>
             </div>
             <p style="text-align:center"> OR  </p>
@@ -31,10 +31,3 @@
 <script src="/script.js"></script>
 <script src="../public/js/code.js"></script>
 
-<button class="btn btn-warning" onclick="logout()">Log out FB</button>
-<div id="name">
-</div>
-
-
-<div id="status">
-</div>
