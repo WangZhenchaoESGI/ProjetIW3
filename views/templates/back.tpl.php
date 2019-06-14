@@ -73,6 +73,7 @@
           </ul>
       </div>
       <div  id="app">
+          <br>
           <?php include $this->v;?>
       </div>
   </div>

@@ -19,7 +19,6 @@ use Controller\PagesController;
 use Controller\FacebookController;
 use Controller\UsersController;
 
-
 class ConfigurationTemplateController extends BaseSQL{
 
     public function defaultAction(){
@@ -27,7 +26,6 @@ class ConfigurationTemplateController extends BaseSQL{
         if ($this->isConnected() == false){
             header("Location: /");
         }
-
         //Info Restaurateur
         $user = new Users();
         $u = $user->getOneBy(["email"=>$_SESSION['email']],false);
@@ -37,11 +35,22 @@ class ConfigurationTemplateController extends BaseSQL{
 
         //Ajouter or Modifier Le desgin de Restaurant
         if (empty($a)){
-
             $this->addAction();
+        }else{
 
+            $category = new category();
+            $c = $category->getOneBy(["id"=>$a['id_category']],false);
+
+            $fonts = new fonts();
+            $f = $fonts->getOneBy(["id"=>$a['id_fonts']],false);
+
+            $data['restaurant'] = $a;
+            $data['category'] = $c;
+            $data['fonts'] = $f;
+
+            $v = new View("design", "back");
+            $v->assign("data", $data);
         }
-
 
     }
 
@@ -55,6 +64,7 @@ class ConfigurationTemplateController extends BaseSQL{
 
         $form['category'] = $c;
         $form['fonts'] = $f;
+        $form['action'] = "save_design";
 
         $v = new View("addDesign", "back");
         $v->assign("form", $form);
@@ -62,98 +72,62 @@ class ConfigurationTemplateController extends BaseSQL{
 
     public function saveAction(){
 
-        $user = new Users();
-        $form = $user->getRegisterForm();
+        if (!empty($_POST)){
 
-        //Est ce qu'il y a des données dans POST ou GET($form["config"]["method"])
-        $method = strtoupper($form["config"]["method"]);
-        $data = $GLOBALS["_".$method];
+            //Get ID restaurateur
+            $user = new Users();
+            $where = [ "email"=>$_SESSION['email'] ];
+            $infoUser = $user->getOneBy($where,false);
 
-
-        if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
-
-            $validator = new Validator($form,$data);
-            $form["errors"] = $validator->errors;
-
-            if(empty($form["errors"])){
-                $user->setFirstname($data["firstname"]);
-                $user->setLastname($data["lastname"]);
-                $user->setEmail($data["email"]);
-                $user->setPwd($data["pwd"]);
-
-                $token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
-                $user->setAccesstoken($token);
-
-                $user->save();
-
-                $url = "http://".$_SERVER['HTTP_HOST']."/verification?accesstoken=".$token;
-
-                $content = "Veuillez cliquer le lien ci-dessous pour activer votre compte ".TITLE." <br> ".$url;
-
-                $mail = new Mail($data["lastname"],$data["email"],'Activation du compte de '.TITLE,$content);
-                $mail->sendMail();
-
-                header("Location: /active_compte");
-                exit();
+            //Enregistrer les infos Design
+            $restaurant = new restaurant();
+            if (isset($_GET['id'])){
+                $_POST['id'] = $_GET['id'];
+                $restaurant->setId($_POST['id']);
             }
+            $restaurant->setName($_POST['name']);
+            $restaurant->setDescription($_POST['description']);
+            $restaurant->setIdCategory($_POST['id_category']);
+            $restaurant->setIdTemplate($_POST['template']);
+            $restaurant->setIdFonts($_POST['id_fonts']);
+            $restaurant->setButton($_POST['button']);
+            $restaurant->setText($_POST['text']);
+            $restaurant->setIdUser($infoUser['id']);
+            $restaurant->setStatus(1);
+            $restaurant->save();
 
+            header("Location: /design");
+        }else{
+            $this->addAction();
         }
-
-        $v = new View("addUser", "front");
-        $v->assign("form", $form);
 
     }
 
-
-    public function loginAction(){
+    public function updateAction(){
 
         if ($this->isConnected() == false){
             header("Location: /");
         }
-
+        //Info Restaurateur
         $user = new Users();
-        $form = $user->getLoginForm();
+        $u = $user->getOneBy(["email"=>$_SESSION['email']],false);
 
-        $facebook = new FB();
-        $form['url_facebook'] = $facebook->Login();
+        $design = new restaurant();
+        $a=$design->getOneBy(["id_user"=>$u['id']],false);
 
-        $method = strtoupper($form["config"]["method"]);
-        $data = $GLOBALS["_".$method];
-        if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
+        $category = new category();
+        $c = $category->getAll();
 
-            $validator = new Validator_login($form,$data);
-            $form["errors"] = $validator->errors;
+        $fonts = new fonts();
+        $f = $fonts->getAll();
 
-            if(empty($form["errors"])){
+        $form['restaurant'] = $a;
+        $form['category'] = $c;
+        $form['fonts'] = $f;
+        $form['action'] = "save_design?id=".$a['id'];
 
-                //var_dump($data);
-                //$data['email'];
-
-                $where = [ "email"=>$data['email'] ];
-                $infoUser = $user->getOneBy($where,false);
-
-                //var_dump($infoUser);
-
-                //Connexion avec token
-                //$token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
-
-                /*
-                 *  Après la vérification de connexion, redirect
-                 */
-
-                $_SESSION["accesstoken"] = $infoUser['accesstoken'];
-                $_SESSION["email"] = $data['email'];
-
-                header("Location: /");
-                exit();
-
-            }
-
-        }
-
-        $v = new View("loginUser", "front");
+        $v = new View("addDesign", "back");
         $v->assign("form", $form);
-
     }
 
     public function isConnected(){

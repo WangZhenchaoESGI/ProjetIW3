@@ -7,4 +7,3 @@
         <?php $this->addModal("design", $form);?>
     </div>
 </div>
-<h1>

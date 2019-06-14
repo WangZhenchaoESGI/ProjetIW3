@@ -79,8 +79,6 @@ class BaseSQL
 			implode(",", array_keys($dataChild) ) .") VALUES ( :". 
 			implode(",:", array_keys($dataChild) ) .")";
 
-			echo $sql;
-
 			$query = $this->pdo->prepare($sql);
 			$query->execute( $dataChild );
 
@@ -92,9 +90,9 @@ class BaseSQL
 				$sqlUpdate[]=$key."=:".$key;
 			}
 
-			$sql ="UPDATE ".$this->table." SET ".implode(",", $sqlUpdate)." WHERE id=:id";
+			$sql ="UPDATE ". substr($this->table, strpos($this->table, '\\') + 1) ." SET ".implode(",", $sqlUpdate)." WHERE id=:id";
 
-			$query = $this->pdo->prepare($sql);
+            $query = $this->pdo->prepare($sql);
 			$query->execute( $dataChild );
 
 		}
