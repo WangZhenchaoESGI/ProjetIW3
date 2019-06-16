@@ -6,6 +6,7 @@ use \Controller\PagesController;
 use \Controller\AdminController;
 use \Controller\FacebookController;
 use \Controller\GoogleController;
+use \Controller\ProduitsController;
 use \Controller\ConfigurationTemplateController;
 use \VO\DbDriver;
 use \VO\DbHost;
@@ -70,5 +71,8 @@ return [
     },
     ConfigurationTemplateController::class => function($container) {
         return new ConfigurationTemplateController();
+    },
+    ProduitsController::class => function($container) {
+        return new ProduitsController();
     },
 ];

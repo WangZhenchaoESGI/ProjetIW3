@@ -55,8 +55,24 @@
   action: commandes
 
 "/produits":
-  controller: Admin
-  action: produits
+  controller: Produits
+  action: default
+
+"/add_produit":
+  controller: Produits
+  action: add
+
+"/save_produit":
+  controller: Produits
+  action: save
+
+"/update_produit":
+  controller: Produits
+  action: update
+
+"/delete_produit":
+  controller: Produits
+  action: demete
 
 "/design":
   controller: ConfigurationTemplate
