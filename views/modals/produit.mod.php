@@ -28,9 +28,11 @@
             <input type="file" class="form-control-file" id="photo" name="photo" aria-describedby="fileHelp" <?php echo isset($config['produit']['image'])?"":"required"; ?>>
         </div>
 
-        <div class="form-group">
-            <img src="../../public/upload/<?php echo $config['produit']['image']; ?>" width="170px">
-        </div>
+        <?php if (isset($config['produit']['image'])): ?>
+            <div class="form-group">
+                <img src="../../public/upload/<?php echo $config['produit']['image']; ?>" width="170px">
+            </div>
+        <?php endif; ?>
         
         <input type="submit" class="btn btn-outline-warning btn-block" value="Validez">
     </form>

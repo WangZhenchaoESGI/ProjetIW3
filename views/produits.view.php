@@ -34,6 +34,8 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php if (!empty($dishes) && $dishes!=NULL):?>
+
                     <?php foreach ($dishes as $key => $value):?>
                         <tr>
                             <td><?php echo $value['id']; ?></td>
@@ -45,6 +47,8 @@
                             <td><a class="btn btn-warning" href="/update_produit?id=<?php echo $value['id']; ?>">Modifez</a>&nbsp;&nbsp;<a class="btn btn-danger" href="/delete_produit?id=<?php echo $value['id']; ?>">Supprimez</a></td>
                         </tr>
                     <?php endforeach;?>
+
+                    <?php endif; ?>
                     </tbody>
                 </table>
             </div>

@@ -15,8 +15,8 @@
   action: faqs
 
 "/template":
-  controller: Pages
-  action: template
+  controller: Template
+  action: default
 
 "/template-carte":
   controller: Pages
@@ -85,6 +85,10 @@
 "/design":
   controller: ConfigurationTemplate
   action: default
+
+"/redirectToTemplate":
+  controller: ConfigurationTemplate
+  action: redirect
 
 "/add_design":
   controller: ConfigurationTemplate

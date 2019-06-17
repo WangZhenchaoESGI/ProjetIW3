@@ -43,6 +43,8 @@ class ProduitsController extends BaseSQL{
         $restaurant = new restaurant();
         $r = $restaurant->getOneBy(["id_user"=>$u['id']],false);
 
+        if (empty($r)) header("Location: /design");
+
         //afficher tous les produits du restaurant
         $dishes = $this->getAllProduits($r['id']);
 
@@ -79,10 +81,12 @@ class ProduitsController extends BaseSQL{
         if (!empty($_POST)){
 
             //Info Restaurateur
-            $dishe = new dishes();
-            $d = $dishe->getOneBy(["id"=>$_GET['id']],false);
 
-            $_POST['image'] = $d['image'];
+            if (isset($_GET['id'])){
+                $dishe = new dishes();
+                $d = $dishe->getOneBy(["id"=>$_GET['id']],false);
+                $_POST['image'] = $d['image'];
+            }
 
             $produit = new dishes();
 

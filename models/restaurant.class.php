@@ -18,6 +18,23 @@ class restaurant extends BaseSQL
     public $template;
     public $id_fonts;
     public $text;
+    public $image;
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
     public $id_user;
     public $button;
     public $status=1;

@@ -3,7 +3,8 @@
         action="/<?php echo $config['action']; ?>"
         method="POST"
         class=""
-        id="">
+        id=""
+        enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="exampleInputPassword1">Votre nom de restaurant</label>
@@ -46,15 +47,15 @@
 
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input"  id="optionsRadios1" name="template"  value="1" <?php echo $config['restaurant']['template']==1?"checked":""; ?>>
-                    Template 1<img src="../../public/img/template01.png" width="200px">
+                    <input type="radio" class="form-check-input"  id="optionsRadios1" name="template"  value="1" <?php echo isset($config['restaurant']['template'])&&$config['restaurant']['template']==1?"checked":""; ?>>
+                    Template 1 <img src="../../public/img/template01.png" width="200px">
                 </label>
             </div>
             <br>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input"  id="optionsRadios2" name="template" value="2"  <?php echo $config['restaurant']['template']==2?"checked":""; ?>>
-                    Template 2<img src="../../public/img/template1.png" width="200px">
+                    <input type="radio" class="form-check-input"  id="optionsRadios2" name="template" value="2"  <?php echo isset($config['restaurant']['template'])&&$config['restaurant']['template']==2?"checked":""; ?>>
+                    Template 2 <img src="../../public/img/template1.png" width="200px">
                 </label>
             </div>
         </fieldset>
@@ -68,6 +69,17 @@
             <label for="exampleSelect1">Le couleur de text</label>
             <input type="color" class="form-control" id="text" name="text" placeholder="Le couleur de text" value="<?php echo isset($config['restaurant']['text'])?$config['restaurant']['text']:""; ?>" required>
         </div>
+
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" class="form-control-file" id="photo" name="photo" aria-describedby="fileHelp" <?php echo isset($config['restaurant']['image'])?"":"required"; ?>>
+        </div>
+
+        <?php if (isset($config['restaurant']['image'])): ?>
+            <div class="form-group">
+                <img src="../../public/upload/<?php echo $config['restaurant']['image']; ?>" width="170px">
+            </div>
+        <?php endif; ?>
 
         <input type="submit" class="btn btn-outline-warning btn-block" value="Validez">
     </form>

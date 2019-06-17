@@ -72,9 +72,11 @@
                         <a href="/commandes" class="waves-effect"><i class="mdi mdi-calendar-clock"></i><span> Commandes </span></a>
                     </li>
 
+                    <!--
                     <li>
                         <a href="#" class="waves-effect"><i class="mdi mdi-layers"></i><span> Fermetures </span></a>
                     </li>
+                    -->
 
                     <li>
                         <a href="/design" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Design </span></a>
@@ -145,8 +147,7 @@
                         </li>
 
                         <li class="list-inline-item dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" href="/redirectToTemplate">
                                 <img src="../../public/admin/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
                             </a>
                         </li>

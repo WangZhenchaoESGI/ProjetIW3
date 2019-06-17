@@ -15,11 +15,12 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NOM</th>
-                        <th>DESCRIPTION</th>
-                        <th>TARIF</th>
-                        <th>ENABLE</th>
-                        <th>DETAIL</th>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Montant</th>
+                        <th>Date</th>
+                        <th>Vue</th>
+                        <th>Détail</th>
                     </tr>
                     </thead>
                     <tbody>

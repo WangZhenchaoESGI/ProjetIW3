@@ -54,7 +54,7 @@
                     <a class="nav-link" href="/">ACCUEIL <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">TEMPLATES</a>
+                    <a class="nav-link" href="/template">TEMPLATES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">CONTACT</a>
