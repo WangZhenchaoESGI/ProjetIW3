@@ -26,6 +26,18 @@ class PagesController extends BaseSQL {
         $v->assign("pseudo","prof");
     }
 
+    public function adminContactAction(){
+
+        $v = new View("adminContact", "back");
+        $v->assign("pseudo","prof");
+    }
+
+    public function faqsAction(){
+
+        $v = new View("faqs", "back");
+        $v->assign("pseudo","prof");
+    }
+
     public function activeCompteAction(){
 
         $v = new View("mail", "front");

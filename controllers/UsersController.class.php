@@ -160,6 +160,7 @@ class UsersController extends BaseSQL{
 
         unset($_SESSION['accesstoken']);
         unset($_SESSION['role']);
+        session_destroy();
         header("Location: /");
 
     }

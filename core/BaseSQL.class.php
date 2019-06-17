@@ -65,6 +65,19 @@ class BaseSQL
 
     }
 
+    public function delete( array $where){
+
+        $sqlWhere = [];
+        foreach ($where as $key => $value) {
+            $sqlWhere[]=$key."=:".$key;
+        }
+        $sql = " DELETE FROM ". substr($this->table, strpos($this->table, '\\') + 1) ." WHERE  ".implode(" AND ", $sqlWhere).";";
+
+        $query = $this->pdo->prepare($sql);
+        $query->execute( $where );
+
+    }
+
 	public function save(){
 
 		//Array ( [id] => [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => $2y$10$tdmxlGf.zP.3dd7K/kRtw.jzYh2CnSbFuXaUkDNl3JtDJ05zCI7AG [role] => 1 [status] => 0 [pdo] => PDO Object ( ) [table] => Users )

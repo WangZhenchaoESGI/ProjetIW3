@@ -27,7 +27,6 @@ class ProduitsController extends BaseSQL{
         $sql = " SELECT * FROM dishes where id_restaurant=".$id;
         $query = $this->pdo->query($sql);
 
-        echo $sql;
         return $query->fetchAll();
 
     }
@@ -79,6 +78,14 @@ class ProduitsController extends BaseSQL{
 
         if (!empty($_POST)){
 
+            //Info Restaurateur
+            $dishe = new dishes();
+            $d = $dishe->getOneBy(["id"=>$_GET['id']],false);
+
+            $_POST['image'] = $d['image'];
+
+            $produit = new dishes();
+
             if (isset($_FILES['photo']['name']) && !empty($_FILES['photo']['name']) ){
                 $allowedExts = array("gif", "jpeg", "jpg", "png");
                 $temp = explode(".", $_FILES["photo"]["name"]);
@@ -103,7 +110,9 @@ class ProduitsController extends BaseSQL{
             }
 
             //Get ID restaurateur
-            $produit = new dishes();
+            if (isset($_GET['id'])){
+                $produit->setId($_GET['id']);
+            }
             $produit->setName($_POST['name']);
             $produit->setContenu($_POST['contenu']);
             $produit->setPrice($_POST['price']);
@@ -124,26 +133,29 @@ class ProduitsController extends BaseSQL{
         if ($this->isConnected() == false){
             header("Location: /");
         }
+
         //Info Restaurateur
-        $user = new Users();
-        $u = $user->getOneBy(["email"=>$_SESSION['email']],false);
+        $dishe = new dishes();
+        $d = $dishe->getOneBy(["id"=>$_GET['id']],false);
 
-        $design = new restaurant();
-        $a=$design->getOneBy(["id_user"=>$u['id']],false);
+        $form['action'] = "save_produit?id_restaurant=".$d["id_restaurant"]."&id=".$d["id"];
+        $form['produit'] = $d;
 
-        $category = new category();
-        $c = $category->getAll();
-
-        $fonts = new fonts();
-        $f = $fonts->getAll();
-
-        $form['restaurant'] = $a;
-        $form['category'] = $c;
-        $form['fonts'] = $f;
-        $form['action'] = "save_design?id=".$a['id'];
-
-        $v = new View("addDesign", "back");
+        $v = new View("addProduit", "back");
         $v->assign("form", $form);
+    }
+
+    public function deleteAction(){
+
+        if ($this->isConnected() == false){
+            header("Location: /");
+        }
+
+        if (isset($_GET['id'])){
+            $dishe = new dishes();
+            $dishe->delete(["id"=>$_GET['id']]);
+        }
+        header("Location: /produits");
     }
 
     public function isConnected(){
