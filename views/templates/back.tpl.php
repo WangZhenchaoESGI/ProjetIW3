@@ -65,7 +65,7 @@
                     </li>
 
                     <li>
-                        <a href="/produits" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Produits </span></a>
+                        <a href="/produits" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Plats </span></a>
                     </li>
 
                     <li>
@@ -79,7 +79,7 @@
                     -->
 
                     <li>
-                        <a href="/design" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Design </span></a>
+                        <a href="/design" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Setting </span></a>
                     </li>
 
                     <li>

@@ -6,6 +6,7 @@ namespace Controller;
 use Core\BaseSQL;
 use Core\FB;
 use Core\View;
+use Models\dishes;
 use Models\Users;
 use Models\restaurant;
 use Models\category;
@@ -23,11 +24,82 @@ class TemplateController extends BaseSQL {
 
     public function defaultAction(){
 
-        $design = new restaurant();
-        $a=$design->getAll();
+        if (isset($_GET['id'])){
+            $design = new restaurant();
+            $a = $design->getOneBy(['id'=>$_GET['id']],false);
 
-        $v = new View("templateCarte", "front");
-        $v->assign("resto",$a);
+            if (empty($a)){
+                $design = new restaurant();
+                $a=$design->getAll();
+
+                $v = new View("templateCarte", "front");
+                $v->assign("resto",$a);
+            }
+
+            $dishes = new dishes();
+            $d = $dishes->getAll();
+
+            $resto['restaurant'] = $a;
+            $resto['dishes'] = $d;
+
+            switch ($a['template']){
+                case 1:
+                    $v = new View("template", "template1");
+                    break;
+                case 2:
+                    $v = new View("template", "template2");
+                    break;
+                default:
+                    $v = new View("template", "template1");
+                    break;
+
+            }
+
+            $v->assign("resto",$resto);
+        }else{
+            $design = new restaurant();
+            $a=$design->getAll();
+
+            $v = new View("templateCarte", "front");
+            $v->assign("resto",$a);
+        }
+
+    }
+
+    public function platAction(){
+
+        if (isset($_GET['id'])){
+
+            $dishes = new dishes();
+            $d = $dishes->getOneBy(["id"=>$_GET['id']],false);
+
+            $design = new restaurant();
+            $a = $design->getOneBy(['id'=>$d['id_restaurant']],false);
+
+            $resto['restaurant'] = $a;
+            $resto['dishes'] = $d;
+
+            switch ($a['template']){
+                case 1:
+                    $v = new View("plat", "template1");
+                    break;
+                case 2:
+                    $v = new View("plat", "template2");
+                    break;
+                default:
+                    $v = new View("plat", "template1");
+                    break;
+
+            }
+
+            $v->assign("resto",$resto);
+        }else{
+            $design = new restaurant();
+            $a=$design->getAll();
+
+            $v = new View("templateCarte", "front");
+            $v->assign("resto",$a);
+        }
 
     }
 

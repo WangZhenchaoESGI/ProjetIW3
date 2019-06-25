@@ -18,6 +18,10 @@
   controller: Template
   action: default
 
+"/plat":
+  controller: Template
+  action: plat
+
 "/template-carte":
   controller: Pages
   action: templateCarte

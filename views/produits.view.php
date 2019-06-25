@@ -8,7 +8,7 @@
                             <img src="../public/img/icones/icons8-plus-80.png" width="35px" style="margin-bottom: 10px"/>
                         </a>
                     </figure>
-                    <h2 style="margin-top: -1px">PRODUITS</h2>
+                    <h2 style="margin-top: -1px">Plats</h2>
                 </div>
             </div>
             <h4 class="page-title">Administration / Produits</h4>

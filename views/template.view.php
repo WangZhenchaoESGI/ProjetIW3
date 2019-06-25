@@ -1,3 +1,5 @@
+<!--
+
 <body class="template">
 <header class=" header-temp">
     <a href="#" id="logo-image-temp"><img src="../public/img/logo_front_pourpre.png" alt=""></a>
@@ -13,6 +15,7 @@
         </ul>
     </nav>
 </header>
+
 
 <section id="section-template">
     <div class="img-temp is-hidden-mobile">
@@ -67,28 +70,47 @@
         <a href="#"><img class="img-resto img--hero grid__col--3" src="../public/img/stefan-johnson-124184-unsplash.jpg"></a>
     </div>
 </section>
-<footer class="footer-template  panel--padded">
-    <nav class="navbar">
-        <ul class="nav">
-            <li class="nav__item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li class="nav__item"><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li class="nav__item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-            <li class="nav__item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-    </nav>
-    <div class="horaires">
-        <p>
-            <em>Lundi-Jeudi</em>
-            <br>
-            08h00-23h00
-            <br>
-            <em>Vendredi-Dimanche</em>
-            <br>
-            11h00-23h00
-        </p>
-    </div>
-    <a href="#" class="logo-image-footer"><img src="../public/img/logo_front_pourpre.png" alt=""></a>
 
-    <small class="powered">Réalisé avec</small>
-</footer>
 </body>
+-->
+
+
+<section id="section1">
+    <div class="content-wrapper is-hidden-mobile">
+        <div class="text-wrapper">
+            <h1 class="headline-primary">
+                Bievenue sur notre restaurant !
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section id="section2" class="grid__col--12 panel--centered">
+    <h2 class="headline-secondary"><?php echo $resto['restaurant']['name']; ?></h2>
+    <h3 class="headline-third"><?php echo $resto['restaurant']['description']; ?></h3>
+</section>
+
+<section id="section3" class="feature-img container-fluid">
+    <div class="row">
+        <?php if (!empty($resto['dishes']) && $resto['dishes']!=NULL):?>
+
+            <?php foreach ($resto['dishes'] as $key => $value):?>
+                <div class="col-md-4" style="text-align: center">
+                    <figure class="hero-image" style="background-image: url('../public/upload/<?php echo $value['image']; ?>')">
+
+                    </figure>
+                    <p>
+                        <?php echo $value['name']; ?>
+                        <?php echo "<i style='color: darkgrey;'>Prix: ".$value['price']."€</i>"; ?>
+
+                    </p>
+                    <div class="hero-text">
+                        <a class="btn--default" href="/plat?id=<?php echo $value['id']; ?>" target="_blank">Commandez</a>
+                    </div>
+                </div>
+
+            <?php endforeach;?>
+
+        <?php endif; ?>
+    </div>
+</section>
