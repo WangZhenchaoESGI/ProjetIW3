@@ -2,12 +2,12 @@ SiteMap
 
 MDP oublié
 
-Mail Validation
+Mail Validation => l'affichage de la validation => veification de accesstoken pour activer le compte => plus l'affichge de l'activation
 
 Page de l'affichage de la validation
 page de l'affichage de l'activation
 
-Commentaire
+Commentaire => encore delelte => page plat if role admin display button delete
 
 Ajouter un plat => Fonctionnalité de commander
 

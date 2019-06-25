@@ -44,7 +44,7 @@
                             <td><?php echo $value['price']; ?>€</td>
                             <td><img src="../public/upload/<?php echo $value['image']; ?>" width="100px"></td>
                             <td><i class="fa fa-check" STYLE="color: #50E3C2;"></i></td>
-                            <td><a class="btn btn-warning" href="/update_produit?id=<?php echo $value['id']; ?>">Modifez</a>&nbsp;&nbsp;<a class="btn btn-danger" onclick="deletePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">Supprimez</a></td>
+                            <td><a class="btn btn-primary" href="/plat?id=<?php echo $value['id']; ?>">Affichez</a>&nbsp;&nbsp;<a class="btn btn-warning" href="/update_produit?id=<?php echo $value['id']; ?>">Modifez</a>&nbsp;&nbsp;<a class="btn btn-danger" onclick="deletePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">Supprimez</a></td>
                         </tr>
                     <?php endforeach;?>
 
