@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $resto['restaurant']['name']; ?></title>
-    <meta content="<?php echo $resto['restaurant']['description']; ?>" name="description" />
+    <title><?php echo (isset($resto['title_plat'])&&$resto['title_plat']==true)?$resto['dishes']['name']:$resto['restaurant']['name']; ?></title>
+    <meta content="<?php echo (isset($resto['title_plat'])&&$resto['title_plat']==true)?$resto['dishes']['contenu']:$resto['restaurant']['description']; ?>" name="description" />
 
     <!-- Plugins css -->
     <link href="../../public/admin/plugins/bootstrap-rating/bootstrap-rating.css" rel="stylesheet" type="text/css">

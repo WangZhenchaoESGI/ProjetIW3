@@ -74,6 +74,25 @@
 </body>
 -->
 
+<!-- Affichage le font, les 'p', les 'a' de chaque restaurateur-->
+
+<style>
+    body{
+        font-family: <?php echo $resto['fonts']['content']; ?>;
+    }
+    p{
+        text-decoration: none;
+        list-style-type: none;
+        color: <?php echo $resto['restaurant']['text']; ?>;
+    }
+    a:hover{
+        text-decoration: none;
+        list-style-type: none;
+    }
+    .btn--default{
+        background-color: <?php echo $resto['restaurant']['button']; ?>;
+    }
+</style>
 
 <section id="section1">
     <div class="content-wrapper is-hidden-mobile">
@@ -96,14 +115,15 @@
 
             <?php foreach ($resto['dishes'] as $key => $value):?>
                 <div class="col-md-4" style="text-align: center">
+                    <a href="/plat?id=<?php echo $value['id']; ?>" target="_blank">
                     <figure class="hero-image" style="background-image: url('../public/upload/<?php echo $value['image']; ?>')">
-
                     </figure>
                     <p>
                         <?php echo $value['name']; ?>
                         <?php echo "<i style='color: darkgrey;'>Prix: ".$value['price']."€</i>"; ?>
 
                     </p>
+                    </a>
                     <div class="hero-text">
                         <a class="btn--default" href="/plat?id=<?php echo $value['id']; ?>" target="_blank">Commandez</a>
                     </div>

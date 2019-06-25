@@ -39,8 +39,12 @@ class TemplateController extends BaseSQL {
             $dishes = new dishes();
             $d = $dishes->getAll();
 
+            $fonts = new fonts();
+            $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
+
             $resto['restaurant'] = $a;
             $resto['dishes'] = $d;
+            $resto['fonts'] = $f;
 
             switch ($a['template']){
                 case 1:
@@ -76,8 +80,13 @@ class TemplateController extends BaseSQL {
             $design = new restaurant();
             $a = $design->getOneBy(['id'=>$d['id_restaurant']],false);
 
+            $fonts = new fonts();
+            $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
+
             $resto['restaurant'] = $a;
             $resto['dishes'] = $d;
+            $resto['fonts'] = $f;
+            $resto['title_plat'] = true;
 
             switch ($a['template']){
                 case 1:
