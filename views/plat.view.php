@@ -28,19 +28,43 @@
 
 <hr>
 
+<?php if (!empty($resto['comments']) && $resto['comments']!=NULL):?>
+
+    <?php foreach ($resto['comments'] as $key => $value):?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div>
+                            <div class="p-12">
+                                <h5 class="font-16 m-b-15">L'avis de <?php echo $value['firstname']; ?> ******</h5>
+                                <input type="hidden" name="rate" class="rating" data-filled="mdi mdi-heart font-32 text-danger" data-empty="mdi mdi-heart-outline font-32 text-danger" data-readonly value="<?php echo $value['star']; ?>"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Textarea</label>
+                                <p><?php echo $value['contenu']; ?></p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    <?php endforeach;?>
+
+<?php endif; ?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form>
+            <form method="post" action="add_comment?id_plat=<?php echo $resto['dishes']['id']; ?>&id_restaurant=<?php echo $resto['restaurant']['id']; ?>">
                 <div>
                     <div class="p-12">
                         <h5 class="font-16 m-b-15">Veuillez donner votre avis de ce plat</h5>
-                        <input type="hidden" class="rating" data-filled="mdi mdi-heart font-32 text-danger" data-empty="mdi mdi-heart-outline font-32 text-danger"/>
+                        <input type="hidden" name="rate" class="rating" data-filled="mdi mdi-heart font-32 text-danger" data-empty="mdi mdi-heart-outline font-32 text-danger"/>
                     </div>
                     <div class="form-group">
                         <label>Textarea</label>
                         <div>
-                            <textarea required class="form-control" rows="5"></textarea>
+                            <textarea required class="form-control" name="comment" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-group">

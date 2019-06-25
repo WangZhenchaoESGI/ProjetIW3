@@ -125,3 +125,19 @@
 "/google_verify_connexion":
   controller: Google
   action: default
+
+"/add_comment":
+  controller: Comment
+  action: add
+
+"/save_comment":
+  controller: Comment
+  action: save
+
+"/update_comment":
+  controller: Comment
+  action: update
+
+"/delete_comment":
+  controller: Comment
+  action: delete

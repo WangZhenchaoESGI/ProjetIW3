@@ -6,6 +6,7 @@ namespace Controller;
 use Core\BaseSQL;
 use Core\FB;
 use Core\View;
+use Models\comment;
 use Models\dishes;
 use Models\Users;
 use Models\restaurant;
@@ -19,6 +20,7 @@ use Core\Mail;
 use Controller\PagesController;
 use Controller\FacebookController;
 use Controller\UsersController;
+use Controller\CommentController;
 
 class TemplateController extends BaseSQL {
 
@@ -70,6 +72,15 @@ class TemplateController extends BaseSQL {
 
     }
 
+    public function getAllComments($id){
+
+        $sql = " SELECT comment.*,Users.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
+        $query = $this->pdo->query($sql);
+
+        return $query->fetchAll();
+
+    }
+
     public function platAction(){
 
         if (isset($_GET['id'])){
@@ -83,9 +94,13 @@ class TemplateController extends BaseSQL {
             $fonts = new fonts();
             $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
 
+            $c = $this->getAllComments($_GET['id']);
+
             $resto['restaurant'] = $a;
             $resto['dishes'] = $d;
             $resto['fonts'] = $f;
+            $resto['comments'] = $c;
+
             $resto['title_plat'] = true;
 
             switch ($a['template']){
@@ -112,45 +127,4 @@ class TemplateController extends BaseSQL {
 
     }
 
-    public function contactAction(){
-
-        $v = new View("contact", "front");
-        $v->assign("pseudo","prof");
-    }
-
-    public function adminContactAction(){
-
-        $v = new View("adminContact", "back");
-        $v->assign("pseudo","prof");
-    }
-
-    public function faqsAction(){
-
-        $v = new View("faqs", "back");
-        $v->assign("pseudo","prof");
-    }
-
-    public function activeCompteAction(){
-
-        $v = new View("mail", "front");
-        $v->assign("mode",1);
-    }
-
-    public function templateAction(){
-
-        $v = new View("template", "front");
-        $v->assign("pseudo","prof");
-    }
-
-    public function templateCarteAction(){
-
-        $v = new View("templateCarte", "front");
-        $v->assign("pseudo","prof");
-    }
-
-    public function reservationAction(){
-
-        $v = new View("reservation", "front");
-        $v->assign("pseudo","prof");
-    }
 }

@@ -1,7 +1,5 @@
 SiteMap
 
-Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs
-
 MDP oublié
 
 Mail Validation
@@ -12,3 +10,9 @@ page de l'affichage de l'activation
 Commentaire
 
 Ajouter un plat => Fonctionnalité de commander
+
+Compte Client
+
+Compte Admin
+
+Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs

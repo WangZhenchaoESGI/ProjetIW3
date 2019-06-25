@@ -8,6 +8,7 @@ use \Controller\FacebookController;
 use \Controller\GoogleController;
 use \Controller\ProduitsController;
 use \Controller\TemplateController;
+use \Controller\CommentController;
 use \Controller\ConfigurationTemplateController;
 use \VO\DbDriver;
 use \VO\DbHost;
@@ -78,5 +79,8 @@ return [
     },
     TemplateController::class => function($container) {
         return new TemplateController();
+    },
+    CommentController::class => function($container) {
+        return new CommentController();
     },
 ];
