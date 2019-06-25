@@ -12,6 +12,8 @@
     <article class="grid__col--4 feature-text">
         <br>
         <h1 class="headline-secondary"><?php echo $resto['dishes']['name']; ?></h1>
+        <h3 class="headline-third">Prix: <?php echo $resto['dishes']['price']; ?>€</h3>
+
         <p class="centered">
             <?php echo $resto['dishes']['contenu']; ?>
         </p>
