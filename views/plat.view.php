@@ -20,7 +20,7 @@
         <form action="">
             <div >
                 <input type="number" value="1" style="width: 2rem;height: 2rem">
-                <button style="height: 2rem;" type="submit">Add</button>
+                <button class="btn--default" type="submit">Add</button>
             </div>
         </form>
     </article>

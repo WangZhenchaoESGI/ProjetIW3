@@ -57,6 +57,28 @@
          logged_in_greeting="Bonjour xD"
          logged_out_greeting="Bonjour xD">
     </div>
+
+
+    <!-- Affichage le font, les 'p', les 'a' de chaque restaurateur-->
+
+    <style>
+        body{
+            font-family: <?php echo $resto['fonts']['content']; ?>;
+        }
+        p{
+            text-decoration: none;
+            list-style-type: none;
+            color: <?php echo $resto['restaurant']['text']; ?>;
+        }
+        a:hover{
+            text-decoration: none;
+            list-style-type: none;
+        }
+        .btn--default{
+            background-color: <?php echo $resto['restaurant']['button']; ?>;
+        }
+    </style>
+    
 </head>
 <body>
 

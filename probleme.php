@@ -1,5 +1,3 @@
-Confirmez de suppresion
-
 SiteMap
 
 Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs
@@ -10,3 +8,7 @@ Mail Validation
 
 Page de l'affichage de la validation
 page de l'affichage de l'activation
+
+Commentaire
+
+Ajouter un plat => Fonctionnalité de commander

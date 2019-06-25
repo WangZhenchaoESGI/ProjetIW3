@@ -151,15 +151,12 @@ class ProduitsController extends BaseSQL{
 
     public function deleteAction(){
 
-        if ($this->isConnected() == false){
-            header("Location: /");
+        if ( $this->isConnected() ){
+            if (isset($_POST['id'])){
+                $dishe = new dishes();
+                $dishe->delete(["id"=>$_POST['id']]);
+            }
         }
-
-        if (isset($_GET['id'])){
-            $dishe = new dishes();
-            $dishe->delete(["id"=>$_GET['id']]);
-        }
-        header("Location: /produits");
     }
 
     public function isConnected(){
