@@ -257,8 +257,8 @@ if(isset($_SESSION["cart_item"])) {
 <script src="../../public/admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="../../public/admin/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
 <script src="../../public/admin/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
-<script src="../../public/admin//plugins/bootstrap-rating/bootstrap-rating.min.js"></script>
-<script src="../../public/admin//pages/rating-init.js"></script>
+<script src="../../public/admin/plugins/bootstrap-rating/bootstrap-rating.min.js"></script>
+<script src="../../public/admin/pages/rating-init.js"></script>
 <!-- Plugins Init js -->
 <script src="../../public/admin/pages/form-advanced.js"></script>
 

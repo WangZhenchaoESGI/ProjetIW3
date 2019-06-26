@@ -1,3 +1,72 @@
+<link href="../public/admin/plugins/animate/animate.css" rel="stylesheet" type="text/css">
+
+<button style="display: none" id="display" type="button" class="btn btn-primary mt-3 btn-animation" data-animation="rollIn" data-toggle="modal" data-target="#exampleModalLong-1">
+    RollIn
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong-1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle-1">Votre panier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th style="text-align:left;">ID</th>
+                        <th style="text-align:left;">Nom</th>
+                        <th style="text-align:right;">Quntité</th>
+                        <th style="text-align:right;">Unit Price</th>
+                        <th style="text-align:right;">Price</th>
+                        <th style="text-align:center;">Remove</th>
+                    </tr>
+                <?php
+                if(isset($_SESSION["cart_item"])){
+                    $total_quantity = 0;
+                    $total_price = 0;
+
+                    foreach ($_SESSION["cart_item"] as $item){
+                        $item_price = $item["quantity"]*$item["price"];
+                        ?>
+                        <tr>
+                            <td><?php echo $item["id"]; ?></td>
+                            <td><?php echo $item["name"]; ?></td>
+                            <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+                            <td style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
+                            <td style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+                            <td style="text-align:center;"><a href=""><i style="color: red;" class="mdi mdi-delete-forever"></i></a></td>
+                        </tr>
+                        <?php
+                        $total_quantity += $item["quantity"];
+                        $total_price += ($item["price"]*$item["quantity"]);
+                    }
+                    ?>
+
+                    <?php } ?>
+
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td colspan="2" align="right">Total:<?php echo $total_quantity; ?></td>
+                        <td align="right"></td>
+                        <td align="right" colspan="2"><strong><?php echo number_format($total_price, 2); ?>€</strong></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CONTINUEZ VOS ACHATS</button>
+                <button type="button" class="btn btn-primary">PASSEZ A LA CAISSE</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="section2" class="grid__col--12 panel--centered">
     <h2 class="headline-secondary"><?php echo $resto['restaurant']['name']; ?></h2>
@@ -109,3 +178,18 @@
     }
 
 </script>
+
+<script>
+    $('.btn-animation').on('click', function(br) {
+        //adding animation
+        $('.modal .modal-dialog').attr('class', 'modal-dialog  swing  animated');
+    });
+</script>
+
+<!-- Lance l'affichage de réussir de commander -->
+<?php if (isset($_SESSION['display_success'])&&$_SESSION['display_success']==true): ?>
+    <script>
+        document.getElementById("display").click();
+    </script>
+    <?php unset($_SESSION['display_success']); ?>
+<?php endif; ?>

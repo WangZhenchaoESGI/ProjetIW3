@@ -58,6 +58,8 @@ class CommandesController extends BaseSQL {
             } else {
                 $_SESSION["cart_item"] = $itemArray;
             }
+
+            $_SESSION['display_success'] = true;
         }
 
         header("Location: /plat?id=".$_GET['id']);
