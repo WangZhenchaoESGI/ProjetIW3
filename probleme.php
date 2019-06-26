@@ -7,8 +7,6 @@ Mail Validation => l'affichage de la validation => veification de accesstoken po
 Page de l'affichage de la validation
 page de l'affichage de l'activation
 
-Commentaire => encore delelte => page plat if role admin display button delete
-
 Ajouter un plat => Fonctionnalité de commander
 
 Compte Client

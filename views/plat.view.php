@@ -17,9 +17,9 @@
         <p class="centered">
             <?php echo $resto['dishes']['contenu']; ?>
         </p>
-        <form action="">
+        <form method="post" action="/commande_add?id=<?php echo $resto['dishes']['id']; ?>">
             <div >
-                <input type="number" value="1" style="width: 2rem;height: 2rem">
+                <input type="number" name="quantity" value="1" style="width: 2rem;height: 2rem">
                 <button class="btn--default" type="submit">Add</button>
             </div>
         </form>

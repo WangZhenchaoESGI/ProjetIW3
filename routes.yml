@@ -141,3 +141,16 @@
 "/delete_comment":
   controller: Comment
   action: delete
+
+"/commande_add":
+  controller: Commandes
+  action: add
+
+"/commande_remove":
+  controller: Commandes
+  action: remove
+
+
+"/commande_empty":
+  controller: Commandes
+  action: empty

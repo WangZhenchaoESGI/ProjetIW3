@@ -9,6 +9,7 @@ use \Controller\GoogleController;
 use \Controller\ProduitsController;
 use \Controller\TemplateController;
 use \Controller\CommentController;
+use \Controller\CommandesController;
 use \Controller\ConfigurationTemplateController;
 use \VO\DbDriver;
 use \VO\DbHost;
@@ -82,5 +83,8 @@ return [
     },
     CommentController::class => function($container) {
         return new CommentController();
+    },
+    CommandesController::class => function($container) {
+        return new CommandesController();
     },
 ];
