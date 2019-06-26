@@ -67,7 +67,12 @@ class CommentController extends BaseSQL{
     }
 
     public function deleteAction(){
-
+        if ( (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true) ){
+            if (isset($_POST['id'])){
+                $comment = new comment();
+                $comment->delete(["id"=>$_POST['id']]);
+            }
+        }
     }
 
     public function isConnected(){

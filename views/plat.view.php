@@ -31,19 +31,22 @@
 <?php if (!empty($resto['comments']) && $resto['comments']!=NULL):?>
 
     <?php foreach ($resto['comments'] as $key => $value):?>
-        <div class="container">
+        <div class="container" id="<?php echo $value['id']; ?>">
             <div class="row">
                 <div class="col-md-12">
-                        <div>
-                            <div class="p-12">
-                                <h5 class="font-16 m-b-15">L'avis de <?php echo $value['firstname']; ?> ******</h5>
-                                <input type="hidden" name="rate" class="rating" data-filled="mdi mdi-heart font-32 text-danger" data-empty="mdi mdi-heart-outline font-32 text-danger" data-readonly value="<?php echo $value['star']; ?>"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Textarea</label>
-                                <p><?php echo $value['contenu']; ?></p>
-                            </div>
+                    <div>
+                        <div class="p-12">
+                            <h5 class="font-16 m-b-15">L'avis de <?php echo $value['firstname']; ?> ******</h5>
+                            <input type="hidden" name="rate" class="rating" data-filled="mdi mdi-heart font-32 text-danger" data-empty="mdi mdi-heart-outline font-32 text-danger" data-readonly value="<?php echo $value['star']; ?>"/>
                         </div>
+                        <div class="form-group">
+                            <label>Textarea</label>
+                            <p><?php echo $value['contenu']; ?></p>
+                        </div>
+                    </div>
+                    <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
+                    <a class="btn btn-outline-danger" onclick="deleteComment(<?php echo $value['id']; ?>)">Supprimez</a>
+                    <?php endif; ?>
                 </div>
             </div>
             <hr>
@@ -82,3 +85,27 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    function deleteComment(id) {
+        var r=confirm("Vous voulez vraiment supprimer ID: "+id+" ?");
+
+        if (r==true)
+        {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if(request.readyState == 4){
+                    var container = document.getElementById(id);
+                    container.innerHTML="";
+                }
+            };
+
+            request.open("POST", "/delete_comment");
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send("id="+ id);
+        }
+    }
+
+</script>
