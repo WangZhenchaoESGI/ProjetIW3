@@ -83,7 +83,8 @@ if( file_exists($cPath) ){
 		die("La class controller ".$c." n'existe pas");
 	}
 }else{
-	die("Le fichier controller ".$c." n'existe pas");
+	//die("Le fichier controller ".$c." n'existe pas");
+    header("Location: /error");
 }
 
 

@@ -61,4 +61,10 @@ class PagesController extends BaseSQL {
         $v = new View("reservation", "front");
         $v->assign("pseudo","prof");
     }
+
+    public function errorAction(){
+
+        $v = new View("404", "front");
+
+    }
 }

@@ -2,6 +2,10 @@
   controller: Pages
   action: default
 
+"/error":
+  controller: Pages
+  action: error
+
 "/contact":
   controller: Pages
   action: contact
@@ -158,6 +162,3 @@
   controller: Commandes
   action: default
 
-"/panier_remove":
-  controller: Commandes
-  action: panierRemove
