@@ -105,7 +105,7 @@
                     </p>
                     </a>
                     <div class="hero-text">
-                        <a class="btn--default" href="/plat?id=<?php echo $value['id']; ?>" target="_blank">Commandez</a>
+                        <a class="btn--default" href="/plat?id=<?php echo $value['id']; ?>">Commandez</a>
                     </div>
                 </div>
 
