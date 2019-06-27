@@ -38,8 +38,8 @@ class TemplateController extends BaseSQL {
                 $v->assign("resto",$a);
             }
 
-            $dishes = new dishes();
-            $d = $dishes->getAll();
+            //dishes
+            $d = $this->getAllDishes($_GET['id']);
 
             $fonts = new fonts();
             $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
@@ -75,6 +75,15 @@ class TemplateController extends BaseSQL {
     public function getAllComments($id){
 
         $sql = " SELECT comment.*,Users.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
+        $query = $this->pdo->query($sql);
+
+        return $query->fetchAll();
+
+    }
+
+    public function getAllDishes($id){
+
+        $sql = " SELECT * FROM dishes where id_restaurant=".$id;
         $query = $this->pdo->query($sql);
 
         return $query->fetchAll();

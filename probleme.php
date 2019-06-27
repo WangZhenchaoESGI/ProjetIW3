@@ -7,8 +7,6 @@ Mail Validation => l'affichage de la validation => veification de accesstoken po
 Page de l'affichage de la validation
 page de l'affichage de l'activation
 
-Ajouter un plat => Fonctionnalité de commander
-
 Compte Client
 
 Compte Admin

@@ -150,7 +150,14 @@
   controller: Commandes
   action: remove
 
-
 "/commande_empty":
   controller: Commandes
   action: empty
+
+"/panier":
+  controller: Commandes
+  action: default
+
+"/panier_remove":
+  controller: Commandes
+  action: panierRemove

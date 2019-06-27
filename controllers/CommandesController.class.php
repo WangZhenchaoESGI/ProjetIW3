@@ -8,6 +8,7 @@ use Core\FB;
 use Core\View;
 use Models\comment;
 use Models\dishes;
+use Models\method;
 use Models\Users;
 use Models\restaurant;
 use Models\category;
@@ -25,6 +26,22 @@ use Controller\CommentController;
 class CommandesController extends BaseSQL {
 
     public function defaultAction(){
+
+        if ($this->isConnected()){
+            if(!empty($_SESSION["cart_item"])) {
+
+                $paiement = new method();
+                $p = $paiement->getAll();
+
+                $v = new View("panier", "front");
+                $v->assign("method",$p);
+
+            }else{
+                header("Location: /template");
+            }
+        }else{
+            header("Location: /connexion");
+        }
     }
 
     public function addAction(){
@@ -41,6 +58,16 @@ class CommandesController extends BaseSQL {
                     'image'=>$d["image"]
                 )
             );
+
+            //véfier si le meme restaurant
+            if (isset($_SESSION['id_restaurant'])){
+                if ($_SESSION['id_restaurant'] != $_GET['id_restaurant']){
+                    unset($_SESSION["cart_item"]);
+                    $_SESSION['id_restaurant'] = $_GET['id_restaurant'];
+                }
+            } else{
+                $_SESSION['id_restaurant'] = $_GET['id_restaurant'];
+            }
 
             if(!empty($_SESSION["cart_item"])) {
                 if(in_array("a".$d["id"],array_keys($_SESSION["cart_item"]))) {
@@ -80,12 +107,59 @@ class CommandesController extends BaseSQL {
         if(!empty($_SESSION["cart_item"])) {
             $_SESSION['display_success'] = true;
         }
-        header("Location: /plat?id=".$_GET['idPlat']);
 
+        header("Location: /plat?id=".$_GET['id']);
+    }
+
+
+    public function panierRemoveAction(){
+        if(!empty($_SESSION["cart_item"])) {
+            foreach($_SESSION["cart_item"] as $k => $v) {
+                if("a".$_GET["id"] == $k)
+                    unset($_SESSION["cart_item"][$k]);
+                if(empty($_SESSION["cart_item"]))
+                    unset($_SESSION["cart_item"]);
+            }
+        }
+
+        header("Location: /panier");
     }
 
     public function emptyAction(){
         unset($_SESSION["cart_item"]);
+        header("Location: /plat?id=".$_GET['idPlat']);
     }
 
+    public function isConnected(){
+
+        //Vérifier que les variables de sessions existent
+        if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
+
+            //Si oui se connecter a la base et vérifier qu'un utilisateur correspond
+            $query = $this->pdo->prepare(" SELECT id FROM Users WHERE email=:titi AND accesstoken=:tutu AND status=1");
+            $query->execute(["titi"=>$_SESSION["email"], "tutu"=>$_SESSION["accesstoken"]]);
+            $result = $query->fetch();
+            //Si oui regenerer un accesstoken et retourner vrai
+            if( !empty($result)){
+                $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
+                $_SESSION["id_user"] = $result['id'];
+                return true;
+            }
+            return false;
+        }
+        //Sinon retourner faux
+        return false;
+    }
+
+    public function generateAccessToken($email){
+        //Générer un accesstoken
+        $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
+
+        //Se connecter a la bdd
+        //Mettre a jour l'utilisateur avec la nouvelle donnée
+        $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
+        $query->execute(["titi"=>$accesstoken, "tutu"=>$email ]);
+
+        return $accesstoken;
+    }
 }

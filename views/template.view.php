@@ -74,6 +74,41 @@
 </body>
 -->
 
+<?php if (isset($_SESSION['id_restaurant']) && ($_SESSION['id_restaurant'] != $_GET['id'])):?>
+    <link href="../public/admin/plugins/animate/animate.css" rel="stylesheet" type="text/css">
+
+    <button style="display: none" id="display" type="button" class="btn btn-primary mt-3 btn-animation" data-animation="rollIn" data-toggle="modal" data-target="#exampleModalLong-1">
+        RollIn
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong-1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle-1">Votre panier</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Attention, si vous ajoutez un produit de ce restaurant, votre panier actuel sera vidé
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">CONTINUEZ VOS ACHATS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("display").click();
+    </script>
+
+<?php endif; ?>
+
 <section id="section1">
     <div class="content-wrapper is-hidden-mobile">
         <div class="text-wrapper">
@@ -89,7 +124,7 @@
     <h3 class="headline-third"><?php echo $resto['restaurant']['description']; ?></h3>
 </section>
 
-<section id="section3" class="feature-img container-fluid">
+<section class="container-fluid">
     <div class="row">
         <?php if (!empty($resto['dishes']) && $resto['dishes']!=NULL):?>
 

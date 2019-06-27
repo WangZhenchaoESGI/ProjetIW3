@@ -39,7 +39,7 @@
                             <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
                             <td style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
                             <td style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
-                            <td style="text-align:center;"><a href="/commande_remove?id=<?php echo $item["id"]; ?>&idPlat=<?php echo $resto['dishes']['id']; ?>"><i style="color: red;" class="mdi mdi-delete-forever"></i></a></td>
+                            <td style="text-align:center;"><a href="/commande_remove?id=<?php echo $item["id"]; ?>"><i style="color: red;" class="mdi mdi-delete-forever"></i></a></td>
                         </tr>
                         <?php
                         $total_quantity += $item["quantity"];
@@ -62,7 +62,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">CONTINUEZ VOS ACHATS</button>
-                <button type="button" class="btn btn-primary">PASSEZ A LA CAISSE</button>
+                <button type="button" onclick="window.location.href='/panier'" class="btn btn-primary">PASSEZ A LA CAISSE</button>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
         <p class="centered">
             <?php echo $resto['dishes']['contenu']; ?>
         </p>
-        <form method="post" action="/commande_add?id=<?php echo $resto['dishes']['id']; ?>">
+        <form method="post" action="/commande_add?id=<?php echo $resto['dishes']['id']; ?>&id_restaurant=<?php echo $resto['dishes']['id_restaurant']; ?>">
             <div >
                 <input type="number" name="quantity" value="1" style="width: 2rem;height: 2rem">
                 <button class="btn--default" type="submit">Add</button>
@@ -96,7 +96,7 @@
 </section>
 
 <hr>
-
+<!-- Afficher des commentaires -->
 <?php if (!empty($resto['comments']) && $resto['comments']!=NULL):?>
 
     <?php foreach ($resto['comments'] as $key => $value):?>
@@ -123,6 +123,9 @@
     <?php endforeach;?>
 
 <?php endif; ?>
+
+<!-- le client ajoute un commentaire -->
+<?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true): ?>
 
 <div class="container">
     <div class="row">
@@ -155,6 +158,7 @@
     </div>
 </div>
 
+<?php endif; ?>
 
 <script>
 
@@ -175,6 +179,20 @@
             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             request.send("id="+ id);
         }
+    }
+    
+    function removeProduct(id) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if(request.readyState == 4){
+                var container = document.getElementById(id);
+                container.innerHTML="";
+            }
+        };
+
+        request.open("POST", "/delete_comment");
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send("id="+ id);
     }
 
 </script>

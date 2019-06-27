@@ -41,6 +41,18 @@
 </head>
 <body>
 
+    <?php
+    if(isset($_SESSION["cart_item"])) {
+        $total_quantity = 0;
+        $total_price = 0;
+        foreach ($_SESSION["cart_item"] as $item){
+            $item_price = $item["quantity"]*$item["price"];
+            $total_quantity += $item["quantity"];
+            $total_price += ($item["price"]*$item["quantity"]);
+        }
+    }
+    ?>
+
     <nav class="navbar navbar-expand-lg header ">
         <a href="/" class="navbar-brand" id="logo-image"><img src="../public/img/logo-image.png" alt=""></a>
 
@@ -59,6 +71,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">CONTACT</a>
                 </li>
+
+                <?php if (isset($total_quantity)): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/panier">PANIER <i style="border: 1px solid red;border-radius: 10px;background-color: red;color: white;"><?php echo $total_quantity; ?></i></a>
+                    </li>
+                <?php endif; ?>
+
                 <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['pro']==true): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">MyEatFood</a>
