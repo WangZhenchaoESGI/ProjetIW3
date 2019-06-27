@@ -32,7 +32,7 @@ class CommandesController extends BaseSQL {
             $dishs = new dishes();
             $d = $dishs->getOneBy(['id'=>$_GET['id']],false);
             $itemArray = array(
-                $d['id']=>array(
+                "a".$_GET['id']=>array(
                     'id'=>$d["id"],
                     'name'=>$d["name"],
                     'description'=>$d["contenu"],
@@ -43,9 +43,9 @@ class CommandesController extends BaseSQL {
             );
 
             if(!empty($_SESSION["cart_item"])) {
-                if(in_array($d["id"],array_keys($_SESSION["cart_item"]))) {
+                if(in_array("a".$d["id"],array_keys($_SESSION["cart_item"]))) {
                     foreach($_SESSION["cart_item"] as $k => $v) {
-                        if($d["id"] == $k) {
+                        if("a".$d["id"] == $k) {
                             if(empty($_SESSION["cart_item"][$k]["quantity"])) {
                                 $_SESSION["cart_item"][$k]["quantity"] = 0;
                             }
@@ -61,19 +61,27 @@ class CommandesController extends BaseSQL {
 
             $_SESSION['display_success'] = true;
         }
-
+        /*
+        echo "<pre>";
+        print_r($_SESSION['cart_item']);
+        */
         header("Location: /plat?id=".$_GET['id']);
     }
 
     public function removeAction(){
         if(!empty($_SESSION["cart_item"])) {
             foreach($_SESSION["cart_item"] as $k => $v) {
-                if($_GET["code"] == $k)
+                if("a".$_GET["id"] == $k)
                     unset($_SESSION["cart_item"][$k]);
                 if(empty($_SESSION["cart_item"]))
                     unset($_SESSION["cart_item"]);
             }
         }
+        if(!empty($_SESSION["cart_item"])) {
+            $_SESSION['display_success'] = true;
+        }
+        header("Location: /plat?id=".$_GET['idPlat']);
+
     }
 
     public function emptyAction(){

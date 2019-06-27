@@ -39,7 +39,7 @@
                             <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
                             <td style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
                             <td style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
-                            <td style="text-align:center;"><a href=""><i style="color: red;" class="mdi mdi-delete-forever"></i></a></td>
+                            <td style="text-align:center;"><a href="/commande_remove?id=<?php echo $item["id"]; ?>&idPlat=<?php echo $resto['dishes']['id']; ?>"><i style="color: red;" class="mdi mdi-delete-forever"></i></a></td>
                         </tr>
                         <?php
                         $total_quantity += $item["quantity"];
