@@ -156,6 +156,14 @@ class UsersController extends BaseSQL{
 
 	}
 
+	public function verificationAction(){
+	    $sql = "UPDATE Users SET status=1 WHERE accesstoken='".$_GET['accesstoken']."';";
+        $this->pdo->query($sql);
+        $msg = "Votre compte de EatFood est bien activé!";
+        $v = new View("success", "front");
+        $v->assign("msg", $msg);
+    }
+
     public function logoutAction(){
 
         unset($_SESSION['accesstoken']);

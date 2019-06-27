@@ -38,6 +38,10 @@
   controller: Pages
   action: activeCompte
 
+"/verification":
+  controller: Users
+  action: verification
+
 "/liste_des_utilisateurs":
   controller: Users
   action: default
