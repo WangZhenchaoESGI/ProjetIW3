@@ -23,7 +23,7 @@ use Controller\UsersController;
 
 class CommentController extends BaseSQL{
 
-    public function getAllComments($id){
+    public function getAllComments($id):array {
 
         $sql = " SELECT comment.*,User.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
         $query = $this->pdo->query($sql);
@@ -32,7 +32,7 @@ class CommentController extends BaseSQL{
 
     }
 
-    public function defaultAction(){
+    public function defaultAction():void{
 
         if ($this->isConnected() == false){
             header("Location: /connexion");
@@ -40,7 +40,7 @@ class CommentController extends BaseSQL{
 
     }
 
-    public function addAction(){
+    public function addAction():void{
         if ($this->isConnected() == false){
             header("Location: /connexion");
             exit();
@@ -66,7 +66,7 @@ class CommentController extends BaseSQL{
 
     }
 
-    public function deleteAction(){
+    public function deleteAction():void{
         if ( (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true) ){
             if (isset($_POST['id'])){
                 $comment = new comment();
@@ -75,37 +75,12 @@ class CommentController extends BaseSQL{
         }
     }
 
-    public function isConnected(){
+    public function isConnected(): bool {
+        $user = new \Controller\UsersController();
 
-        //Vérifier que les variables de sessions existent
-        if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
+        if ($user->isConnected()) return true;
 
-            //Si oui se connecter a la base et vérifier qu'un utilisateur correspond
-            $query = $this->pdo->prepare(" SELECT id FROM Users WHERE email=:titi AND accesstoken=:tutu AND status=1");
-            $query->execute(["titi"=>$_SESSION["email"], "tutu"=>$_SESSION["accesstoken"]]);
-            $result = $query->fetch();
-            //Si oui regenerer un accesstoken et retourner vrai
-            if( !empty($result)){
-                $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
-                $_SESSION["id_user"] = $result['id'];
-                return true;
-            }
-            return false;
-        }
-        //Sinon retourner faux
         return false;
-    }
-
-    public function generateAccessToken($email){
-        //Générer un accesstoken
-        $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
-
-        //Se connecter a la bdd
-        //Mettre a jour l'utilisateur avec la nouvelle donnée
-        $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
-        $query->execute(["titi"=>$accesstoken, "tutu"=>$email ]);
-
-        return $accesstoken;
     }
 
 }

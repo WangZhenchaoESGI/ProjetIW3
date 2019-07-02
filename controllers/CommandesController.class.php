@@ -25,7 +25,7 @@ use Controller\CommentController;
 
 class CommandesController extends BaseSQL {
 
-    public function defaultAction(){
+    public function defaultAction():void{
 
         if ($this->isConnected()){
             if(!empty($_SESSION["cart_item"])) {
@@ -44,7 +44,7 @@ class CommandesController extends BaseSQL {
         }
     }
 
-    public function addAction(){
+    public function addAction():void{
         if(!empty($_POST["quantity"])) {
             $dishs = new dishes();
             $d = $dishs->getOneBy(['id'=>$_GET['id']],false);
@@ -95,7 +95,7 @@ class CommandesController extends BaseSQL {
         header("Location: /plat?id=".$_GET['id']);
     }
 
-    public function removeAction(){
+    public function removeAction():void{
         if(!empty($_SESSION["cart_item"])) {
             foreach($_SESSION["cart_item"] as $k => $v) {
                 if("a".$_GET["id"] == $k)
@@ -112,7 +112,7 @@ class CommandesController extends BaseSQL {
     }
 
 
-    public function panierRemoveAction(){
+    public function panierRemoveAction():void{
         if(!empty($_SESSION["cart_item"])) {
             foreach($_SESSION["cart_item"] as $k => $v) {
                 if("a".$_GET["id"] == $k)
@@ -125,41 +125,16 @@ class CommandesController extends BaseSQL {
         header("Location: /panier");
     }
 
-    public function emptyAction(){
+    public function emptyAction():void{
         unset($_SESSION["cart_item"]);
         header("Location: /plat?id=".$_GET['idPlat']);
     }
 
-    public function isConnected(){
+    public function isConnected(): bool {
+        $user = new \Controller\UsersController();
 
-        //Vérifier que les variables de sessions existent
-        if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
+        if ($user->isConnected()) return true;
 
-            //Si oui se connecter a la base et vérifier qu'un utilisateur correspond
-            $query = $this->pdo->prepare(" SELECT id FROM Users WHERE email=:titi AND accesstoken=:tutu AND status=1");
-            $query->execute(["titi"=>$_SESSION["email"], "tutu"=>$_SESSION["accesstoken"]]);
-            $result = $query->fetch();
-            //Si oui regenerer un accesstoken et retourner vrai
-            if( !empty($result)){
-                $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
-                $_SESSION["id_user"] = $result['id'];
-                return true;
-            }
-            return false;
-        }
-        //Sinon retourner faux
         return false;
-    }
-
-    public function generateAccessToken($email){
-        //Générer un accesstoken
-        $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
-
-        //Se connecter a la bdd
-        //Mettre a jour l'utilisateur avec la nouvelle donnée
-        $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
-        $query->execute(["titi"=>$accesstoken, "tutu"=>$email ]);
-
-        return $accesstoken;
     }
 }

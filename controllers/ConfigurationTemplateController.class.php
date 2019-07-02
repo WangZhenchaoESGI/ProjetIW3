@@ -21,7 +21,7 @@ use Controller\UsersController;
 
 class ConfigurationTemplateController extends BaseSQL{
 
-    public function defaultAction(){
+    public function defaultAction():void{
 
         if ($this->isConnected() == false){
             header("Location: /");
@@ -54,7 +54,7 @@ class ConfigurationTemplateController extends BaseSQL{
 
     }
 
-    public function addAction(){
+    public function addAction():void{
 
         $category = new category();
         $c = $category->getAll();
@@ -70,7 +70,7 @@ class ConfigurationTemplateController extends BaseSQL{
         $v->assign("form", $form);
     }
 
-    public function saveAction(){
+    public function saveAction():void{
 
         if (!empty($_POST)){
 
@@ -133,7 +133,7 @@ class ConfigurationTemplateController extends BaseSQL{
 
     }
 
-    public function updateAction(){
+    public function updateAction():void{
 
         if ($this->isConnected() == false){
             header("Location: /");
@@ -160,7 +160,7 @@ class ConfigurationTemplateController extends BaseSQL{
         $v->assign("form", $form);
     }
 
-    public function redirectAction(){
+    public function redirectAction(): void{
 
         if ($this->isConnected() == false){
             header("Location: /");
@@ -175,36 +175,12 @@ class ConfigurationTemplateController extends BaseSQL{
         header("Location: /template?id=".$a['id']);
     }
 
-    public function isConnected(){
+    public function isConnected(): bool {
+        $user = new \Controller\UsersController();
 
-        //Vérifier que les variables de sessions existent
-        if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
+        if ($user->isConnected() && ($user->role() == 2 || $user->role() == 3)) return true;
 
-            //Si oui se connecter a la base et vérifier qu'un utilisateur correspond
-            $query = $this->pdo->prepare(" SELECT id FROM Users WHERE email=:titi AND accesstoken=:tutu AND status=1 AND role=2");
-            $query->execute(["titi"=>$_SESSION["email"], "tutu"=>$_SESSION["accesstoken"]]);
-            $result = $query->fetch();
-            //Si oui regenerer un accesstoken et retourner vrai
-            if( !empty($result)){
-                $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
-                return true;
-            }
-            return false;
-        }
-        //Sinon retourner faux
         return false;
-    }
-
-    public function generateAccessToken($email){
-        //Générer un accesstoken
-        $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
-
-        //Se connecter a la bdd
-        //Mettre a jour l'utilisateur avec la nouvelle donnée
-        $query = $this->pdo->prepare(" UPDATE Users SET accesstoken=:titi WHERE email=:tutu ");
-        $query->execute(["titi"=>$accesstoken, "tutu"=>$email ]);
-
-        return $accesstoken;
     }
 
 }

@@ -17,7 +17,7 @@ use Controller\FacebookController;
 
 class UsersController extends BaseSQL{
 
-	public function defaultAction(){
+	public function defaultAction(): void{
 		echo "users default";
 	}
 	
@@ -33,33 +33,11 @@ class UsersController extends BaseSQL{
         $facebook = new FB();
         $form['url_facebook'] = $facebook->Login();
 
-		/*
-		$config = [
-                "config"=>[
-                    "title"=>"tilte",
-                    "js"=>"",
-                    "css"=>""],
-
-
-                "data"=>[
-
-                    "email"=>["type"=>"email","placeholder"=>"Votre email", "required"=>true, "class"=>"form-control", "id"=>"email",
-                        "error"=>"L'email n'est pas valide"],
-
-                    "pwd"=>["type"=>"password","placeholder"=>"Votre mot de passe", "required"=>true, "class"=>"form-control", "id"=>"pwd",
-                        "error"=>"Veuillez préciser un mot de passe"]
-
-
-                ]
-
-            ];
-		*/
-
 		$v = new View("addUser", "front");
 		$v->assign("form", $form);
 	}
 
-	public function saveAction(){
+	public function saveAction(): void{
 
 		$user = new Users();
 		$form = $user->getRegisterForm();
@@ -104,7 +82,7 @@ class UsersController extends BaseSQL{
 	}
 
 
-	public function loginAction(){
+	public function loginAction(): void{
 
 	    if ($this->isConnected()){
 	        $this->redirect();
@@ -156,7 +134,7 @@ class UsersController extends BaseSQL{
 
 	}
 
-	public function verificationAction(){
+	public function verificationAction(): void{
 	    $sql = "UPDATE Users SET status=1 WHERE accesstoken='".$_GET['accesstoken']."';";
         $this->pdo->query($sql);
         $msg = "Votre compte de EatFood est bien activé!";
@@ -164,7 +142,7 @@ class UsersController extends BaseSQL{
         $v->assign("msg", $msg);
     }
 
-    public function logoutAction(){
+    public function logoutAction(): void{
 
         unset($_SESSION['accesstoken']);
         unset($_SESSION['role']);
@@ -173,7 +151,7 @@ class UsersController extends BaseSQL{
 
     }
 
-    public function isConnected(){
+    public function isConnected(): bool {
 
         //Vérifier que les variables de sessions existent
         if( !empty($_SESSION["accesstoken"]) && !empty($_SESSION["email"])){
@@ -193,7 +171,7 @@ class UsersController extends BaseSQL{
         return false;
     }
 
-    public function generateAccessToken($email){
+    public function generateAccessToken($email): string {
         //Générer un accesstoken
         $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
 
@@ -205,7 +183,15 @@ class UsersController extends BaseSQL{
         return $accesstoken;
     }
 
-    public function redirect(){
+    public function role(): int {
+        $query = $this->pdo->prepare("SELECT role FROM Users WHERE email=:tutu ");
+        $query->execute([ "tutu"=>$_SESSION['email'] ]);
+
+        $role = $query->fetch();
+        return intval($role['role']);
+    }
+
+    public function redirect(): void{
         $query = $this->pdo->prepare("SELECT role FROM Users WHERE email=:tutu ");
         $query->execute([ "tutu"=>$_SESSION['email'] ]);
 
@@ -246,8 +232,7 @@ class UsersController extends BaseSQL{
         exit();
     }
 
-
-	public function forgetPasswordAction(){
+	public function forgetPasswordAction(): void{
 	
 		$v = new View("forgetPasswordUser", "front");
 		

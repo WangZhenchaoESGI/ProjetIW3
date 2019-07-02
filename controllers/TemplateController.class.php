@@ -24,7 +24,7 @@ use Controller\CommentController;
 
 class TemplateController extends BaseSQL {
 
-    public function defaultAction(){
+    public function defaultAction(): void {
 
         if (isset($_GET['id'])){
             $design = new restaurant();
@@ -72,7 +72,7 @@ class TemplateController extends BaseSQL {
 
     }
 
-    public function getAllComments($id){
+    public function getAllComments($id): array {
 
         $sql = " SELECT comment.*,Users.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
         $query = $this->pdo->query($sql);
@@ -81,7 +81,7 @@ class TemplateController extends BaseSQL {
 
     }
 
-    public function getAllDishes($id){
+    public function getAllDishes($id): array {
 
         $sql = " SELECT * FROM dishes where id_restaurant=".$id;
         $query = $this->pdo->query($sql);
@@ -90,7 +90,7 @@ class TemplateController extends BaseSQL {
 
     }
 
-    public function platAction(){
+    public function platAction(): void {
 
         if (isset($_GET['id'])){
 

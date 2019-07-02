@@ -19,12 +19,12 @@ use Facebook\Facebook;
 
 class FacebookController extends BaseSQL {
 
-    public function defaultAction(){
+    public function defaultAction(): string {
         $fb =  new FB();
         return $fb->Login();
     }
 
-    public function callbackAction(){
+    public function callbackAction(): void{
         $fb =  new FB();
         $user = $fb->callbackFB();
 
@@ -59,7 +59,7 @@ class FacebookController extends BaseSQL {
 
     }
 
-    public function isSave($email){
+    public function isSave($email): bool {
         $query = $this->pdo->prepare("SELECT * FROM Users WHERE email=:titi");
         $query->execute(["titi" => $email]);
         $result = $query->fetch();

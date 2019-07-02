@@ -16,7 +16,7 @@ use Controller\PagesController;
 
 class GoogleController extends BaseSQL {
 
-    public function defaultAction(){
+    public function defaultAction(): void{
 
         $token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
 
@@ -49,7 +49,7 @@ class GoogleController extends BaseSQL {
 
     }
 
-    public function isSave($email){
+    public function isSave($email): bool {
         $query = $this->pdo->prepare("SELECT * FROM Users WHERE email=:titi");
         $query->execute(["titi" => $email]);
         $result = $query->fetch();

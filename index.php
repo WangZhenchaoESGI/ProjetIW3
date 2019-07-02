@@ -30,6 +30,7 @@ function myAutoloader($class)
 	$classPath = "core/".substr($class, strpos($class, '\\') + 1).".class.php";
 	$classModel = "models/".substr($class, strpos($class, '\\') + 1).".class.php";
     $classVO = "VO/".substr($class, strpos($class, '\\') + 1).".VO.php";
+    $classController = "controllers/".substr($class, strpos($class, '\\') + 1).".class.php";
 
     if(file_exists($classPath)){
 		include $classPath;
@@ -37,6 +38,8 @@ function myAutoloader($class)
 		include $classModel;
 	}elseif(file_exists($classVO)){
         include $classVO;
+    }elseif(file_exists($classController)){
+        include $classController;
     }
 
 }
@@ -83,7 +86,6 @@ if( file_exists($cPath) ){
 		die("La class controller ".$c." n'existe pas");
 	}
 }else{
-	//die("Le fichier controller ".$c." n'existe pas");
     header("Location: /error");
 }
 
