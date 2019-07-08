@@ -11,6 +11,7 @@ use \Controller\TemplateController;
 use \Controller\CommentController;
 use \Controller\CommandesController;
 use \Controller\ConfigurationTemplateController;
+use \Controller\LoginController;
 use \VO\DbDriver;
 use \VO\DbHost;
 use \VO\DbName;
@@ -86,5 +87,8 @@ return [
     },
     CommandesController::class => function($container) {
         return new CommandesController();
+    },
+    LoginController::class => function($container) {
+        return new LoginController();
     },
 ];

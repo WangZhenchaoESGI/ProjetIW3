@@ -162,7 +162,23 @@
   controller: Commandes
   action: empty
 
+"/commande_save":
+  controller: Commandes
+  action: save
+
 "/panier":
   controller: Commandes
   action: default
+
+"/panier_remove":
+  controller: Commandes
+  action: panierRemove
+
+"/auth":
+  controller: Login
+  action: default
+
+"/callback":
+  controller: Login
+  action: callback
 

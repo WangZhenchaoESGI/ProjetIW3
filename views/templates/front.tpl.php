@@ -72,40 +72,42 @@
                     <a class="nav-link" href="/contact">CONTACT</a>
                 </li>
 
-                <?php if (isset($total_quantity)): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/panier">PANIER <i style="border: 1px solid red;border-radius: 10px;background-color: red;color: white;"><?php echo $total_quantity; ?></i></a>
-                    </li>
-                <?php endif; ?>
-
                 <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['pro']==true): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">MyEatFood</a>
                     </li>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/deconnexion">DECONNEXION</a>
+                        <a class="nav-link" href="/dashboard">ADMIN</a>
                     </li>
-                <?php elseif (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['client']==true): ?>
+                <?php endif; ?>
+
+                <?php if (isset($total_quantity)): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panier">PANIER
+                        <i style="border: 1px solid red;border-radius: 10px;background-color: red;color: white;">
+                            <?php echo $total_quantity; ?>
+                        </i>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/client">MyEatFood</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/deconnexion">DECONNEXION</a>
-                    </li>
-                <?php elseif (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Admin</a>
+                        <a class="nav-link" href="/client">ESPACE CLIENT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/deconnexion">DECONNEXION</a>
                     </li>
                 <?php else: ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/connexion">CONNEXION</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ajouter_un_utilisateur">INSCRIPTION</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/connexion">CONNEXION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ajouter_un_utilisateur">INSCRIPTION</a>
+                    </li>
                 <?php endif; ?>
             </ul>
         </div>
