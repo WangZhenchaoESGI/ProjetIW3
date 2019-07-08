@@ -49,6 +49,9 @@ class CommentController extends BaseSQL{
             $comment->setIdUser($_SESSION['id_user']);
             $comment->setIdRestaurant($_GET['id_restaurant']);
             $comment->setIdPlat($_GET['id_plat']);
+            if (empty($_POST['rate']) || !isset($_POST['rate'])){
+                $_POST['rate'] = 0;
+            }
             $comment->setStar($_POST['rate']);
             $comment->setContenu($_POST['comment']);
             $comment->save();
@@ -67,11 +70,18 @@ class CommentController extends BaseSQL{
     }
 
     public function deleteAction():void{
-        if ( (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true) ){
-            if (isset($_POST['id'])){
-                $comment = new comment();
-                $comment->delete(["id"=>$_POST['id']]);
+        if (isset($_POST['id'])){
+            $sql = " SELECT * FROM comment where comment.id=".$_POST['id'];
+            $query = $this->pdo->query($sql);
+            $res = $query->fetch();
+
+            if (!empty($res)){
+                if ( (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && ($_SESSION['role']['admin']==true || $res['id_user'] == $_SESSION['id_user'])) ){
+                    $comment = new comment();
+                    $comment->delete(["id"=>$_POST['id']]);
+                }
             }
+
         }
     }
 

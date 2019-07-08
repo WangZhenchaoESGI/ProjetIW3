@@ -162,6 +162,7 @@ class UsersController extends BaseSQL{
             $result = $query->fetch();
             //Si oui regenerer un accesstoken et retourner vrai
             if( !empty($result)){
+                $_SESSION['id_user'] = $result['id'];
                 $_SESSION["accesstoken"] = $this->generateAccessToken($_SESSION["email"]);
                 return true;
             }

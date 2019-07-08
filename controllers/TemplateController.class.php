@@ -74,7 +74,7 @@ class TemplateController extends BaseSQL {
 
     public function getAllComments($id): array {
 
-        $sql = " SELECT comment.*,Users.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
+        $sql = " SELECT comment.*,Users.firstname,Users.email FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
         $query = $this->pdo->query($sql);
 
         return $query->fetchAll();

@@ -113,7 +113,7 @@
                             <p><?php echo $value['contenu']; ?></p>
                         </div>
                     </div>
-                    <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
+                    <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && ( $_SESSION['role']['admin']==true || $value['id_user'] == $_SESSION['id_user'] ) ): ?>
                     <a class="btn btn-outline-danger" onclick="deleteComment(<?php echo $value['id']; ?>)">Supprimez</a>
                     <?php endif; ?>
                 </div>
