@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace Core;
-use  Facebook\Facebook;
 
 // Load Composer's autoloader
 require_once __DIR__ . '/vendor/facebook/graph-sdk/src/Facebook/autoload.php'; // change path as needed

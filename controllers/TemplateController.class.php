@@ -4,23 +4,10 @@ declare(strict_types=1);
 
 namespace Controller;
 use Core\BaseSQL;
-use Core\FB;
 use Core\View;
-use Models\comment;
 use Models\dishes;
-use Models\Users;
 use Models\restaurant;
-use Models\category;
 use Models\fonts;
-use Models\address;
-use Core\Routing;
-use Core\Validator;
-use Core\Validator_login;
-use Core\Mail;
-use Controller\PagesController;
-use Controller\FacebookController;
-use Controller\UsersController;
-use Controller\CommentController;
 
 class TemplateController extends BaseSQL {
 

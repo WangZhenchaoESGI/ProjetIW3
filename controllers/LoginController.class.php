@@ -6,7 +6,6 @@ namespace Controller;
 use Core\BaseSQL;
 use Core\FB;
 
-
 class LoginController extends BaseSQL {
 
 
