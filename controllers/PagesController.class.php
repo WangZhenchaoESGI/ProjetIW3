@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Controller;
 use Core\BaseSQL;
 use Core\View;
+use Models\Users;
 
 class PagesController extends BaseSQL {
 	
@@ -60,5 +61,24 @@ class PagesController extends BaseSQL {
 
         $v = new View("404", "front");
 
+    }
+
+    public function detailAction():void{
+        if ($this->isConnected()){
+            $user = new Users();
+            $u = $user->getOneBy(['id'=>$_SESSION['id_user']],false);
+            $v = new View("detail", "front");
+            $v->assign("user",$u);
+        }else {
+            header("Location: /connexion");
+        }
+    }
+
+    public function isConnected(): bool {
+        $user = new \Controller\UsersController();
+
+        if ($user->isConnected()) return true;
+
+        return false;
     }
 }

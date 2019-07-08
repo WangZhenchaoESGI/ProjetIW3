@@ -186,3 +186,7 @@
   controller: Login
   action: callback
 
+"/client":
+  controller: Pages
+  action: detail
+

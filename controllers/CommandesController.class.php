@@ -166,7 +166,7 @@ class CommandesController extends BaseSQL {
 
     public function successAction():void{
         $msg = "Votre commande est bien enregistré, on va livrer tout de suite !";
-        $v = new View("success", "template1");
+        $v = new View("success", "front");
         $v->assign("msg",$msg);
     }
 

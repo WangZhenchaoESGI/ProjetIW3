@@ -2,10 +2,10 @@ SiteMap
 
 MDP oublié
 
-Compte Client => valider la commande => pages commandes / page home->name / page change password
+Compte Client => pages commandes / page home->name / page change password 周一
 
-Compte Admin => Dashboard / Commandes / Facturation
+Compte Admin => Dashboard / Commandes / Facturation 周二
 
-Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs
+Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs 周三 周四
 
-Intégration de tcpdf => facture
+Intégration de tcpdf => facture 不做
