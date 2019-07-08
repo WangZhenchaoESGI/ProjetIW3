@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Controller;
 use Core\BaseSQL;
-use Core\FB;
 use Core\View;
 use Models\comment;
 use Models\dishes;
@@ -14,6 +13,8 @@ use Models\restaurant;
 use Models\category;
 use Models\fonts;
 use Models\address;
+use Models\livraison;
+use Models\list_dishes_delivery;
 use Core\Routing;
 use Core\Validator;
 use Core\Validator_login;
