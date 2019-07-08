@@ -126,6 +126,50 @@ class CommandesController extends BaseSQL {
         header("Location: /panier");
     }
 
+    public function saveAction():void{
+        //generation le code pour lier Livraison list_dishes_delivery address
+        $code = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
+        $total_price = 0;
+
+        foreach ($_SESSION["cart_item"] as $item){
+            $total_price += ($item["price"]*$item["quantity"]);
+
+            $dishes = new list_dishes_delivery();
+            $dishes->setIdDishes($item["id"]);
+            $dishes->setCode($code);
+            $dishes->save();
+        }
+
+        $livraison = new livraison();
+        $livraison->setMontant($total_price);
+        $livraison->setIdMethod($_POST['method']);
+        $livraison->setIdRestaurant($_SESSION['id_restaurant']);
+        $livraison->setIdClient($_SESSION['id_user']);
+        $livraison->setStatus(2);
+        $livraison->setCode($code);
+        $livraison->save();
+
+        $address = new address();
+        $address->setCode($code);
+        $address->setName($_POST['nom']);
+        $address->setAddresse($_POST['address']);
+        $address->setCity($_POST['ville']);
+        $address->setPostal($_POST['cp']);
+        $address->setPhone($_POST['tel']);
+        $address->save();
+
+        unset($_SESSION["cart_item"]);
+        unset($_SESSION['id_restaurant']);
+
+        header("Location: /commande_success");
+    }
+
+    public function successAction():void{
+        $msg = "Votre commande est bien enregistré, on va livrer tout de suite !";
+        $v = new View("success", "template1");
+        $v->assign("msg",$msg);
+    }
+
     public function emptyAction():void{
         unset($_SESSION["cart_item"]);
         header("Location: /plat?id=".$_GET['idPlat']);

@@ -92,8 +92,12 @@ class BaseSQL
 			implode(",", array_keys($dataChild) ) .") VALUES ( :". 
 			implode(",:", array_keys($dataChild) ) .")";
 
-			$query = $this->pdo->prepare($sql);
-			$query->execute( $dataChild );
+			try{
+                $query = $this->pdo->prepare($sql);
+                $query->execute( $dataChild );
+            }catch (Exception $e){
+                die('Erreur : ' . $e->getMessage());
+            }
 
 		}else{
 			//UPDATE

@@ -51,7 +51,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="">
+            <form method="post" action="/commande_save">
 
                 <h2 class="font-16 m-b-15">Information de la livraison</h2>
                 <br>
@@ -98,7 +98,7 @@
                         <?php foreach ($method as $key => $value):?>
                             <div class="form-check-inline my-1">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio<?php echo $value['id'] ?>" <?php echo $value['id']==4?"checked":""; ?> name="customRadio" value="<?php echo $value['id'] ?>" class="custom-control-input">
+                                    <input type="radio" id="customRadio<?php echo $value['id'] ?>" <?php echo $value['id']==4?"checked":""; ?> name="method" value="<?php echo $value['id'] ?>" class="custom-control-input">
                                     <label class="custom-control-label" for="customRadio<?php echo $value['id'] ?>"><?php echo $value['name'] ?></label>
                                 </div>
                             </div>

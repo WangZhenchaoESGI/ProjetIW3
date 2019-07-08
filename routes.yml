@@ -166,6 +166,10 @@
   controller: Commandes
   action: save
 
+"/commande_success":
+  controller: Commandes
+  action: success
+
 "/panier":
   controller: Commandes
   action: default
