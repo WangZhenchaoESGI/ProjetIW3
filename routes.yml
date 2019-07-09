@@ -190,3 +190,6 @@
   controller: Pages
   action: detail
 
+"/change_password":
+  controller: Users
+  action: changePassword

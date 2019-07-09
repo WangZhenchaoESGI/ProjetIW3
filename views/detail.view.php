@@ -1,3 +1,8 @@
+<style>
+    h3{
+        color: black;
+    }
+</style>
 <div class="container" style="margin-top: 3rem">
     <div class="row">
         <div class="col-3">
@@ -51,9 +56,43 @@
         <div class="col-9">
             <div class="card m-b-30">
                 <div class="card-body">
-
+                    <h3>Informations d'identification</h3>
+                    <br>
+                    <h5>Email: <?php echo $user['email']; ?></h5>
+                    <br>
+                    <?php
+                    if (isset($_SESSION['error'])){
+                        echo "<h4>".$_SESSION['error']."</h4>";
+                        unset($_SESSION['error']);
+                    }
+                    ?>
+                    <button class="btn btn-warning" onclick="display()">Modifier mon mot de passe</button>
+                    <form style="display: none" method="post" action="/change_password" id="change_password">
+                        <br><br>
+                        <div class="form-group m-l-6">
+                            <label class="sr-only" for="exampleInputPassword2">Nouveau mot de passe</label>
+                            <input type="password" class="form-control ml-2" id="exampleInputPassword2" placeholder="Nouveau mot de passe" name="pwd1">
+                        </div>
+                        <div class="form-group m-l-6">
+                            <label class="sr-only" for="exampleInputPassword2">Confirmez le mot de passe</label>
+                            <input type="password" class="form-control ml-2" id="exampleInputPassword2" placeholder="Confirmez le mot de passe" name="pwd2">
+                        </div>
+                        <button type="submit" class="btn btn-danger ml-2">Validez</button>
+                        <button class="btn btn-danger ml-2" type="reset" onclick="display_no()">Annulez</button>
+                    </form>
                 </div>
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
 </div>
+
+<script>
+    function display() {
+        var pwd = document.getElementById("change_password");
+        pwd.style.display = "";
+    }
+    function display_no() {
+        var pwd = document.getElementById("change_password");
+        pwd.style.display = "none";
+    }
+</script>

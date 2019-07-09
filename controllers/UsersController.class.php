@@ -168,6 +168,18 @@ class UsersController extends BaseSQL{
         return false;
     }
 
+    public function changePasswordAction(){
+	    if ($_POST['pwd1'] != $_POST['pwd2']){
+	        $_SESSION['error'] = "Les mots de passe ne sont pas identique!";
+        }else{
+            $pwd = password_hash($_POST['pwd1'], PASSWORD_DEFAULT);
+            $query = $this->pdo->prepare("Update Users set pwd=:pwd WHERE id = :id");
+            $query->execute(["pwd"=>$pwd,"id"=>$_SESSION['id_user']]);
+            $_SESSION['error'] = "Le nouveau mot de passe est enregistré!";
+        }
+        header("Location: /client");
+    }
+
     public function generateAccessToken($email): string {
         //Générer un accesstoken
         $accesstoken = md5(substr(uniqid().time(), 4, 10)."mxu(4il");

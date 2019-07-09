@@ -2,7 +2,7 @@ SiteMap
 
 MDP oublié
 
-Compte Client => pages commandes / page home->name / page change password 周一
+Compte Client => pages commandes 周一
 
 Compte Admin => Dashboard / Commandes / Facturation 周二
 
