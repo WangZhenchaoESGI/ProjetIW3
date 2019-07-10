@@ -24,18 +24,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!--
-                    <?php foreach ($dishes as $key => $value):?>
+                    <?php foreach ($commandes as $key => $value):?>
                         <tr>
                             <td><?php echo $value['id']; ?></td>
                             <td><?php echo $value['name']; ?></td>
-                            <td><?php echo $value['contenu']; ?></td>
-                            <td><?php echo $value['price']; ?>€</td>
-                            <td><i class="fa fa-check" STYLE="color: #50E3C2;"></i></td>
-                            <td><i class="fa fa-list"></i> ENTREZ</td>
+                            <td><?php echo $value['phone']; ?></td>
+                            <td><?php echo $value['montant']; ?>€</td>
+                            <td><?php echo $value['date_inserted']; ?></td>
+                            <td>
+                                <?php if ($value['vue'] == 1): ?>
+                                    <i class="fa fa-check" style="color: #50E3C2;font-size: 2rem;"></i>
+                                <?php else: ?>
+                                    <i class="mdi mdi-clock-fast" style="color: red;font-size: 2rem;"></i>
+                                <?php endif; ?>
+                            </td>
+                            <td><a href="/commandes_detail?code=<?php echo $value['code']; ?>" class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;&nbsp; Voir le détail</a></td>
                         </tr>
                     <?php endforeach;?>
-                    -->
                     </tbody>
                 </table>
             </div>

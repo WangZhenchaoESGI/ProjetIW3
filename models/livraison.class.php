@@ -17,6 +17,23 @@ class livraison extends BaseSQL
     public $id_client;
     public $status;
     public $code;
+    public $vue;
+
+    /**
+     * @return mixed
+     */
+    public function getVue()
+    {
+        return $this->vue;
+    }
+
+    /**
+     * @param mixed $vue
+     */
+    public function setVue($vue)
+    {
+        $this->vue = $vue;
+    }
 
     /**
      * @return null

@@ -178,6 +178,10 @@
   controller: Commandes
   action: listClientDetail
 
+"/commandes_detail":
+  controller: Admin
+  action: commandeDetail
+
 "/panier":
   controller: Commandes
   action: default

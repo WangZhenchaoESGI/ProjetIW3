@@ -82,9 +82,11 @@
                         <a href="/design" class="waves-effect"><i class="mdi mdi-google-pages"></i><span> Setting </span></a>
                     </li>
 
+                    <!--
                     <li>
                         <a href="#" class="waves-effect"><i class="mdi mdi-book-minus"></i><span> Facturations </span></a>
                     </li>
+                    -->
 
                     <li>
                         <a href="/adminContact" class="waves-effect"><i class="mdi mdi-account-box"></i><span> Contacts </span></a>
