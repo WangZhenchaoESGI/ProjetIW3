@@ -56,43 +56,40 @@
         <div class="col-10">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <h3>Informations d'identification</h3>
-                    <br>
-                    <h5>Email: <?php echo $user['email']; ?></h5>
-                    <br>
-                    <?php
-                    if (isset($_SESSION['error'])){
-                        echo "<h4>".$_SESSION['error']."</h4>";
-                        unset($_SESSION['error']);
-                    }
-                    ?>
-                    <button class="btn btn-warning" onclick="display()">Modifier mon mot de passe</button>
-                    <form style="display: none" method="post" action="/change_password" id="change_password">
-                        <br><br>
-                        <div class="form-group m-l-6">
-                            <label class="sr-only" for="exampleInputPassword2">Nouveau mot de passe</label>
-                            <input type="password" class="form-control ml-2" id="exampleInputPassword2" placeholder="Nouveau mot de passe" name="pwd1">
-                        </div>
-                        <div class="form-group m-l-6">
-                            <label class="sr-only" for="exampleInputPassword2">Confirmez le mot de passe</label>
-                            <input type="password" class="form-control ml-2" id="exampleInputPassword2" placeholder="Confirmez le mot de passe" name="pwd2">
-                        </div>
-                        <button type="submit" class="btn btn-danger ml-2">Validez</button>
-                        <button class="btn btn-danger ml-2" type="reset" onclick="display_no()">Annulez</button>
-                    </form>
+
+                    <p>Commande : <?php echo $data['livraison']['id'] ?></p>
+                    <p>Date : <?php echo $data['livraison']['date_inserted'] ?></p>
+                    <p>Nom : <?php echo $data['address']['name'] ?></p>
+                    <p>Address : <?php echo $data['address']['addresse'] ?></p>
+                    <p>Ville : <?php echo $data['address']['city'] ?></p>
+                    <p>Code postal : <?php echo $data['address']['postal'] ?></p>
+                    <p>Tél. : <?php echo $data['address']['phone'] ?></p>
+
+                    <table id="datatable" class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Contenu</th>
+                            <th>Image</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($data['dishes'] as $value): ?>
+                            <tr>
+                                <td><?php echo $value['name'] ?></td>
+                                <td><?php echo $value['contenu'] ?></td>
+                                <td><img class="img-feature img--wrap" width="150px" src="../public/upload/<?php echo $value['image']; ?>"></td>
+                                <td><?php echo $value['price'] ?>€</td>
+                                <td><?php echo $value['quantity'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
 </div>
-
-<script>
-    function display() {
-        var pwd = document.getElementById("change_password");
-        pwd.style.display = "";
-    }
-    function display_no() {
-        var pwd = document.getElementById("change_password");
-        pwd.style.display = "none";
-    }
-</script>

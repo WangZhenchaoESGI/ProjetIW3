@@ -170,6 +170,14 @@
   controller: Commandes
   action: success
 
+"/commandes_client":
+  controller: Commandes
+  action: listClient
+
+"/commandes_client_detail":
+  controller: Commandes
+  action: listClientDetail
+
 "/panier":
   controller: Commandes
   action: default

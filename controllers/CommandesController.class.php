@@ -136,6 +136,7 @@ class CommandesController extends BaseSQL {
 
             $dishes = new list_dishes_delivery();
             $dishes->setIdDishes($item["id"]);
+            $dishes->setQuantity($item["quantity"]);
             $dishes->setCode($code);
             $dishes->save();
         }
@@ -173,6 +174,60 @@ class CommandesController extends BaseSQL {
     public function emptyAction():void{
         unset($_SESSION["cart_item"]);
         header("Location: /plat?id=".$_GET['idPlat']);
+    }
+
+    public function listClientAction():void{
+        if ($this->isConnected()) {
+            $sql = "SELECT livraison.*,method.name as method,restaurant.name as restaurant FROM livraison,method,restaurant WHERE livraison.id_method = method.id AND livraison.id_restaurant = restaurant.id AND livraison.id_client = ".$_SESSION['id_user'];
+            $query = $this->pdo->query($sql);
+            $data = $query->fetchAll();
+            $v = new View("commandesClient", "front");
+            $v->assign("commandes",$data);
+        }else{
+            header("Location: /connexion");
+        }
+
+    }
+
+    public function listClientDetailAction():void{
+        if ($this->isConnected()) {
+            $sql1 = "SELECT * FROM livraison WHERE id_client =:id AND code=:code";
+            $sql2 = "SELECT * FROM address WHERE code=:code";
+            $sql3 = "SELECT list_dishes_delivery.*,dishes.* FROM list_dishes_delivery,dishes WHERE list_dishes_delivery.code=:code AND list_dishes_delivery.id_dishes = dishes.id";
+
+            if (isset($_GET['code'])){
+                $query = $this->pdo->prepare($sql1);
+                $query->execute(['id'=>$_SESSION['id_user'],'code'=>$_GET['code']]);
+                $livraison = $query->fetch();
+
+                if (!empty($livraison)){
+
+                    $query = $this->pdo->prepare($sql2);
+                    $query->execute(['code'=>$_GET['code']]);
+                    $address = $query->fetch();
+
+                    $query = $this->pdo->prepare($sql3);
+                    $query->execute(['code'=>$_GET['code']]);
+                    $dishes = $query->fetchAll();
+
+                    $data['livraison'] = $livraison;
+                    $data['address'] = $address;
+                    $data['dishes'] = $dishes;
+
+                    $v = new View("commandesClientDetail", "front");
+                    $v->assign("data",$data);
+
+                }else{
+                    header("Location: /commandes_client");
+                }
+            }else{
+                header("Location: /commandes_client");
+            }
+
+        }else{
+            header("Location: /connexion");
+        }
+
     }
 
     public function isConnected(): bool {

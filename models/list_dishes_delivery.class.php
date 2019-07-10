@@ -12,6 +12,7 @@ class list_dishes_delivery extends BaseSQL
 
     public $id = null;
     public $id_dishes;
+    public $quantity;
     public $code;
 
     /**
@@ -44,6 +45,22 @@ class list_dishes_delivery extends BaseSQL
     public function setIdDishes($id_dishes)
     {
         $this->id_dishes = $id_dishes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
     }
 
     /**
