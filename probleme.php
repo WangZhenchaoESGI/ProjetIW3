@@ -2,7 +2,7 @@ SiteMap
 
 MDP oublié
 
-Compte Admin => Dashboard / Commandes 周二
+Compte Admin => Dashboard 周二
 
 Super Admin ==> Gestion toutes les données et Gestion des roles de tous les utilisateurs 周三 周四
 

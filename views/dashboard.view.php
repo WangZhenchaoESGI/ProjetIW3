@@ -9,14 +9,11 @@
                             <i class="mdi mdi-webcam"></i>
                         </div>
                     </div>
-                    <div class="col-6 align-self-center text-center">
+                    <div class="col-9 align-self-center text-center">
                         <div class="m-l-10">
-                            <h5 class="mt-0 round-inner">$18090</h5>
-                            <p class="mb-0 text-muted">Visits Today</p>
+                            <h5 class="mt-0 round-inner"><?php echo $data['total_plat']; ?></h5>
+                            <p class="mb-0 text-muted">Total de plats </p>
                         </div>
-                    </div>
-                    <div class="col-3 align-self-end align-self-center">
-                        <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
                     </div>
                 </div>
             </div>
@@ -33,14 +30,11 @@
                             <i class="mdi mdi-account-multiple-plus"></i>
                         </div>
                     </div>
-                    <div class="col-6 text-center align-self-center">
-                        <div class="m-l-10 ">
-                            <h5 class="mt-0 round-inner">562</h5>
-                            <p class="mb-0 text-muted">New Users</p>
+                    <div class="col-9 text-center align-self-center">
+                        <div class="m-l-10">
+                            <h5 class="mt-0 round-inner"><?php echo($data['total_livraison']) ; ?></h5>
+                            <p class="mb-0 text-muted">Commandes Aujourd'hui</p>
                         </div>
-                    </div>
-                    <div class="col-3 align-self-end align-self-center">
-                        <h6 class="m-0 float-right text-center text-success"> <i class="mdi mdi-arrow-up"></i> <span>8.68%</span></h6>
                     </div>
                 </div>
             </div>
@@ -57,14 +51,11 @@
                             <i class="mdi mdi-basket"></i>
                         </div>
                     </div>
-                    <div class="col-6 align-self-center text-center">
-                        <div class="m-l-10 ">
-                            <h5 class="mt-0 round-inner">7514</h5>
-                            <p class="mb-0 text-muted">New Orders</p>
+                    <div class="col-9 align-self-center text-center">
+                        <div class="m-l-10">
+                            <h5 class="mt-0 round-inner"><?php echo($data['total_montant']) ; ?>€</h5>
+                            <p class="mb-0 text-muted">Gagné Aujourd'hui</p>
                         </div>
-                    </div>
-                    <div class="col-3 align-self-end align-self-center">
-                        <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>2.35%</span></h6>
                     </div>
                 </div>
             </div>
@@ -83,12 +74,9 @@
                     </div>
                     <div class="col-6 align-self-center text-center">
                         <div class="m-l-10">
-                            <h5 class="mt-0 round-inner">$32874</h5>
-                            <p class="mb-0 text-muted">Total Sales</p>
+                            <h5 class="mt-0 round-inner"><?php echo($data['total']) ; ?>€</h5>
+                            <p class="mb-0 text-muted">Gagné total</p>
                         </div>
-                    </div>
-                    <div class="col-3 align-self-end align-self-center">
-                        <h6 class="m-0 float-right text-center text-success"> <i class="mdi mdi-arrow-up"></i> <span>2.35%</span></h6>
                     </div>
                 </div>
             </div>
@@ -150,7 +138,8 @@
                         <td style="text-align: right">2900€</td>
                     </tr>
                     </tbody>
-                </table>            </div>
+                </table>
+            </div>
         </div>
     </div>
     <div class="col-md-12 col-lg-12 col-xl-4">
@@ -160,14 +149,14 @@
                 <script src="https://code.highcharts.com/modules/data.js"></script>
                 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
-                <div id="container" style="width: 100%; height: 400px; margin: 0 auto"></div>
+                <div id="container1" style="width: 100%; height: 400px; margin: 0 auto"></div>
 
                 <!-- Data from www.netmarketshare.com. Select Browsers => Desktop share by version. Download as tsv. -->
                 <pre id="tsv" style="display:none">Statistiques</pre>
                 <script>
 
                     // Create the chart
-                    Highcharts.chart('container', {
+                    Highcharts.chart('container1', {
                         chart: {
                             type: 'pie'
                         },
@@ -226,6 +215,56 @@
                         ]
                     });
                 </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <!--  chart start -->
+                    <div>
+                        <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        <div id="container2" style="min-width: 310px; margin: 0 auto"></div>
+                        <pre id="data" style="display: none;">Date,Quantité
+                            <?php
+                            foreach ($data['courbes'] as $r){
+                                echo $r['month'].",".$r['piece']."\n";
+                            }
+                            ?>
+                        </pre>
+
+                        <script type="text/javascript">
+                            Highcharts.chart('container2', {
+                                data: {
+                                    csv: document.getElementById('data').innerHTML
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Share prices'
+                                    }
+                                },
+                                plotOptions: {
+                                    series: {
+                                        marker: {
+                                            enabled: false
+                                        }
+                                    }
+                                },
+                                title: {
+                                    text: 'Statistique de la commande'
+                                },
+                                subtitle: {
+                                    text: 'Quantité de la commande par jour'
+                                }
+                            });
+                        </script>
+                    </div>
+                    <!--  chart fin  -->
+                </div>
             </div>
         </div>
     </div>

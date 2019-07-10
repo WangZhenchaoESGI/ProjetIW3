@@ -31,8 +31,42 @@ class AdminController extends BaseSQL{
     }
 
     public function dashboardAction(){
-        $v = new View("dashboard", "back");
-        $v->assign("pseudo","prof");
+
+        if ($this->isConnected()) {
+            $restaurant = new restaurant();
+            $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
+
+            $sql = "SELECT COUNT(id) as piece,DATE_FORMAT(date_inserted, '%Y-%m-%d') as month FROM livraison WHERE id_restaurant=".$restaurant['id']." GROUP BY DATE_FORMAT(date_inserted, '%Y-%m-%d')";
+            $query = $this->pdo->query($sql);
+            $data['courbes'] = $query->fetchAll();
+
+            $sql = "SELECT COUNT(id) as total FROM dishes WHERE id_restaurant=".$restaurant['id'];
+            $query = $this->pdo->query($sql);
+            $total = $query->fetch();
+            $data['total_plat'] = $total['total'];
+
+            $sql = "SELECT COUNT(id) as total, sum(montant) as montant FROM livraison WHERE id_restaurant=".$restaurant['id']." AND date_inserted >=  CURDATE()";
+
+            $query = $this->pdo->query($sql);
+            $total = $query->fetch();
+
+            $data['total_livraison'] = $total['total'];
+            $data['total_montant'] = $total['montant'];
+
+            $sql = "SELECT sum(montant) as montant FROM livraison WHERE id_restaurant=".$restaurant['id'];
+
+            $query = $this->pdo->query($sql);
+            $total = $query->fetch();
+
+            $data['total'] = $total['montant'];
+
+            $v = new View("dashboard", "back");
+            $v->assign("data",$data);
+
+        }else{
+            header("Location: /connexion");
+        }
+
     }
 
     public function produitsAction(){
