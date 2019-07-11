@@ -62,6 +62,13 @@ class AdminController extends BaseSQL{
 
             $data['total'] = $total['montant'];
 
+            // la statistique du jour
+            $sql ="SELECT COUNT(livraison.id) as total, sum(livraison.montant) as montant, method.name FROM livraison,method WHERE livraison.id_method=method.id AND livraison.id_restaurant=".$restaurant['id']." AND livraison.date_inserted >=CURDATE() GROUP BY livraison.id_method";
+            $query = $this->pdo->query($sql);
+            $s= $query->fetchAll();
+            $data['statistique'] = $s;
+
+
             $v = new View("dashboard", "back");
             $v->assign("data",$data);
 

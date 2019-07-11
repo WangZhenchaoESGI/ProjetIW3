@@ -97,45 +97,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Paypal</td>
-                        <td style="text-align: right">9</td>
-                        <td style="text-align: right">443€</td>
-                    </tr>
-                    <tr style="background-color: gainsboro">
-                        <td>Buyster</td>
-                        <td style="text-align: right">19</td>
-                        <td style="text-align: right">43€</td>
-                    </tr>
-                    <tr>
-                        <td>Carte Banciare</td>
-                        <td style="text-align: right">19</td>
-                        <td style="text-align: right">93€</td>
-                    </tr>
-                    <tr style="background-color: gainsboro">
-                        <td>Espèces</td>
-                        <td style="text-align: right">25</td>
-                        <td style="text-align: right">193€</td>
-                    </tr>
-                    <tr>
-                        <td>Tikets Restaurants</td>
-                        <td style="text-align: right">19</td>
-                        <td style="text-align: right">293€</td>
-                    </tr>
-                    <tr style="background-color: gainsboro">
-                        <td>Chèques</td>
-                        <td style="text-align: right">0</td>
-                        <td style="text-align: right">0€</td>
-                    </tr>
-                    <tr>
-                        <td>Corporate</td>
-                        <td style="text-align: right">19</td>
-                        <td style="text-align: right">293€</td>
-                    </tr>
+                    <?php
+
+                    $item = 0;
+                    $montant = 0;
+
+                    foreach ($data['statistique'] as $key => $value){
+                        echo "<tr>";
+                        echo "<td>".$value['name']."</td>";
+                        echo "<td style=\"text-align: right\">".$value['total']."</td>";
+                        echo "<td style=\"text-align: right\">".$value['montant']."€</td>";
+                        echo "</tr>";
+                        $item += $value['total'];
+                        $montant += $value['montant'];
+                    }
+
+                    ?>
                     <tr style="background-color: #F5A123">
                         <td>Tautaux</td>
-                        <td style="text-align: right">100</td>
-                        <td style="text-align: right">2900€</td>
+                        <td style="text-align: right"><?php echo $item; ?></td>
+                        <td style="text-align: right"><?php echo $montant; ?>€</td>
                     </tr>
                     </tbody>
                 </table>
@@ -182,34 +163,12 @@
                                 "name": "Statistiques",
                                 "colorByPoint": true,
                                 "data": [
+                                    <?php foreach ($data['statistique'] as $key => $value): ?>
                                     {
-                                        "name": "Paypal",
-                                        "y": 62.74
+                                        "name": "<?php echo $value['name']; ?>",
+                                        "y": <?php echo $value['montant']/$data['total_montant']*100; ?>
                                     },
-                                    {
-                                        "name": "Chèques",
-                                        "y": 10.57
-                                    },
-                                    {
-                                        "name": "Carte bancaire",
-                                        "y": 7.23
-                                    },
-                                    {
-                                        "name": "Tiket restaurant",
-                                        "y": 5.58
-                                    },
-                                    {
-                                        "name": "Buyster",
-                                        "y": 4.02
-                                    },
-                                    {
-                                        "name": "Espèces",
-                                        "y": 1.92
-                                    },
-                                    {
-                                        "name": "Corporate",
-                                        "y": 7.62
-                                    },
+                                    <?php endforeach; ?>
                                 ]
                             }
                         ]
