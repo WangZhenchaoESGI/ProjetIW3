@@ -30,7 +30,7 @@ class AdminController extends BaseSQL{
         $v->assign("pseudo","prof");
     }
 
-    public function dashboardAction(){
+    public function dashboardAction():void{
 
         if ($this->isConnected()) {
             $restaurant = new restaurant();
@@ -78,7 +78,7 @@ class AdminController extends BaseSQL{
 
     }
 
-    public function produitsAction(){
+    public function produitsAction():void{
         $v = new View("produits", "back");
         $v->assign("pseudo","prof");
     }
