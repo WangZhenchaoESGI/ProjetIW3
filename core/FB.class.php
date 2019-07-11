@@ -15,7 +15,7 @@ class FB{
     public function __construct(){
     }
 
-    public function Login(){
+    public function Login():string {
 
         if (!session_id()) {
             session_start();
@@ -35,7 +35,7 @@ class FB{
 
     }
 
-    public function callbackFB(){
+    public function callbackFB():array {
 
         if (!session_id()) {
             session_start();

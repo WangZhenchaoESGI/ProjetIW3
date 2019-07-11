@@ -8,7 +8,7 @@ class Routing{
 
 	public static $routeFile = "routes.yml";
 
-	public static function getRoute($slug){
+	public static function getRoute($slug):array {
 
 		// /creation_de_compte_allocine
 		//récuperer toutes les routes dans le fichier yml
@@ -28,7 +28,7 @@ class Routing{
 		return ["c"=>$c, "a"=>$a,"cPath"=>$cPath ];
 	}
 
-	public static function getSlug($c, $a){
+	public static function getSlug($c, $a):array {
 		$routes = yaml_parse_file(self::$routeFile);
 
 		foreach ($routes as $slug => $cAndA) {

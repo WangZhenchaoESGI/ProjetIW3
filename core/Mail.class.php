@@ -22,7 +22,7 @@ class Mail{
         $this->content = $content;
     }
 
-    public function sendMail(){
+    public function sendMail():void{
 
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {

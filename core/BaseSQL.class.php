@@ -24,7 +24,7 @@ class BaseSQL
 	}
 
 
-	public function setId($id){
+	public function setId($id):void{
 		$this->id = $id;
 		//va récupérer en base de données les élements pour alimenter l'objet
 		$this->getOneBy(["id"=>$id], true);
@@ -33,7 +33,7 @@ class BaseSQL
 
 	// $where -> tableau pour créer notre requête sql
 	// $object -> si vrai aliment l'objet $this sinon retourn un tableau
-	public function getOneBy(array $where, $object = false){
+	public function getOneBy(array $where, $object = false):array {
 
 		// $where = ["id"=>$id, "email"=>"y.skrzypczyk@gmail.com"];
 		$sqlWhere = [];
@@ -56,7 +56,7 @@ class BaseSQL
 
 	}
 
-    public function getAll(){
+    public function getAll():array {
 
         $sql = " SELECT * FROM ". substr($this->table, strpos($this->table, '\\') + 1) ." ;";
         $query = $this->pdo->query($sql);
@@ -65,7 +65,7 @@ class BaseSQL
 
     }
 
-    public function delete( array $where){
+    public function delete( array $where):void{
 
         $sqlWhere = [];
         foreach ($where as $key => $value) {
@@ -78,7 +78,7 @@ class BaseSQL
 
     }
 
-	public function save(){
+	public function save():void{
 
 		//Array ( [id] => [firstname] => Yves [lastname] => SKRZYPCZYK [email] => y.skrzypczyk@gmail.com [pwd] => $2y$10$tdmxlGf.zP.3dd7K/kRtw.jzYh2CnSbFuXaUkDNl3JtDJ05zCI7AG [role] => 1 [status] => 0 [pdo] => PDO Object ( ) [table] => Users )
 		$dataObject = get_object_vars($this);

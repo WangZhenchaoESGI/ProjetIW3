@@ -69,23 +69,23 @@ class Validator extends BaseSQL {
 	}
 
 
-	public static function notEmpty($string){
+	public static function notEmpty($string):bool {
 		return !empty(trim($string));
 	} 
 
-	public static function minLength($string, $length){
+	public static function minLength($string, $length):bool {
 		return strlen(trim($string))>=$length;
 	} 
 
-	public static function maxLength($string, $length){
+	public static function maxLength($string, $length):bool {
 		return strlen(trim($string))<=$length;
 	}
 
-	public static function checkEmail($string){
+	public static function checkEmail($string):bool {
 		return filter_var(trim($string), FILTER_VALIDATE_EMAIL);
 	}
 
-    public function emailExist( $email ){
+    public function emailExist( $email ):bool {
 
         //Préparation de la requête
         $query = $this->pdo->prepare(" SELECT * FROM Users WHERE email = :titi");
@@ -99,14 +99,14 @@ class Validator extends BaseSQL {
         }
     }
 
-	public static function checkPassword($string){
+	public static function checkPassword($string):bool {
 		return (
 					preg_match("#[a-z]#", $string) && 
 					preg_match("#[A-Z]#", $string) && 
 					preg_match("#[0-9]#", $string));
 	}
 
-    public function checkCaptchat($data){
+    public function checkCaptchat($data):bool {
         // Ma clé privée
         $secret = "6LcZeZwUAAAAALNsF31A4rro-8cis4CBdQkn524z";
         // Paramètre renvoyé par le recaptcha

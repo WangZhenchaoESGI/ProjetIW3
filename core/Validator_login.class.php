@@ -47,11 +47,11 @@ class Validator_login extends BaseSQL {
     }
 
 
-    public static function checkEmail($string){
+    public static function checkEmail($string):bool {
         return filter_var(trim($string), FILTER_VALIDATE_EMAIL);
     }
 
-    public function checkCaptchat($data){
+    public function checkCaptchat($data):bool {
         // Ma clé privée
         $secret = "6LcZeZwUAAAAALNsF31A4rro-8cis4CBdQkn524z";
         // Paramètre renvoyé par le recaptcha
@@ -73,7 +73,7 @@ class Validator_login extends BaseSQL {
         return false;
     }
 
-    public function checkPassword($password,$email){
+    public function checkPassword($password,$email):bool {
 
         $query = $this->pdo->prepare("SELECT pwd FROM Users WHERE email=:titi");
         $query->execute( ["titi" => $email] );
@@ -103,7 +103,7 @@ class Validator_login extends BaseSQL {
 
     }
 
-    public function checkStatus($email)
+    public function checkStatus($email):bool
     {
 
         $query = $this->pdo->prepare("SELECT status FROM Users WHERE email=:titi");
