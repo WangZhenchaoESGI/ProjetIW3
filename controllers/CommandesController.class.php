@@ -131,6 +131,8 @@ class CommandesController extends BaseSQL {
         $code = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
         $total_price = 0;
 
+        //echo "<pre>";
+        // enregistrer le panier
         foreach ($_SESSION["cart_item"] as $item){
             $total_price += ($item["price"]*$item["quantity"]);
 
@@ -139,8 +141,10 @@ class CommandesController extends BaseSQL {
             $dishes->setQuantity($item["quantity"]);
             $dishes->setCode($code);
             $dishes->save();
+            //print_r($dishes);
         }
 
+        // enregistrer les infos de la livraison
         $livraison = new livraison();
         $livraison->setMontant($total_price);
         $livraison->setIdMethod($_POST['method']);
@@ -148,8 +152,12 @@ class CommandesController extends BaseSQL {
         $livraison->setIdClient($_SESSION['id_user']);
         $livraison->setStatus(2);
         $livraison->setCode($code);
+        $livraison->setVue(0);
         $livraison->save();
 
+        //print_r($livraison);
+
+        //enregisrer les infos de l'adress de la livraison
         $address = new address();
         $address->setCode($code);
         $address->setName($_POST['nom']);
@@ -158,6 +166,8 @@ class CommandesController extends BaseSQL {
         $address->setPostal($_POST['cp']);
         $address->setPhone($_POST['tel']);
         $address->save();
+
+        //print_r($address);
 
         unset($_SESSION["cart_item"]);
         unset($_SESSION['id_restaurant']);

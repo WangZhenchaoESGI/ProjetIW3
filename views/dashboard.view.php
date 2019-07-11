@@ -161,7 +161,7 @@
                             type: 'pie'
                         },
                         title: {
-                            text: 'Statistiques. Février, 2019'
+                            text: 'Statistiques. <?php echo date("d M Y"); ?>'
                         },
                         plotOptions: {
                             series: {
@@ -209,7 +209,7 @@
                                     {
                                         "name": "Corporate",
                                         "y": 7.62
-                                    }
+                                    },
                                 ]
                             }
                         ]

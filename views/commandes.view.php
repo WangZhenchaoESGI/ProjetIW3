@@ -13,19 +13,22 @@
             <div class="card-body">
                 <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Téléphone</th>
-                        <th>Montant</th>
-                        <th>Date</th>
-                        <th>Vue</th>
-                        <th>Détail</th>
-                    </tr>
+                        <tr>
+                            <th></th>
+                            <th>Commande ID</th>
+                            <th>Nom</th>
+                            <th>Téléphone</th>
+                            <th>Montant</th>
+                            <th>Date</th>
+                            <th>Vue</th>
+                            <th>Détail</th>
+                        </tr>
                     </thead>
                     <tbody>
+
                     <?php foreach ($commandes as $key => $value):?>
                         <tr>
+                            <td></td>
                             <td><?php echo $value['id']; ?></td>
                             <td><?php echo $value['name']; ?></td>
                             <td><?php echo $value['phone']; ?></td>
