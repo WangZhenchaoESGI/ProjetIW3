@@ -21,7 +21,7 @@ class address extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -29,7 +29,7 @@ class address extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
@@ -37,7 +37,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -45,7 +45,7 @@ class address extends BaseSQL
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name):void
     {
         $this->name = $name;
     }
@@ -53,7 +53,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getAddresse()
+    public function getAddresse():string
     {
         return $this->addresse;
     }
@@ -61,7 +61,7 @@ class address extends BaseSQL
     /**
      * @param mixed $addresse
      */
-    public function setAddresse($addresse)
+    public function setAddresse($addresse):void
     {
         $this->addresse = $addresse;
     }
@@ -69,7 +69,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getCity()
+    public function getCity():string
     {
         return $this->city;
     }
@@ -77,7 +77,7 @@ class address extends BaseSQL
     /**
      * @param mixed $city
      */
-    public function setCity($city)
+    public function setCity($city):void
     {
         $this->city = $city;
     }
@@ -85,7 +85,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getPostal()
+    public function getPostal():string
     {
         return $this->postal;
     }
@@ -93,7 +93,7 @@ class address extends BaseSQL
     /**
      * @param mixed $postal
      */
-    public function setPostal($postal)
+    public function setPostal($postal):void
     {
         $this->postal = $postal;
     }
@@ -101,7 +101,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getPhone()
+    public function getPhone():string
     {
         return $this->phone;
     }
@@ -109,7 +109,7 @@ class address extends BaseSQL
     /**
      * @param mixed $phone
      */
-    public function setPhone($phone)
+    public function setPhone($phone):void
     {
         $this->phone = $phone;
     }
@@ -117,7 +117,7 @@ class address extends BaseSQL
     /**
      * @return mixed
      */
-    public function getCode()
+    public function getCode():string
     {
         return $this->code;
     }
@@ -125,7 +125,7 @@ class address extends BaseSQL
     /**
      * @param mixed $code
      */
-    public function setCode($code)
+    public function setCode($code):void
     {
         $this->code = $code;
     }

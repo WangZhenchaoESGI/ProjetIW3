@@ -18,7 +18,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -26,7 +26,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
@@ -34,7 +34,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdDishes()
+    public function getIdDishes():int
     {
         return $this->id_dishes;
     }
@@ -42,7 +42,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @param mixed $id_dishes
      */
-    public function setIdDishes($id_dishes)
+    public function setIdDishes($id_dishes):void
     {
         $this->id_dishes = $id_dishes;
     }
@@ -50,7 +50,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @return mixed
      */
-    public function getQuantity()
+    public function getQuantity():int
     {
         return $this->quantity;
     }
@@ -58,7 +58,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @param mixed $quantity
      */
-    public function setQuantity($quantity)
+    public function setQuantity($quantity):void
     {
         $this->quantity = $quantity;
     }
@@ -66,7 +66,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @return mixed
      */
-    public function getCode()
+    public function getCode():string
     {
         return $this->code;
     }
@@ -74,7 +74,7 @@ class list_dishes_delivery extends BaseSQL
     /**
      * @param mixed $code
      */
-    public function setCode($code)
+    public function setCode($code):void
     {
         $this->code = $code;
     }

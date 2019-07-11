@@ -16,7 +16,7 @@ class category extends BaseSQL
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -24,7 +24,7 @@ class category extends BaseSQL
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name):void
     {
         $this->name = $name;
     }
@@ -32,7 +32,7 @@ class category extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -40,7 +40,7 @@ class category extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }

@@ -22,7 +22,7 @@ class comment extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -30,7 +30,7 @@ class comment extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
@@ -38,7 +38,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdRestaurant()
+    public function getIdRestaurant():int
     {
         return $this->id_restaurant;
     }
@@ -46,7 +46,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $id_restaurant
      */
-    public function setIdRestaurant($id_restaurant)
+    public function setIdRestaurant($id_restaurant):void
     {
         $this->id_restaurant = $id_restaurant;
     }
@@ -54,7 +54,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdPlat()
+    public function getIdPlat():int
     {
         return $this->id_plat;
     }
@@ -62,7 +62,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $id_plat
      */
-    public function setIdPlat($id_plat)
+    public function setIdPlat($id_plat):void
     {
         $this->id_plat = $id_plat;
     }
@@ -70,7 +70,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getStar()
+    public function getStar():int
     {
         return $this->star;
     }
@@ -78,7 +78,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $star
      */
-    public function setStar($star)
+    public function setStar($star):void
     {
         $this->star = $star;
     }
@@ -86,7 +86,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getIdUser():int
     {
         return $this->id_user;
     }
@@ -94,7 +94,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $id_user
      */
-    public function setIdUser($id_user)
+    public function setIdUser($id_user):void
     {
         $this->id_user = $id_user;
     }
@@ -102,7 +102,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getContenu()
+    public function getContenu():string
     {
         return $this->contenu;
     }
@@ -110,7 +110,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $contenu
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu):void
     {
         $this->contenu = $contenu;
     }
@@ -118,7 +118,7 @@ class comment extends BaseSQL
     /**
      * @return mixed
      */
-    public function getDateInserted()
+    public function getDateInserted():string
     {
         return $this->date_inserted;
     }
@@ -126,7 +126,7 @@ class comment extends BaseSQL
     /**
      * @param mixed $date_inserted
      */
-    public function setDateInserted($date_inserted)
+    public function setDateInserted($date_inserted):void
     {
         $this->date_inserted = $date_inserted;
     }

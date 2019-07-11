@@ -17,7 +17,7 @@ class fonts extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -25,7 +25,7 @@ class fonts extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
@@ -33,7 +33,7 @@ class fonts extends BaseSQL
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -41,7 +41,7 @@ class fonts extends BaseSQL
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name):void
     {
         $this->name = $name;
     }
@@ -49,7 +49,7 @@ class fonts extends BaseSQL
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getContent():string
     {
         return $this->content;
     }
@@ -57,7 +57,7 @@ class fonts extends BaseSQL
     /**
      * @param mixed $content
      */
-    public function setContent($content)
+    public function setContent($content):void
     {
         $this->content = $content;
     }

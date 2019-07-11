@@ -17,11 +17,13 @@ class dishes extends BaseSQL
     public $image;
     public $price;
     public $status;
+    public $id_restaurant;
+    public $date_inserted;
 
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getStatus():int
     {
         return $this->status;
     }
@@ -29,17 +31,15 @@ class dishes extends BaseSQL
     /**
      * @param mixed $status
      */
-    public function setStatus($status)
+    public function setStatus($status):void
     {
         $this->status = $status;
     }
-    public $id_restaurant;
-    public $date_inserted;
 
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -47,7 +47,7 @@ class dishes extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
@@ -55,7 +55,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -63,7 +63,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name):void
     {
         $this->name = $name;
     }
@@ -71,7 +71,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getContenu()
+    public function getContenu():string
     {
         return $this->contenu;
     }
@@ -79,7 +79,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $contenu
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu):void
     {
         $this->contenu = $contenu;
     }
@@ -87,7 +87,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getImage()
+    public function getImage():string
     {
         return $this->image;
     }
@@ -95,7 +95,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $image
      */
-    public function setImage($image)
+    public function setImage($image):void
     {
         $this->image = $image;
     }
@@ -103,7 +103,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getPrice()
+    public function getPrice():float
     {
         return $this->price;
     }
@@ -111,7 +111,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $price
      */
-    public function setPrice($price)
+    public function setPrice($price):void
     {
         $this->price = $price;
     }
@@ -119,7 +119,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdRestaurant()
+    public function getIdRestaurant():int
     {
         return $this->id_restaurant;
     }
@@ -127,7 +127,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $id_restaurant
      */
-    public function setIdRestaurant($id_restaurant)
+    public function setIdRestaurant($id_restaurant):void
     {
         $this->id_restaurant = $id_restaurant;
     }
@@ -135,7 +135,7 @@ class dishes extends BaseSQL
     /**
      * @return mixed
      */
-    public function getDateInserted()
+    public function getDateInserted():string
     {
         return $this->date_inserted;
     }
@@ -143,7 +143,7 @@ class dishes extends BaseSQL
     /**
      * @param mixed $date_inserted
      */
-    public function setDateInserted($date_inserted)
+    public function setDateInserted($date_inserted):void
     {
         $this->date_inserted = $date_inserted;
     }

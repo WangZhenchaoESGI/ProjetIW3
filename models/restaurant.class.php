@@ -18,22 +18,6 @@ class restaurant extends BaseSQL
     public $id_fonts;
     public $text;
     public $image;
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
     public $id_user;
     public $button;
     public $status=1;
@@ -45,7 +29,23 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getText()
+    public function getImage():string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+
+    public function setImage($image):void
+    {
+        $this->image = $image;
+    }
+    /**
+     * @return mixed
+     */
+    public function getText():string
     {
         return $this->text;
     }
@@ -53,7 +53,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $text
      */
-    public function setText($text)
+    public function setText($text):void
     {
         $this->text = $text;
     }
@@ -61,7 +61,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getIdUser():int
     {
         return $this->id_user;
     }
@@ -69,16 +69,15 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $id_user
      */
-    public function setIdUser($id_user)
+    public function setIdUser($id_user):void
     {
         $this->id_user = $id_user;
     }
 
-
     /**
      * @return mixed
      */
-    public function getButton()
+    public function getButton():string
     {
         return $this->button;
     }
@@ -86,7 +85,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $button
      */
-    public function setButton($button)
+    public function setButton($button):void
     {
         $this->button = $button;
     }
@@ -110,7 +109,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdFonts()
+    public function getIdFonts():int
     {
         return $this->id_fonts;
     }
@@ -118,7 +117,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $id_fonts
      */
-    public function setIdFonts($id_fonts)
+    public function setIdFonts($id_fonts):void
     {
         $this->id_fonts = $id_fonts;
     }
@@ -126,7 +125,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdTemplate()
+    public function getIdTemplate():int
     {
         return $this->template;
     }
@@ -134,7 +133,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $id_template
      */
-    public function setIdTemplate($id_template)
+    public function setIdTemplate($id_template):void
     {
         $this->template = $id_template;
     }
@@ -142,7 +141,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getIdCategory()
+    public function getIdCategory():int
     {
         return $this->id_category;
     }
@@ -150,7 +149,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $id_category
      */
-    public function setIdCategory($id_category)
+    public function setIdCategory($id_category):void
     {
         $this->id_category = $id_category;
     }
@@ -158,7 +157,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getDescription():string
     {
         return $this->description;
     }
@@ -166,7 +165,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $description
      */
-    public function setDescription($description)
+    public function setDescription($description):void
     {
         $this->description = $description;
     }
@@ -174,7 +173,7 @@ class restaurant extends BaseSQL
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
@@ -182,7 +181,7 @@ class restaurant extends BaseSQL
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name):void
     {
         $this->name = $name;
     }
@@ -190,7 +189,7 @@ class restaurant extends BaseSQL
     /**
      * @return null
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
@@ -198,7 +197,7 @@ class restaurant extends BaseSQL
     /**
      * @param null $id
      */
-    public function setId($id)
+    public function setId($id):void
     {
         $this->id = $id;
     }
