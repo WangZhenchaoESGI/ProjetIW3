@@ -43,11 +43,9 @@ class Validator_login extends BaseSQL {
             }
 
         }
-
     }
 
-
-    public static function checkEmail($string):bool {
+    public static function checkEmail($string):string {
         return filter_var(trim($string), FILTER_VALIDATE_EMAIL);
     }
 

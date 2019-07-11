@@ -28,7 +28,7 @@ class Routing{
 		return ["c"=>$c, "a"=>$a,"cPath"=>$cPath ];
 	}
 
-	public static function getSlug($c, $a):array {
+	public static function getSlug($c, $a):string {
 		$routes = yaml_parse_file(self::$routeFile);
 
 		foreach ($routes as $slug => $cAndA) {
