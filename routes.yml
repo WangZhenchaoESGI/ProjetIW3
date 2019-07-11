@@ -94,6 +94,10 @@
   controller: Produits
   action: delete
 
+"/enable_produit":
+  controller: Produits
+  action: enable
+
 "/design":
   controller: ConfigurationTemplate
   action: default

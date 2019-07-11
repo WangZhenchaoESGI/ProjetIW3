@@ -70,7 +70,7 @@ class TemplateController extends BaseSQL {
 
     public function getAllDishes($id): array {
 
-        $sql = " SELECT * FROM dishes where id_restaurant=".$id;
+        $sql = " SELECT * FROM dishes where status=1 AND id_restaurant=".$id;
         $query = $this->pdo->query($sql);
 
         return $query->fetchAll();
@@ -99,20 +99,25 @@ class TemplateController extends BaseSQL {
 
             $resto['title_plat'] = true;
 
-            switch ($a['template']){
-                case 1:
-                    $v = new View("plat", "template1");
-                    break;
-                case 2:
-                    $v = new View("plat", "template2");
-                    break;
-                default:
-                    $v = new View("plat", "template1");
-                    break;
+            if ($d['status']==1){
+                switch ($a['template']){
+                    case 1:
+                        $v = new View("plat", "template1");
+                        break;
+                    case 2:
+                        $v = new View("plat", "template2");
+                        break;
+                    default:
+                        $v = new View("plat", "template1");
+                        break;
+                }
 
+                $v->assign("resto",$resto);
+            }else{
+                $_SESSION['error'] = "On n'a pas trouvé ce plat chez nous!";
+                header("Location: /template?id=".$a['id']);
             }
 
-            $v->assign("resto",$resto);
         }else{
             $design = new restaurant();
             $a=$design->getAll();

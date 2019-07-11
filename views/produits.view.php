@@ -43,7 +43,13 @@
                             <td><?php echo $value['contenu']; ?></td>
                             <td><?php echo $value['price']; ?>€</td>
                             <td><img src="../public/upload/<?php echo $value['image']; ?>" width="100px"></td>
-                            <td><i class="fa fa-check" STYLE="color: #50E3C2;"></i></td>
+                            <td id="enable<?php echo $value['id']; ?>" onclick="enablePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">
+                                <?php if ($value['status']==1): ?>
+                                <i class="fa fa-check" STYLE="color: #50E3C2;"></i>
+                                <?php else: ?>
+                                <i class="mdi mdi-close-box" STYLE="color: red;"></i>
+                                <?php endif; ?>
+                            </td>
                             <td><a class="btn btn-primary" href="/plat?id=<?php echo $value['id']; ?>">Affichez</a>&nbsp;&nbsp;<a class="btn btn-warning" href="/update_produit?id=<?php echo $value['id']; ?>">Modifez</a>&nbsp;&nbsp;<a class="btn btn-danger" onclick="deletePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">Supprimez</a></td>
                         </tr>
                     <?php endforeach;?>
@@ -72,6 +78,30 @@
             };
 
             request.open("POST", "/delete_produit");
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send("id="+ id);
+        }
+    }
+
+    function enablePlat(id,name) {
+        var r=confirm("Vous voulez vraiment changer le status ID: "+id+" "+name+" ?");
+
+        if (r==true)
+        {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if(request.readyState == 4){
+                    var container = document.getElementById("enable"+id);
+                    if (request.response==1){
+                        container.innerHTML="<i class='fa fa-check' STYLE='color: #50E3C2;'></i>";
+                    }else{
+                        container.innerHTML="<i class='mdi mdi-close-box' STYLE='color: red;'></i>";
+                    }
+
+                }
+            };
+
+            request.open("POST", "/enable_produit");
             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             request.send("id="+ id);
         }

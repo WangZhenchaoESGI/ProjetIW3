@@ -120,6 +120,12 @@
 </section>
 
 <section id="section2" class="grid__col--12 panel--centered">
+    <h2 class="headline-secondary" style="color: red;">
+        <?php if (isset($_SESSION['error'])){
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        } ?>
+    </h2>
     <h2 class="headline-secondary"><?php echo $resto['restaurant']['name']; ?></h2>
     <h3 class="headline-third"><?php echo $resto['restaurant']['description']; ?></h3>
 </section>

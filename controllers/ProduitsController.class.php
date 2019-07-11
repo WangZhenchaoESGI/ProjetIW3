@@ -148,6 +148,24 @@ class ProduitsController extends BaseSQL{
         }
     }
 
+    public function enableAction(): void {
+
+        if ( $this->isConnected() ){
+            if (isset($_POST['id'])){
+                $dishe = new dishes();
+                $d = $dishe->getOneBy(["id"=>$_POST['id']]);
+
+                if ($d['status']==1){
+                    $this->pdo->query("UPDATE dishes SET status=0 WHERE id=".$_POST['id']);
+                    echo 0;
+                }else{
+                    $this->pdo->query("UPDATE dishes SET status=1 WHERE id=".$_POST['id']);
+                    echo 1;
+                }
+            }
+        }
+    }
+
     public function isConnected(): bool {
         $user = new \Controller\UsersController();
 
