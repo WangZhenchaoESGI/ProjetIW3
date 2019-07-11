@@ -33,7 +33,7 @@ class BaseSQL
 
 	// $where -> tableau pour créer notre requête sql
 	// $object -> si vrai aliment l'objet $this sinon retourn un tableau
-	public function getOneBy(array $where, $object = false):array {
+	public function getOneBy(array $where, $object = false) {
 
 		// $where = ["id"=>$id, "email"=>"y.skrzypczyk@gmail.com"];
 		$sqlWhere = [];

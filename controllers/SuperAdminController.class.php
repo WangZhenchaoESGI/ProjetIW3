@@ -24,7 +24,7 @@ use Controller\FacebookController;
 use Controller\UsersController;
 use Controller\CommentController;
 
-class AdminController extends BaseSQL{
+class SuperAdminController extends BaseSQL{
     public function defaultAction(){
         $v = new View("dashboard", "back");
         $v->assign("pseudo","prof");

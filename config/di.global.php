@@ -12,6 +12,7 @@ use \Controller\CommentController;
 use \Controller\CommandesController;
 use \Controller\ConfigurationTemplateController;
 use \Controller\LoginController;
+use Controller\SuperAdminController;
 use \VO\DbDriver;
 use \VO\DbHost;
 use \VO\DbName;
@@ -66,6 +67,10 @@ return [
     AdminController::class => function($container) {
         $usersModel = $container[Users::class]($container);
         return new AdminController($usersModel);
+    },
+    SuperAdminController::class => function($container) {
+        $usersModel = $container[Users::class]($container);
+        return new SuperAdminController($usersModel);
     },
     FacebookController::class => function($container) {
         return new FacebookController();

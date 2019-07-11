@@ -1,5 +1,3 @@
-enable =>   plat restaurant
-
 enable =>   utilisateur restaurateur
             restaurant
             plat

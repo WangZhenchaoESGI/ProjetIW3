@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputFile">File input</label>
+            <label for="exampleInputFile">Image du restaurant</label>
             <input type="file" class="form-control-file" id="photo" name="photo" aria-describedby="fileHelp" <?php echo isset($config['restaurant']['image'])?"":"required"; ?>>
         </div>
 
