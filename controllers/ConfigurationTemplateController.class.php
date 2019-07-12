@@ -12,6 +12,11 @@ use Models\fonts;
 
 class ConfigurationTemplateController extends BaseSQL{
 
+    /*
+     *  Vérifier si les parametre du retaurant est bien enregistré
+     *  si oui on affiche
+     *  sinon on ajoute
+     */
     public function defaultAction():void{
 
         if ($this->isConnected() == false){
@@ -45,6 +50,9 @@ class ConfigurationTemplateController extends BaseSQL{
 
     }
 
+    /*
+     * ajouter les parametre du restaurant
+     */
     public function addAction():void{
 
         $category = new category();
@@ -61,6 +69,9 @@ class ConfigurationTemplateController extends BaseSQL{
         $v->assign("form", $form);
     }
 
+    /*
+     *  enregistrer les infos du restaurant
+     */
     public function saveAction():void{
 
         if (!empty($_POST)){
@@ -77,7 +88,7 @@ class ConfigurationTemplateController extends BaseSQL{
                 $_POST['image'] = $d['image'];
             }
 
-
+            // recupere le fonts IMG du restaurant
             if (isset($_FILES['photo']['name']) && !empty($_FILES['photo']['name']) ){
                 $allowedExts = array("gif", "jpeg", "jpg", "png");
                 $temp = explode(".", $_FILES["photo"]["name"]);
@@ -101,6 +112,7 @@ class ConfigurationTemplateController extends BaseSQL{
                 }
             }
 
+            // enregistrer
             if (isset($_GET['id'])){
                 $_POST['id'] = $_GET['id'];
                 $restaurant->setId($_POST['id']);

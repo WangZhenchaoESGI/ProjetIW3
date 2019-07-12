@@ -6,5 +6,9 @@
  * Time: 23:21
  */
 
+/*
+ * Lancer Installeur
+ */
+
 header("Location: setup_1.php");
 exit();

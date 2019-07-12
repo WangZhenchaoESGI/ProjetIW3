@@ -6,23 +6,9 @@ namespace Controller;
 use Core\BaseSQL;
 use Core\View;
 use Models\comment;
-use Models\dishes;
-use Models\method;
 use Models\Users;
 use Models\restaurant;
-use Models\category;
-use Models\fonts;
-use Models\address;
 use Models\livraison;
-use Models\list_dishes_delivery;
-use Core\Routing;
-use Core\Validator;
-use Core\Validator_login;
-use Core\Mail;
-use Controller\PagesController;
-use Controller\FacebookController;
-use Controller\UsersController;
-use Controller\CommentController;
 
 class SuperAdminController extends BaseSQL{
     public function defaultAction(){
@@ -30,6 +16,9 @@ class SuperAdminController extends BaseSQL{
         $v->assign("pseudo","prof");
     }
 
+    /*
+     *  recuperer tous les infos des utilisateurs
+     */
     public function usersAction():void{
         if ($this->isConnected()) {
             $users = new Users();
@@ -41,6 +30,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     *  afficher la détail du user selon son id
+     */
     public function userDetailAction():void{
         if ($this->isConnected()) {
             if (!isset($_GET['id'])){
@@ -55,6 +47,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     * enable un user selon son id
+     */
     public function enableUserAction(): void {
 
         if ( $this->isConnected() ){
@@ -73,6 +68,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     * changer le role du user selon son id
+     */
     public function roleUserAction(): void {
 
         if ( $this->isConnected() ){
@@ -94,6 +92,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     * supprimer un user selon son id
+     */
     public function deleteUserAction(): void {
 
         if ( $this->isConnected() ){
@@ -104,6 +105,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     * supprimer une commentaires selon son id
+     */
     public function deleteCommentairesAction(): void {
 
         if ( $this->isConnected() ){
@@ -114,6 +118,9 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    /*
+     * afficher toutes les infos des restaurants
+     */
     public function restaurantsAction():void{
         if ($this->isConnected()) {
 

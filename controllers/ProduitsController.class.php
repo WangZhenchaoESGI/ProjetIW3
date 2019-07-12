@@ -11,6 +11,9 @@ use Models\dishes;
 
 class ProduitsController extends BaseSQL{
 
+    /*
+     *  recupere tous les plats selon id du restaurant
+     */
     public function getAllProduits($id): array {
 
         $sql = " SELECT * FROM dishes where id_restaurant=".$id;
@@ -20,6 +23,9 @@ class ProduitsController extends BaseSQL{
 
     }
 
+    /*
+     *  reucpere tous les infos des plats et afficher
+     */
     public function defaultAction(): void {
 
         if ($this->isConnected() == false){
@@ -42,6 +48,7 @@ class ProduitsController extends BaseSQL{
 
     }
 
+    // ajouter un plat
     public function addAction(): void {
 
         if ($this->isConnected() == false){
@@ -61,6 +68,7 @@ class ProduitsController extends BaseSQL{
         $v->assign("form", $form);
     }
 
+    // enregistrer un plat
     public function saveAction(): void {
 
         if ($this->isConnected() == false){

@@ -29,6 +29,7 @@ class CommandesController extends BaseSQL {
     public function defaultAction():void{
 
         if ($this->isConnected()){
+            // si le panier cart_item est non empty => on afficher le panier
             if(!empty($_SESSION["cart_item"])) {
 
                 $paiement = new method();
@@ -47,6 +48,7 @@ class CommandesController extends BaseSQL {
 
     public function addAction():void{
         if(!empty($_POST["quantity"])) {
+            //recupere les infos du plats
             $dishs = new dishes();
             $d = $dishs->getOneBy(['id'=>$_GET['id']],false);
             $itemArray = array(
@@ -60,7 +62,7 @@ class CommandesController extends BaseSQL {
                 )
             );
 
-            //véfier si le meme restaurant
+            //véfier si il est le meme restaurant
             if (isset($_SESSION['id_restaurant'])){
                 if ($_SESSION['id_restaurant'] != $_GET['id_restaurant']){
                     unset($_SESSION["cart_item"]);
@@ -70,6 +72,7 @@ class CommandesController extends BaseSQL {
                 $_SESSION['id_restaurant'] = $_GET['id_restaurant'];
             }
 
+            // ajouter les infos du plat dans la session cart_item
             if(!empty($_SESSION["cart_item"])) {
                 if(in_array("a".$d["id"],array_keys($_SESSION["cart_item"]))) {
                     foreach($_SESSION["cart_item"] as $k => $v) {
@@ -176,18 +179,21 @@ class CommandesController extends BaseSQL {
     }
 
     public function successAction():void{
+        // return le msg
         $msg = "Votre commande est bien enregistré, on va livrer tout de suite !";
         $v = new View("success", "front");
         $v->assign("msg",$msg);
     }
 
     public function emptyAction():void{
+        // unset session cart_item
         unset($_SESSION["cart_item"]);
         header("Location: /plat?id=".$_GET['idPlat']);
     }
 
     public function listClientAction():void{
         if ($this->isConnected()) {
+            // lister tous les infos de la livrasion
             $sql = "SELECT livraison.*,method.name as method,restaurant.name as restaurant FROM livraison,method,restaurant WHERE livraison.id_method = method.id AND livraison.id_restaurant = restaurant.id AND livraison.id_client = ".$_SESSION['id_user'];
             $query = $this->pdo->query($sql);
             $data = $query->fetchAll();
@@ -201,21 +207,26 @@ class CommandesController extends BaseSQL {
 
     public function listClientDetailAction():void{
         if ($this->isConnected()) {
+
+            // lister toutes les info de la livraison et de l'adresse de la livraison et de tous les plats
             $sql1 = "SELECT * FROM livraison WHERE id_client =:id AND code=:code";
             $sql2 = "SELECT * FROM address WHERE code=:code";
             $sql3 = "SELECT list_dishes_delivery.*,dishes.* FROM list_dishes_delivery,dishes WHERE list_dishes_delivery.code=:code AND list_dishes_delivery.id_dishes = dishes.id";
 
             if (isset($_GET['code'])){
+                //info de la livraison
                 $query = $this->pdo->prepare($sql1);
                 $query->execute(['id'=>$_SESSION['id_user'],'code'=>$_GET['code']]);
                 $livraison = $query->fetch();
 
                 if (!empty($livraison)){
 
+                    // infos de l'adress
                     $query = $this->pdo->prepare($sql2);
                     $query->execute(['code'=>$_GET['code']]);
                     $address = $query->fetch();
 
+                    // infos de tous les plats
                     $query = $this->pdo->prepare($sql3);
                     $query->execute(['code'=>$_GET['code']]);
                     $dishes = $query->fetchAll();

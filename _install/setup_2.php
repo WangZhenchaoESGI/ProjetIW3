@@ -58,7 +58,7 @@ if (!isset($_SESSION['nameSite'] ) && !isset($_SESSION['descriptionSite'] )){
                     </div>
                     <div class="form-group">
                         <label for="nameSite">DBHOST</label>
-                        <input type="text" class="form-control" id="DBHOST" name="DBHOST" value="database" required>
+                        <input type="text" class="form-control" id="DBHOST" name="DBHOST" value="localhost" required>
                     </div>
                     <div class="form-group">
                         <label for="nameSite">DBNAME</label>

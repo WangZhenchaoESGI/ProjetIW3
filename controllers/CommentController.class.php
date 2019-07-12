@@ -10,6 +10,7 @@ class CommentController extends BaseSQL{
 
     public function getAllComments($id):array {
 
+        // recupere tous les commentaires selon id du plat
         $sql = " SELECT comment.*,User.firstname FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
         $query = $this->pdo->query($sql);
 
@@ -30,6 +31,7 @@ class CommentController extends BaseSQL{
             header("Location: /connexion");
             exit();
         }else{
+            // ajouter une commentaires
             $comment = new comment();
             $comment->setIdUser($_SESSION['id_user']);
             $comment->setIdRestaurant($_GET['id_restaurant']);
@@ -46,15 +48,8 @@ class CommentController extends BaseSQL{
         }
     }
 
-    public function saveAction(){
-
-    }
-
-    public function updateAction(){
-
-    }
-
     public function deleteAction():void{
+        // supprimer une commentaires
         if (isset($_POST['id'])){
             $sql = " SELECT * FROM comment where comment.id=".$_POST['id'];
             $query = $this->pdo->query($sql);

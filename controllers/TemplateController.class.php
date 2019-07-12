@@ -11,6 +11,9 @@ use Models\fonts;
 
 class TemplateController extends BaseSQL {
 
+    /*
+     * recupere toutes les infos de restaurant qui est bien activé => status=1
+     */
     public function getAllRestaurant():array {
 
         $sql = " SELECT * FROM restaurant WHERE status=1;";
@@ -20,12 +23,18 @@ class TemplateController extends BaseSQL {
 
     }
 
+    /*
+     *  lister tous les infos du restaurant selon son id
+     */
     public function defaultAction(): void {
 
         if (isset($_GET['id'])){
             $design = new restaurant();
             $a = $design->getOneBy(['id'=>$_GET['id'],"status"=>1],false);
 
+            // verifier si le restaurant est existe et il est bien activer ?
+            // si non on afficher la page home de templates
+            // si oui on afficher le restaurant
             if (empty($a)){
 
                 $a=$this->getAllRestaurant();
@@ -69,6 +78,9 @@ class TemplateController extends BaseSQL {
 
     }
 
+    /*
+     *  recupere toutes les commentaires selon id de son plat
+     */
     public function getAllComments($id): array {
 
         $sql = " SELECT comment.*,Users.firstname,Users.email FROM comment,Users where Users.id=comment.id_user AND comment.id_plat=".$id;
@@ -78,6 +90,9 @@ class TemplateController extends BaseSQL {
 
     }
 
+    /*
+     * recupere toutes les plats selon son id de restaurant
+     */
     public function getAllDishes($id): array {
 
         $sql = " SELECT * FROM dishes where status=1 AND id_restaurant=".$id;
@@ -87,6 +102,9 @@ class TemplateController extends BaseSQL {
 
     }
 
+    /*
+     *  lister toute les infos de plat selon son id
+     */
     public function platAction(): void {
 
         if (isset($_GET['id'])){

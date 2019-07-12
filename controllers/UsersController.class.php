@@ -130,6 +130,9 @@ class UsersController extends BaseSQL{
 
 	}
 
+	/*
+	 * activer le compte depuis Email
+	 */
 	public function verificationAction(): void{
 	    $sql = "UPDATE Users SET status=1 WHERE accesstoken='".$_GET['accesstoken']."';";
         $this->pdo->query($sql);
@@ -200,6 +203,9 @@ class UsersController extends BaseSQL{
         return intval($role['role']);
     }
 
+    /*
+     * recupre la role du user
+     */
     public function redirect(): void{
         $query = $this->pdo->prepare("SELECT role FROM Users WHERE email=:tutu ");
         $query->execute([ "tutu"=>$_SESSION['email'] ]);

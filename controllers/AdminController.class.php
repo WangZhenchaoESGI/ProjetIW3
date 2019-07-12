@@ -16,14 +16,20 @@ class AdminController extends BaseSQL{
         $v->assign("pseudo","prof");
     }
 
+    /*
+     *  Configuration de Dashboard pour les utilisateur de pro
+     */
     public function dashboardAction():void{
         if ($this->isConnected()) {
+            //Récupérer les infos du restaurant de utilistauer pro
             $restaurant = new restaurant();
             $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
+            //si on n'a pas de données, on va saisir les infos du restaurant pour commencer
             if (empty($restaurant)){
                 header("Location: /design");
                 exit();
             }else{
+                // vérifier si le status du restaurant
                 if ($restaurant['status']==0){
                     $data['error'] = "Votre restaurant est fermé par Administrateur, Veuillez nous contacter, s'il vous plaît!";
                 }
@@ -67,8 +73,10 @@ class AdminController extends BaseSQL{
 
     public function commandesAction():void{
         if ($this->isConnected()) {
+            // on recupere ID du restaurant
             $restaurant = new restaurant();
             $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
+            // on recupere toutes les commandes selon ID du restaurant
             $sql = "SELECT livraison.*,address.name as name,address.phone as phone FROM livraison,address WHERE livraison.id_restaurant =:id AND livraison.code=address.code ORDER BY livraison.id DESC ";
             $query = $this->pdo->prepare($sql);
             $query->execute(['id'=>$restaurant['id']]);
@@ -83,14 +91,19 @@ class AdminController extends BaseSQL{
     public function commandeDetailAction():void{
         if ($this->isConnected()) {
             if (isset($_GET['code'])){
+                // on recupere ID du restaurant
                 $restaurant = new restaurant();
                 $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
+                // on les infos de la livraison
                 $livraison = new livraison();
                 $livraison = $livraison->getOneBy(['code'=>$_GET['code']],false);
+                //on vérifier si id_restaurant dans la bdd de <livraison> est identique ID du restaurant
                 if ($restaurant['id']==$livraison['id_restaurant']){
+                    // update le status de la livraison
                     $sql = "UPDATE livraison SET vue=1 WHERE code=:code";
                     $query = $this->pdo->prepare($sql);
                     $query->execute(['code'=>$_GET['code']]);
+                    //on recupere tous les infos de la livraison / les plats / adresse de la livraison etc
                     $sql2 = "SELECT * FROM address WHERE code=:code";
                     $sql3 = "SELECT list_dishes_delivery.*,dishes.* FROM list_dishes_delivery,dishes WHERE list_dishes_delivery.code=:code AND list_dishes_delivery.id_dishes = dishes.id";
                     $query = $this->pdo->prepare($sql2);
@@ -117,6 +130,7 @@ class AdminController extends BaseSQL{
 
     public function isConnected(): bool {
         $user = new \Controller\UsersController();
+        // vérification de la connexion ( admin ou pro)
         if ($user->isConnected() && ( $user->role()==2 ||  $user->role()==3 ) ) return true;
         return false;
     }
