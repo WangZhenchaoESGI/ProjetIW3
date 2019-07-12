@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                                <urlset
+                                      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+                                
+                                <url>
+                                  <loc>http://wantwant.eu/</loc>
+                                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                                  <priority>1.00</priority>
+                                </url>
+                                <url>
+                                  <loc>http://wantwant.eu/template</loc>
+                                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                                  <priority>0.80</priority>
+                                </url>
+                                <url>
+                                  <loc>http://wantwant.eu/contact</loc>
+                                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                                  <priority>0.80</priority>
+                                </url>
+                                <url>
+                                  <loc>http://wantwant.eu/connexion</loc>
+                                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                                  <priority>0.80</priority>
+                                </url>
+                                <url>
+                                  <loc>http://wantwant.eu/ajouter_un_utilisateur</loc>
+                                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                                  <priority>0.80</priority>
+                                </url>
+                <url>
+                  <loc>http://wantwant.eu/template?id=1</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.64</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/template?id=2</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.64</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=16</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=17</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=18</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=19</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=20</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=21</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=22</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=23</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=24</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=25</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=26</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=27</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=28</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=29</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=32</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=33</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=34</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=35</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            
+                <url>
+                  <loc>http://wantwant.eu/plat?id=36</loc>
+                  <lastmod>2019-07-13CEST01:29:50+02:00</lastmod>
+                  <priority>0.51</priority>
+                </url>
+            </urlset>

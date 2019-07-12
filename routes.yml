@@ -261,3 +261,7 @@
 "/deleteCommentaires":
   controller: SuperAdmin
   action: deleteCommentaires
+
+"/sitemap":
+  controller: SuperAdmin
+  action: sitemap

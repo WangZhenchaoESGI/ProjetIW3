@@ -242,7 +242,7 @@ class SuperAdminController extends BaseSQL{
         $p = $plats->getAll();
 
         $date = date('Y-m-dTH:i:sP', time());
-        $handle = fopen("/var/www/ProjetAnnuel/sitemap.xml", "w");
+        $handle = fopen("sitemap.xml", "w");
         fwrite($handle,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                                 <urlset
                                       xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"
@@ -298,8 +298,8 @@ class SuperAdminController extends BaseSQL{
         fwrite($handle, "</urlset>");
         fclose($handle);
 
-        $data['t'] = $t;
-        $data['p'] = $p;
+        $data['template'] = $t;
+        $data['plat'] = $p;
 
         $v = new View("sitemap", "admin");
         $v->assign("data",$data);
