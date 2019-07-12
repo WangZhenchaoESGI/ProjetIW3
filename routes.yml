@@ -245,3 +245,19 @@
 "/AdminProduits":
   controller: SuperAdmin
   action: allProduits
+
+"/AdminCommandes":
+  controller: SuperAdmin
+  action: allCommandes
+
+"/AdminCommentaires":
+  controller: SuperAdmin
+  action: allCommentaires
+
+"/commandes_detail_admin":
+  controller: SuperAdmin
+  action: commandeDetail
+
+"/deleteCommentaires":
+  controller: SuperAdmin
+  action: deleteCommentaires

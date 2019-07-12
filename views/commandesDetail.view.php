@@ -12,6 +12,11 @@
         <div class="card-body">
 
             <p>Commande : <?php echo $data['livraison']['id'] ?></p>
+
+            <?php if (isset($data['restaurant'])): ?>
+                <p>Restaurant : <?php echo $data['restaurant']['name'] ?></p>
+            <?php endif; ?>
+
             <p>Date : <?php echo $data['livraison']['date_inserted'] ?></p>
             <p>Nom : <?php echo $data['address']['name'] ?></p>
             <p>Address : <?php echo $data['address']['addresse'] ?></p>

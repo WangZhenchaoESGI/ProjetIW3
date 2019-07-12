@@ -1,31 +1,21 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Controller;
+
 use Core\BaseSQL;
 use Core\View;
-use Models\comment;
-use Models\dishes;
-use Models\method;
-use Models\Users;
 use Models\restaurant;
-use Models\category;
-use Models\fonts;
-use Models\address;
 use Models\livraison;
-use Models\list_dishes_delivery;
-use Core\Routing;
-use Core\Validator;
-use Core\Validator_login;
-use Core\Mail;
-use Controller\PagesController;
-use Controller\FacebookController;
-use Controller\UsersController;
-use Controller\CommentController;
+
 class AdminController extends BaseSQL{
+
     public function defaultAction(){
         $v = new View("dashboard", "back");
         $v->assign("pseudo","prof");
     }
+
     public function dashboardAction():void{
         if ($this->isConnected()) {
             $restaurant = new restaurant();
@@ -69,10 +59,12 @@ class AdminController extends BaseSQL{
             header("Location: /connexion");
         }
     }
+
     public function produitsAction():void{
         $v = new View("produits", "back");
         $v->assign("pseudo","prof");
     }
+
     public function commandesAction():void{
         if ($this->isConnected()) {
             $restaurant = new restaurant();
@@ -87,6 +79,7 @@ class AdminController extends BaseSQL{
             header("Location: /connexion");
         }
     }
+
     public function commandeDetailAction():void{
         if ($this->isConnected()) {
             if (isset($_GET['code'])){
@@ -121,6 +114,7 @@ class AdminController extends BaseSQL{
             header("Location: /connexion");
         }
     }
+
     public function isConnected(): bool {
         $user = new \Controller\UsersController();
         if ($user->isConnected() && ( $user->role()==2 ||  $user->role()==3 ) ) return true;

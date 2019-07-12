@@ -104,6 +104,16 @@ class SuperAdminController extends BaseSQL{
         }
     }
 
+    public function deleteCommentairesAction(): void {
+
+        if ( $this->isConnected() ){
+            if (isset($_POST['id'])){
+                $comment = new comment();
+                $comment->delete(["id"=>$_POST['id']]);
+            }
+        }
+    }
+
     public function restaurantsAction():void{
         if ($this->isConnected()) {
 
@@ -207,47 +217,64 @@ class SuperAdminController extends BaseSQL{
 
     }
 
-    public function commandesAction():void{
-        if ($this->isConnected()) {
-            $restaurant = new restaurant();
-            $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
-            $sql = "SELECT livraison.*,address.name as name,address.phone as phone FROM livraison,address WHERE livraison.id_restaurant =:id AND livraison.code=address.code ORDER BY livraison.id DESC ";
-            $query = $this->pdo->prepare($sql);
-            $query->execute(['id'=>$restaurant['id']]);
-            $data = $query->fetchAll();
-            $v = new View("commandes", "back");
-            $v->assign("commandes",$data);
-        }else{
-            header("Location: /connexion");
+    public function allCommandesAction(): void {
+
+        if ($this->isConnected() == false){
+            header("Location: /");
+            exit();
         }
+
+        $sql = "SELECT livraison.*,address.name as name,address.phone as phone,restaurant.name as restaurant, restaurant.id as restaurantID FROM livraison,address,restaurant WHERE livraison.code=address.code AND livraison.id_restaurant = restaurant.id ORDER BY livraison.id DESC ";
+        $query = $this->pdo->query($sql);
+        $data = $query->fetchAll();
+        $v = new View("commandesAdmin", "admin");
+        $v->assign("commandes",$data);
+
     }
+
+    public function allCommentairesAction(): void {
+
+        if ($this->isConnected() == false){
+            header("Location: /");
+            exit();
+        }
+
+        $sql = "SELECT comment.*,restaurant.name as restaurant, dishes.id as dishesID, dishes.name as dishes,Users.email as email FROM comment,restaurant,dishes,Users WHERE comment.id_restaurant = restaurant.id AND comment.id_plat = dishes.id AND comment.id_user = Users.id";
+        $query = $this->pdo->query($sql);
+        $data = $query->fetchAll();
+        $v = new View("commentaires", "admin");
+        $v->assign("data",$data);
+
+    }
+
     public function commandeDetailAction():void{
         if ($this->isConnected()) {
             if (isset($_GET['code'])){
-                $restaurant = new restaurant();
-                $restaurant = $restaurant->getOneBy(['id_user'=>$_SESSION['id_user']],false);
+
                 $livraison = new livraison();
                 $livraison = $livraison->getOneBy(['code'=>$_GET['code']],false);
-                if ($restaurant['id']==$livraison['id_restaurant']){
-                    $sql = "UPDATE livraison SET vue=1 WHERE code=:code";
-                    $query = $this->pdo->prepare($sql);
-                    $query->execute(['code'=>$_GET['code']]);
-                    $sql2 = "SELECT * FROM address WHERE code=:code";
-                    $sql3 = "SELECT list_dishes_delivery.*,dishes.* FROM list_dishes_delivery,dishes WHERE list_dishes_delivery.code=:code AND list_dishes_delivery.id_dishes = dishes.id";
-                    $query = $this->pdo->prepare($sql2);
-                    $query->execute(['code'=>$_GET['code']]);
-                    $address = $query->fetch();
-                    $query = $this->pdo->prepare($sql3);
-                    $query->execute(['code'=>$_GET['code']]);
-                    $dishes = $query->fetchAll();
-                    $data['livraison'] = $livraison;
-                    $data['address'] = $address;
-                    $data['dishes'] = $dishes;
-                    $v = new View("commandesDetail", "back");
-                    $v->assign("data",$data);
-                }else{
-                    header("Location: /commandes");
-                }
+
+                $sql2 = "SELECT * FROM address WHERE code=:code";
+                $sql3 = "SELECT list_dishes_delivery.*,dishes.* FROM list_dishes_delivery,dishes WHERE list_dishes_delivery.code=:code AND list_dishes_delivery.id_dishes = dishes.id";
+                $query = $this->pdo->prepare($sql2);
+                $query->execute(['code'=>$_GET['code']]);
+                $address = $query->fetch();
+
+                $query = $this->pdo->prepare($sql3);
+                $query->execute(['code'=>$_GET['code']]);
+                $dishes = $query->fetchAll();
+
+                $restaurant = new restaurant();
+                $restaurant = $restaurant->getOneBy(['id'=>$livraison['id_restaurant']],false);
+
+                $data['restaurant'] = $restaurant;
+                $data['livraison'] = $livraison;
+                $data['address'] = $address;
+                $data['dishes'] = $dishes;
+
+                $v = new View("commandesDetail", "admin");
+                $v->assign("data",$data);
+
             }else{
                 header("Location: /commandes");
             }
