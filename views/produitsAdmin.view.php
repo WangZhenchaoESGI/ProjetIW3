@@ -25,6 +25,7 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>RESTAURANT</th>
                         <th>NOM</th>
                         <th>DESCRIPTION</th>
                         <th>TARIF</th>
@@ -36,23 +37,24 @@
                     <tbody>
                     <?php if (!empty($dishes) && $dishes!=NULL):?>
 
-                    <?php foreach ($dishes as $key => $value):?>
-                        <tr id="<?php echo $value['id']; ?>">
-                            <td><?php echo $value['id']; ?></td>
-                            <td><?php echo $value['name']; ?></td>
-                            <td><?php echo $value['contenu']; ?></td>
-                            <td><?php echo $value['price']; ?>€</td>
-                            <td><img src="../public/upload/<?php echo $value['image']; ?>" width="100px"></td>
-                            <td id="enable<?php echo $value['id']; ?>" onclick="enablePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">
-                                <?php if ($value['status']==1): ?>
-                                <i class="fa fa-check" STYLE="color: #50E3C2;font-size: 2rem;"></i>
-                                <?php else: ?>
-                                <i class="mdi mdi-close-box" STYLE="color: red;font-size: 2rem;"></i>
-                                <?php endif; ?>
-                            </td>
-                            <td><a class="btn btn-primary" href="/plat?id=<?php echo $value['id']; ?>">Affichez</a>&nbsp;&nbsp;<a class="btn btn-warning" href="/update_produit?id=<?php echo $value['id']; ?>">Modifez</a>&nbsp;&nbsp;<a class="btn btn-danger" onclick="deletePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">Supprimez</a></td>
-                        </tr>
-                    <?php endforeach;?>
+                        <?php foreach ($dishes as $key => $value):?>
+                            <tr id="<?php echo $value['id']; ?>">
+                                <td><?php echo $value['id']; ?></td>
+                                <td><?php echo $value['restaurant']; ?></td>
+                                <td><?php echo $value['name']; ?></td>
+                                <td><?php echo $value['contenu']; ?></td>
+                                <td><?php echo $value['price']; ?>€</td>
+                                <td><img src="../public/upload/<?php echo $value['image']; ?>" width="100px"></td>
+                                <td id="enable<?php echo $value['id']; ?>" onclick="enablePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">
+                                    <?php if ($value['status']==1): ?>
+                                        <i class="fa fa-check" STYLE="color: #50E3C2;font-size: 2rem;"></i>
+                                    <?php else: ?>
+                                        <i class="mdi mdi-close-box" STYLE="color: red;font-size: 2rem;"></i>
+                                    <?php endif; ?>
+                                </td>
+                                <td><a class="btn btn-primary" href="/plat?id=<?php echo $value['id']; ?>">Affichez</a>&nbsp;&nbsp;<a class="btn btn-danger" onclick="deletePlat(<?php echo $value['id']; ?>,'<?php echo $value['name']; ?>')">Supprimez</a></td>
+                            </tr>
+                        <?php endforeach;?>
 
                     <?php endif; ?>
                     </tbody>

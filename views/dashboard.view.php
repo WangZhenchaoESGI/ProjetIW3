@@ -1,3 +1,6 @@
+<?php if (isset($data['error'])): ?>
+    <h3 style="color: red;"><?php echo $data["error"] ?></h3>
+<?php endif; ?>
 <div class="row">
     <!-- Column -->
     <div class="col-md-6 col-lg-6 col-xl-3">

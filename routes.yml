@@ -209,3 +209,39 @@
 "/change_password":
   controller: Users
   action: changePassword
+
+"/AdminDashboard":
+  controller: SuperAdmin
+  action: dashboard
+
+"/users":
+  controller: SuperAdmin
+  action: users
+
+"/enableUser":
+  controller: SuperAdmin
+  action: enableUser
+
+"/roleUser":
+  controller: SuperAdmin
+  action: roleUser
+
+"/deleteUser":
+  controller: SuperAdmin
+  action: deleteUser
+
+"/userDetail":
+  controller: SuperAdmin
+  action: userDetail
+
+"/restaurants":
+  controller: SuperAdmin
+  action: restaurants
+
+"/enableRestaurant":
+  controller: SuperAdmin
+  action: enableRestaurant
+
+"/AdminProduits":
+  controller: SuperAdmin
+  action: allProduits

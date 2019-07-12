@@ -11,47 +11,57 @@ use Models\fonts;
 
 class TemplateController extends BaseSQL {
 
+    public function getAllRestaurant():array {
+
+        $sql = " SELECT * FROM restaurant WHERE status=1;";
+        $query = $this->pdo->query($sql);
+
+        return $query->fetchAll();
+
+    }
+
     public function defaultAction(): void {
 
         if (isset($_GET['id'])){
             $design = new restaurant();
-            $a = $design->getOneBy(['id'=>$_GET['id']],false);
+            $a = $design->getOneBy(['id'=>$_GET['id'],"status"=>1],false);
 
             if (empty($a)){
-                $design = new restaurant();
-                $a=$design->getAll();
+
+                $a=$this->getAllRestaurant();
 
                 $v = new View("templateCarte", "front");
                 $v->assign("resto",$a);
+            }else{
+                //dishes
+                $d = $this->getAllDishes($_GET['id']);
+
+                $fonts = new fonts();
+                $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
+
+                $resto['restaurant'] = $a;
+                $resto['dishes'] = $d;
+                $resto['fonts'] = $f;
+
+                switch ($a['template']){
+                    case 1:
+                        $v = new View("template", "template1");
+                        break;
+                    case 2:
+                        $v = new View("template", "template2");
+                        break;
+                    default:
+                        $v = new View("template", "template1");
+                        break;
+
+                }
+
+                $v->assign("resto",$resto);
             }
 
-            //dishes
-            $d = $this->getAllDishes($_GET['id']);
-
-            $fonts = new fonts();
-            $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);
-
-            $resto['restaurant'] = $a;
-            $resto['dishes'] = $d;
-            $resto['fonts'] = $f;
-
-            switch ($a['template']){
-                case 1:
-                    $v = new View("template", "template1");
-                    break;
-                case 2:
-                    $v = new View("template", "template2");
-                    break;
-                default:
-                    $v = new View("template", "template1");
-                    break;
-
-            }
-
-            $v->assign("resto",$resto);
         }else{
-            $design = new restaurant();
-            $a=$design->getAll();
+
+            $a=$this->getAllRestaurant();
 
             $v = new View("templateCarte", "front");
             $v->assign("resto",$a);
@@ -86,6 +96,11 @@ class TemplateController extends BaseSQL {
 
             $design = new restaurant();
             $a = $design->getOneBy(['id'=>$d['id_restaurant']],false);
+
+            // Véfirier si le restaurant est fermé par admin ?
+            if ($a['status']==0){
+                header("Location: /template");
+            }
 
             $fonts = new fonts();
             $f = $fonts->getOneBy(['id'=>$a['id_fonts']],false);

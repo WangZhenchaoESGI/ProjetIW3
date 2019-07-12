@@ -80,7 +80,7 @@
 
                 <?php if (isset($_SESSION['role']['isConnected']) && $_SESSION['role']['isConnected']==true && $_SESSION['role']['admin']==true): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard_admin">ADMIN</a>
+                        <a class="nav-link" href="/AdminDashboard">ADMIN</a>
                     </li>
                 <?php endif; ?>
 
