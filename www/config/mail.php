@@ -2,7 +2,7 @@
 // Configuration de PHPMailer
 define("Host",'send.one.com');
 define("SMTPAuth",true);
-define("Username",'info@yundaex.fr');
-define("Password",'aqwxsz159');
+define("Username",'example@example.com');
+define("Password",'xxxxxx');
 define("SMTPSecure",'tls');
-define("Port",'587');
+define("Port",'000');
